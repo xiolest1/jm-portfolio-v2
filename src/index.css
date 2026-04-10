@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  --font-mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
+  --font-sans: 'DM Sans', system-ui, 'Segoe UI', sans-serif;
+
+  --bios-bg: #070b08;
+  --bios-text: #b8ebc4;
+  --bios-ok: #4ade80;
+  --bios-warn: #fbbf24;
+
+  --showcase-bg: #0c0f14;
+  --showcase-card: #12161e;
+  --showcase-text: #c8cdd8;
+  --showcase-heading: #f1f5f9;
+  --showcase-muted: #8b93a7;
+  --showcase-border: #252b36;
+  --showcase-accent: #38bdf8;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  background: var(--bios-bg);
+}
+
+#root {
+  min-height: 100svh;
+  width: 100%;
+}

@@ -1,0 +1,135 @@
+.root {
+  min-height: 100svh;
+  width: 100%;
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: clamp(1rem, 4vw, 2rem);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  font-family: var(--font-mono);
+  font-size: clamp(0.75rem, 2.5vw, 0.875rem);
+  line-height: 1.5;
+  color: var(--bios-text);
+  background: var(--bios-bg);
+}
+
+.screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  overflow-y: auto;
+  padding-bottom: 1rem;
+}
+
+.line {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.dim {
+  opacity: 0.65;
+}
+
+.ok {
+  color: var(--bios-ok);
+}
+
+.warn {
+  color: var(--bios-warn);
+}
+
+.progressRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem;
+  align-items: baseline;
+  margin-top: 0.25rem;
+}
+
+.barTrack {
+  height: 4px;
+  background: rgba(74, 222, 128, 0.15);
+  border-radius: 1px;
+  overflow: hidden;
+  margin-top: 0.25rem;
+}
+
+.barFill {
+  height: 100%;
+  background: var(--bios-ok);
+  transition: width 0.08s linear;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(74, 222, 128, 0.2);
+}
+
+.hint {
+  font-size: 0.8125em;
+  opacity: 0.75;
+}
+
+.startBtn {
+  font-family: inherit;
+  font-size: 1em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.65rem 1.4rem;
+  color: var(--bios-bg);
+  background: var(--bios-ok);
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 8rem;
+}
+
+.startBtn:hover {
+  filter: brightness(1.08);
+}
+
+.startBtn:focus-visible {
+  outline: 2px solid var(--bios-warn);
+  outline-offset: 3px;
+}
+
+.startBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: none;
+}
+
+.skipBtn {
+  font-family: inherit;
+  font-size: 0.875em;
+  color: var(--bios-text);
+  background: transparent;
+  border: 1px solid rgba(74, 222, 128, 0.35);
+  padding: 0.45rem 0.75rem;
+  border-radius: 2px;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.skipBtn:hover {
+  border-color: var(--bios-ok);
+}
+
+.skipBtn:focus-visible {
+  outline: 2px solid var(--bios-warn);
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .hint {
+    width: 100%;
+  }
+}
