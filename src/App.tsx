@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react'
+import { AsteroidField } from './components/AsteroidField/AsteroidField'
 import { BootSequence } from './components/BootSequence/BootSequence'
 import { Showcase } from './components/Showcase/Showcase'
 import { STORAGE_KEY_INTRO } from './content/site'
@@ -37,17 +38,18 @@ export default function App() {
     setView('boot')
   }, [])
 
-  if (view === 'boot') {
-    return (
-      <div className={styles.shell}>
-        <BootSequence reducedMotion={reducedMotion} onEnter={enterShowcase} />
-      </div>
-    )
-  }
-
   return (
-    <div className={styles.shell}>
-      <Showcase onReplayIntro={replayIntro} />
-    </div>
+    <>
+      <AsteroidField reducedMotion={reducedMotion} />
+      {view === 'boot' ? (
+        <div className={styles.shell}>
+          <BootSequence reducedMotion={reducedMotion} onEnter={enterShowcase} />
+        </div>
+      ) : (
+        <div className={styles.shell}>
+          <Showcase onReplayIntro={replayIntro} />
+        </div>
+      )}
+    </>
   )
 }

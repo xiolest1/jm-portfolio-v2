@@ -1,53 +1,66 @@
-# jm-portfolio-v2
+# Portfolio (v2)
 
-Interactive portfolio with a BIOS-style boot sequence, then a 2D showcase (work, about, contact). Built with Vite, React, and TypeScript.
+Personal portfolio site for **Joan Morillo** — a recruiter- and accessibility-minded presentation of background, projects, and contact paths. The experience is intentionally memorable: a short **BIOS-style boot sequence** (inspired by retro POST screens) leads into a **single-page showcase** with resume-style sections and project cards with imagery.
 
-## Develop
+## Purpose
+
+- **First impression:** A deliberate, engineering-flavored intro that signals attention to craft without sacrificing clarity.
+- **Content:** About narrative, education, experience, certifications, technical skills, and featured projects with live links and previews.
+- **Return visits:** Optional “skip intro” via `localStorage`, with a **Replay boot intro** control in the footer.
+- **Motion:** Respects `prefers-reduced-motion` (shortened boot, static asteroid field).
+
+## Planning and structure
+
+```text
+Boot sequence (fullscreen, skippable)
+        → START / Skip / Esc
+Showcase: hero + in-page nav
+        → About (bio, education, experience, certs, skills)
+        → Projects (grid, images, outbound links)
+        → Contact (social + optional email)
+```
+
+Content is **data-driven** so copy and links stay easy to update without touching layout code:
+
+| Area | File |
+|------|------|
+| Name, avatar, bio, socials | `src/content/site.ts` |
+| Education, jobs, certs, skills | `src/content/resume.ts` |
+| Projects + image paths | `src/content/projects.ts` |
+| Static assets | `public/` (e.g. `profile.jpg`, `projects/*`) |
+
+Visual layers: a **fixed canvas asteroid field** sits behind **frosted-glass-style** panels (boot + showcase) over a **warm cosmic gradient** on `body`.
+
+## Tech stack
+
+| Layer | Choice |
+|--------|--------|
+| UI | **React 19** (function components, hooks) |
+| Language | **TypeScript** |
+| Build / dev | **Vite 8** |
+| Styling | **CSS Modules** + shared **CSS custom properties** in `src/index.css` |
+| Background | **Canvas 2D** (`AsteroidField`) — lightweight, no extra dependencies |
+| Lint | ESLint + TypeScript ESLint (dev) |
+
+## Local development
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Build
-
 ```bash
-npm run build
-npm run preview   # optional local preview of dist/
+npm run build    # production bundle in dist/
+npm run preview  # serve dist/ locally
+npm run lint
 ```
 
-## Deploy on Vercel (recommended)
+## Deployment
 
-1. Push this repo to GitHub (or GitLab / Bitbucket).
-2. In [Vercel](https://vercel.com), create a **New Project** and import the repository.
-3. Vercel should detect **Vite** automatically. Confirm:
-   - **Build command:** `npm run build`
-   - **Output directory:** `dist`
-   - **Install command:** `npm install` (default)
-4. No environment variables are required for this app.
-5. Deploy. Every push to the connected branch triggers a new production build (unless you change Git settings).
+The site is a **static SPA** after `vite build`. **Vercel** works out of the box: import the Git repo, use build command `npm run build` and output directory `dist`. See [`vercel.json`](vercel.json) for SPA-friendly rewrites. Other hosts can publish `dist/` the same way.
 
-[`vercel.json`](vercel.json) includes SPA-style rewrites so deep links keep working if you add client-side routes later.
+No environment variables or server runtime are required.
 
-Optional: attach a custom domain under the project’s **Settings → Domains**.
+## Intro preference (`localStorage`)
 
-Set `og:url` and other absolute URLs in `index.html` once you know your production URL.
-
-## Deploy (other static hosts)
-
-`dist/` is plain static files.
-
-- **Netlify:** build `npm run build`, publish `dist`.
-- **S3 + CloudFront:** upload `dist/` contents; configure SPA fallback to `index.html` if you use client routing.
-
-## Replay intro
-
-After you complete the boot (Start, Skip, or Esc), the app sets `localStorage` key **`portfolio_intro_completed`** to `1`. The next visit opens the showcase directly.
-
-**Replay boot intro** in the footer clears that key and returns to the boot sequence.
-
-## Content
-
-- Site copy, social links, bio: [`src/content/site.ts`](src/content/site.ts) — set `email` to a string to show a mailto line, or leave `null`.
-- Resume (education, experience, certs, skills): [`src/content/resume.ts`](src/content/resume.ts)
-- Projects and links: [`src/content/projects.ts`](src/content/projects.ts) — preview images live in [`public/projects/`](public/projects/) (referenced as `/projects/...` in each project’s `image` field).
+After you finish the boot flow once, the key **`portfolio_intro_completed`** is set to `1` so the next visit opens the showcase directly. **Replay boot intro** clears it for this browser.

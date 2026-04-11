@@ -12,7 +12,10 @@
   font-size: clamp(0.75rem, 2.5vw, 0.875rem);
   line-height: 1.5;
   color: var(--bios-text);
-  background: var(--bios-bg);
+  background: color-mix(in srgb, var(--bios-bg) 82%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 4px;
 }
 
 .screen {
@@ -51,7 +54,7 @@
 
 .barTrack {
   height: 4px;
-  background: rgba(74, 222, 128, 0.15);
+  background: color-mix(in srgb, var(--bios-ok) 22%, transparent);
   border-radius: 1px;
   overflow: hidden;
   margin-top: 0.25rem;
@@ -69,7 +72,7 @@
   align-items: center;
   gap: 0.75rem 1.25rem;
   padding-top: 1rem;
-  border-top: 1px solid rgba(74, 222, 128, 0.2);
+  border-top: 1px solid color-mix(in srgb, var(--bios-ok) 22%, transparent);
 }
 
 .hint {
@@ -112,7 +115,7 @@
   font-size: 0.875em;
   color: var(--bios-text);
   background: transparent;
-  border: 1px solid rgba(74, 222, 128, 0.35);
+  border: 1px solid color-mix(in srgb, var(--bios-ok) 38%, transparent);
   padding: 0.45rem 0.75rem;
   border-radius: 2px;
   cursor: pointer;

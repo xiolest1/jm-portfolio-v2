@@ -8,6 +8,9 @@
   font-family: var(--font-sans);
   color: var(--showcase-text);
   background: var(--showcase-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 6px;
   animation: enter 0.55s ease-out both;
 }
 
@@ -177,7 +180,7 @@
   aspect-ratio: 16 / 10;
   width: 100%;
   overflow: hidden;
-  background: #0a0d12;
+  background: rgba(12, 8, 16, 0.9);
   flex-shrink: 0;
 }
 
@@ -189,7 +192,7 @@
 }
 
 .card:hover {
-  border-color: rgba(56, 189, 248, 0.35);
+  border-color: rgba(var(--accent-rgb), 0.42);
 }
 
 .cardTitle {
@@ -218,8 +221,8 @@
   font-size: 0.7rem;
   padding: 0.2rem 0.45rem;
   border-radius: 4px;
-  background: rgba(56, 189, 248, 0.12);
-  color: var(--showcase-accent);
+  background: rgba(var(--accent-soft-rgb), 0.14);
+  color: var(--showcase-accent-soft);
 }
 
 .summary {
@@ -320,8 +323,8 @@
   font-size: 0.68rem;
   padding: 0.2rem 0.45rem;
   border-radius: 4px;
-  background: rgba(56, 189, 248, 0.1);
-  color: var(--showcase-accent);
+  background: rgba(var(--accent-soft-rgb), 0.12);
+  color: var(--showcase-accent-soft);
 }
 
 .bulletList {
