@@ -1,48 +1,38 @@
-# Portfolio (v2)
+# Portfolio v2
 
-Personal portfolio site for **Joan Morillo** — a recruiter- and accessibility-minded presentation of background, projects, and contact paths. The experience is intentionally memorable: a short **BIOS-style boot sequence** (inspired by retro POST screens) leads into a **single-page showcase** with resume-style sections and project cards with imagery.
+Hi. This repo is my personal site. It opens with a fake BIOS boot screen because I grew up watching machines POST and I still think that little moment of “the computer is waking up” feels honest. After that you get the normal stuff: who I am, what I studied, where I worked, certs, skills, and projects with real screenshots and links.
 
-## Purpose
+If you are here to hire or review work, skim the showcase and click through the demos. If you are here to fork or borrow ideas, the content lives in plain TypeScript files so you are not hunting through JSX to fix a typo.
 
-- **First impression:** A deliberate, engineering-flavored intro that signals attention to craft without sacrificing clarity.
-- **Content:** About narrative, education, experience, certifications, technical skills, and featured projects with live links and previews.
-- **Return visits:** Optional “skip intro” via `localStorage`, with a **Replay boot intro** control in the footer.
-- **Motion:** Respects `prefers-reduced-motion` (shortened boot, static asteroid field).
+## What it does
 
-## Planning and structure
+The first screen pretends to be firmware: lines scroll, fake resources load, then you hit Start (or skip with Esc if you are in a hurry). The main page is one long scroll with anchors for About, Projects, and Contact. Project cards pull images from `public/` and send people out to GitHub or live demos.
 
-```text
-Boot sequence (fullscreen, skippable)
-        → START / Skip / Esc
-Showcase: hero + in-page nav
-        → About (bio, education, experience, certs, skills)
-        → Projects (grid, images, outbound links)
-        → Contact (social + optional email)
+Come back later and the intro can auto skip. I stash a flag in `localStorage` (`portfolio_intro_completed`). The footer has “Replay boot intro” if you want the drama again. If your OS asks for reduced motion, the boot shortens and the floating rocks in the background freeze. That is not an afterthought; nobody should get seasick from a portfolio.
+
+## How it is laid out
+
+```
+Boot  →  Start / Skip / Esc
+Showcase  →  hero, then About, Projects, Contact
 ```
 
-Content is **data-driven** so copy and links stay easy to update without touching layout code:
+Most copy is not buried in components. Edit these and you are done:
 
-| Area | File |
-|------|------|
-| Name, avatar, bio, socials | `src/content/site.ts` |
-| Education, jobs, certs, skills | `src/content/resume.ts` |
-| Projects + image paths | `src/content/projects.ts` |
-| Static assets | `public/` (e.g. `profile.jpg`, `projects/*`) |
+| What you are changing | Open this |
+|------------------------|-----------|
+| Name, photo, bio, social links | `src/content/site.ts` |
+| School, jobs, certificates, skills | `src/content/resume.ts` |
+| Projects, thumbnails, URLs | `src/content/projects.ts` |
+| Images on disk | `public/` (`profile.jpg`, `projects/…`) |
 
-Visual layers: a **fixed canvas asteroid field** sits behind **frosted-glass-style** panels (boot + showcase) over a **warm cosmic gradient** on `body`.
+Behind the UI there is a canvas layer with slow drifting “asteroids” and a warm gradient on the body. The panels on top use blur and transparency so you still see a hint of motion without fighting the text.
 
-## Tech stack
+## Stack (the boring but useful part)
 
-| Layer | Choice |
-|--------|--------|
-| UI | **React 19** (function components, hooks) |
-| Language | **TypeScript** |
-| Build / dev | **Vite 8** |
-| Styling | **CSS Modules** + shared **CSS custom properties** in `src/index.css` |
-| Background | **Canvas 2D** (`AsteroidField`) — lightweight, no extra dependencies |
-| Lint | ESLint + TypeScript ESLint (dev) |
+React 19 and TypeScript, Vite for dev and builds, CSS Modules plus a shared token file in `src/index.css`. The space junk is hand rolled Canvas 2D, no extra animation library. ESLint keeps me from shipping obvious footguns during refactors.
 
-## Local development
+## Run it locally
 
 ```bash
 npm install
@@ -50,17 +40,17 @@ npm run dev
 ```
 
 ```bash
-npm run build    # production bundle in dist/
-npm run preview  # serve dist/ locally
+npm run build
+npm run preview
 npm run lint
 ```
 
-## Deployment
+## Ship it
 
-The site is a **static SPA** after `vite build`. **Vercel** works out of the box: import the Git repo, use build command `npm run build` and output directory `dist`. See [`vercel.json`](vercel.json) for SPA-friendly rewrites. Other hosts can publish `dist/` the same way.
+`npm run build` drops a static site into `dist/`. I deploy on Vercel: connect the repo, build command `npm run build`, output `dist`. [`vercel.json`](vercel.json) has SPA style rewrites if routes grow later. No secrets, no server, no env vars to remember.
 
-No environment variables or server runtime are required.
+## That intro flag again
 
-## Intro preference (`localStorage`)
+Finish the boot once and this browser remembers. Clear it anytime with **Replay boot intro** in the footer. The key name is `portfolio_intro_completed` if you are poking around in devtools.
 
-After you finish the boot flow once, the key **`portfolio_intro_completed`** is set to `1` so the next visit opens the showcase directly. **Replay boot intro** clears it for this browser.
+Thanks for reading. If something looks off, open an issue or message me on the links in the site.
