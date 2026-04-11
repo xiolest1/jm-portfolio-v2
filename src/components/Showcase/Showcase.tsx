@@ -1,3 +1,4 @@
+import { ContactForm } from '../ContactForm/ContactForm'
 import { projects } from '../../content/projects'
 import {
   certifications,
@@ -201,22 +202,10 @@ export function Showcase({ onReplayIntro }: ShowcaseProps) {
             Contact
           </h2>
           <p className={styles.contactIntro}>
-            Feel free to reach out for questions, collaborations, or just to connect.
+            Send a message below. I will get it by email. You can also use the GitHub and
+            LinkedIn links in the header.
           </p>
-          <ul className={styles.contactList}>
-            {site.email ? (
-              <li>
-                <a href={`mailto:${site.email}`}>{site.email}</a>
-              </li>
-            ) : null}
-            {site.social.map((s) => (
-              <li key={s.href}>
-                <a href={s.href} target="_blank" rel="noreferrer">
-                  {s.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <ContactForm />
         </section>
       </main>
 

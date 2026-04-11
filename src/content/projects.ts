@@ -48,7 +48,9 @@ export const projects: Project[] = [
     summary:
       'Servo-controlled 3D-printed gripper with a Python GUI for real-time control via Arduino—CustomTkinter for UX and pyserial for reliable communication.',
     image: '/projects/robot-gripper.jpg',
-    links: [{ label: 'GitHub profile', href: 'https://github.com/xiolest1' }],
+    links: [
+      { label: 'View project', href: 'https://github.com/xiolest1/Robot-Gripper' },
+    ],
   },
   {
     id: 'rc-detection',
@@ -59,6 +61,8 @@ export const projects: Project[] = [
     summary:
       'Autonomous RC vehicle stack using computer vision: camera calibration, real-time detection (ORB, SIFT, AKAZE), and Arduino motor control for tracking and navigation.',
     image: '/projects/rc-detection.jpg',
-    links: [{ label: 'GitHub profile', href: 'https://github.com/xiolest1' }],
+    links: [
+      { label: 'View project', href: 'https://github.com/xiolest1/RCDetection' },
+    ],
   },
 ]

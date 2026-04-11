@@ -9,6 +9,8 @@ export const site = {
     'Hi there! Here you can check out what I\'m working on. Hope you enjoy it!',
   /** Set to null to hide the mailto line until you add a public address */
   email: null as string | null,
+  /** Formspree form URL (same as portfolio v1). Replace if you create a new form. */
+  contactFormAction: 'https://formspree.io/f/mdkeqgjk',
   social: [
     { label: 'GitHub', href: 'https://github.com/xiolest1' },
     /** Update to your exact public profile URL if different */
