@@ -4,7 +4,7 @@ import {
   certifications,
   education,
   experience,
-  skills,
+  skillCategories,
 } from '../../content/resume'
 import { site } from '../../content/site'
 import styles from './Showcase.module.css'
@@ -131,15 +131,17 @@ export function Showcase({ onReplayIntro }: ShowcaseProps) {
           <h3 className={styles.subheading} id="skills">
             Technical skills
           </h3>
-          <div className={styles.skillsGrid}>
-            {skills.map((sk) => (
-              <div key={sk.name} className={styles.skillCard}>
-                <div className={styles.skillTop}>
-                  <span className={styles.skillName}>{sk.name}</span>
-                  <span className={styles.skillTenure}>{sk.tenure}</span>
-                </div>
-                <p className={styles.skillDetail}>{sk.detail}</p>
-              </div>
+          <div className={styles.timeline}>
+            {skillCategories.map((cat) => (
+              <article key={cat.name} className={styles.panel}>
+                <h4 className={styles.panelTitle}>{cat.name}</h4>
+                {cat.note ? <p className={styles.panelMeta}>{cat.note}</p> : null}
+                <ul className={styles.tagList} aria-label={cat.name}>
+                  {cat.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
             ))}
           </div>
         </section>
