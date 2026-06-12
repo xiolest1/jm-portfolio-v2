@@ -111,7 +111,6 @@ export const certifications: Certification[] = [
 export const skillCategories: SkillCategory[] = [
   {
     name: 'Cloud & DevOps',
-    note: 'AWS Certified · Solutions Architect – Associate & Cloud Practitioner',
     items: [
       'AWS',
       'EC2',
