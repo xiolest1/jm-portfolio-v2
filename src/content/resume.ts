@@ -83,7 +83,7 @@ export const experience: Experience[] = [
 export const certifications: Certification[] = [
   {
     name: 'AWS Certified Cloud Practitioner',
-    status: 'Completed',
+    status: 'Completed · December 2025',
     description:
       'Foundational AWS cloud concepts, services, security, and billing.',
     link: {
@@ -93,9 +93,9 @@ export const certifications: Certification[] = [
   },
   {
     name: 'AWS Certified Solutions Architect – Associate',
-    status: 'Completed',
+    status: 'Completed · June 2026',
     description:
-      'Designing resilient, high-performing, secure, and cost-optimized architectures on AWS. Attained June 2026.',
+      'Designing resilient, high-performing, secure, and cost-optimized architectures on AWS.',
     link: {
       label: 'View verified badge on Credly',
       href: 'https://www.credly.com/badges/bd0d1ee6-6c5c-41fd-a1bd-9bad353054b2/public_url',
