@@ -110,22 +110,6 @@ export const certifications: Certification[] = [
 
 export const skillCategories: SkillCategory[] = [
   {
-    name: 'Languages',
-    items: ['Java', 'Python', 'JavaScript', 'TypeScript', 'C++'],
-  },
-  {
-    name: 'Frontend',
-    items: ['React', 'HTML5', 'CSS3'],
-  },
-  {
-    name: 'Backend',
-    items: ['Flask', 'Node.js', 'REST APIs'],
-  },
-  {
-    name: 'Databases',
-    items: ['PostgreSQL', 'MySQL'],
-  },
-  {
     name: 'Cloud & DevOps',
     note: 'AWS Certified · Solutions Architect – Associate & Cloud Practitioner',
     items: [
@@ -142,6 +126,22 @@ export const skillCategories: SkillCategory[] = [
       'Elastic Load Balancing',
       'Docker',
     ],
+  },
+  {
+    name: 'Languages',
+    items: ['Java', 'Python', 'JavaScript', 'TypeScript', 'C++'],
+  },
+  {
+    name: 'Frontend',
+    items: ['React', 'HTML5', 'CSS3'],
+  },
+  {
+    name: 'Backend',
+    items: ['Flask', 'Node.js', 'REST APIs'],
+  },
+  {
+    name: 'Databases',
+    items: ['PostgreSQL', 'MySQL'],
   },
   {
     name: 'Tools',

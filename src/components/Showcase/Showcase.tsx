@@ -131,18 +131,30 @@ export function Showcase({ onReplayIntro }: ShowcaseProps) {
           <h3 className={styles.subheading} id="skills">
             Technical skills
           </h3>
-          <div className={styles.timeline}>
-            {skillCategories.map((cat) => (
-              <article key={cat.name} className={styles.panel}>
-                <h4 className={styles.panelTitle}>{cat.name}</h4>
-                {cat.note ? <p className={styles.panelMeta}>{cat.note}</p> : null}
-                <ul className={styles.tagList} aria-label={cat.name}>
-                  {cat.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
+          <div className={styles.skillsBento}>
+            {skillCategories.map((cat) => {
+              const featured = cat.name === 'Cloud & DevOps'
+              return (
+                <article
+                  key={cat.name}
+                  className={`${styles.skillsCategory} ${featured ? styles.skillsFeatured : ''}`}
+                >
+                  <div className={styles.skillsCategoryHead}>
+                    <h4 className={styles.skillsCategoryLabel}>{cat.name}</h4>
+                    {cat.note ? (
+                      <p className={styles.skillsCategoryNote}>{cat.note}</p>
+                    ) : null}
+                  </div>
+                  <ul className={styles.skillsList} aria-label={cat.name}>
+                    {cat.items.map((item) => (
+                      <li key={item} className={styles.skillsPill}>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              )
+            })}
           </div>
         </section>
 
