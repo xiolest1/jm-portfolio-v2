@@ -132,19 +132,13 @@ export function Showcase({ onReplayIntro }: ShowcaseProps) {
             Technical skills
           </h3>
           <div className={styles.skillsGrid}>
-            {skills.map((group) => (
-              <div key={group.category} className={styles.skillCard}>
+            {skills.map((sk) => (
+              <div key={sk.name} className={styles.skillCard}>
                 <div className={styles.skillTop}>
-                  <span className={styles.skillName}>{group.category}</span>
-                  {group.note && (
-                    <span className={styles.skillTenure}>{group.note}</span>
-                  )}
+                  <span className={styles.skillName}>{sk.name}</span>
+                  <span className={styles.skillTenure}>{sk.tenure}</span>
                 </div>
-                <ul className={styles.tagList} aria-label={`${group.category} skills`}>
-                  {group.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
+                <p className={styles.skillDetail}>{sk.detail}</p>
               </div>
             ))}
           </div>
