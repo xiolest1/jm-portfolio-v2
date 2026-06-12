@@ -445,13 +445,6 @@
   color: var(--showcase-muted);
 }
 
-.skillDetail {
-  margin: 0;
-  font-size: 0.8125rem;
-  line-height: 1.45;
-  color: var(--showcase-muted);
-}
-
 .contactIntro {
   margin: 0 0 1rem;
   max-width: 36rem;

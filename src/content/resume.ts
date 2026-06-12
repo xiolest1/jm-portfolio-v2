@@ -20,10 +20,10 @@ export type Certification = {
   link?: { label: string; href: string }
 }
 
-export type Skill = {
-  name: string
-  tenure: string
-  detail: string
+export type SkillCategory = {
+  category: string
+  note?: string
+  items: string[]
 }
 
 export const education: Education[] = [
@@ -108,67 +108,43 @@ export const certifications: Certification[] = [
   },
 ]
 
-export const skills: Skill[] = [
-  { name: 'C++', tenure: '2+ Years', detail: 'OOP, Data Structures, Algorithms' },
+export const skills: SkillCategory[] = [
   {
-    name: 'CSS3',
-    tenure: '2+ Years',
-    detail: 'Flexbox, Grid, Animations, Responsive Design',
+    category: 'Languages',
+    items: ['Java', 'Python', 'JavaScript', 'TypeScript', 'C++', 'PHP'],
   },
   {
-    name: 'Docker',
-    tenure: '1+ Years',
-    detail: 'Containerization, Docker Compose, CI/CD',
+    category: 'Frontend',
+    items: ['React', 'Next.js', 'HTML5', 'CSS3'],
   },
   {
-    name: 'REST APIs',
-    tenure: '1+ Years',
-    detail: 'HTTP, JSON, auth patterns, integration',
-  },
-  { name: 'Git', tenure: '1+ Years', detail: 'Version control, Branching, CI/CD' },
-  {
-    name: 'HTML5',
-    tenure: '2+ Years',
-    detail: 'Semantic markup, accessibility, SEO best practices',
+    category: 'Backend',
+    items: ['Flask', 'Node.js', 'REST APIs'],
   },
   {
-    name: 'JavaScript',
-    tenure: '1+ Years',
-    detail: 'ES6+, DOM manipulation, Async/Await',
+    category: 'Databases',
+    items: ['PostgreSQL', 'MySQL'],
   },
   {
-    name: 'Linux',
-    tenure: '1+ Years',
-    detail: 'Shell scripting, System administration',
+    category: 'Cloud & DevOps',
+    note: 'AWS Certified · Solutions Architect & Cloud Practitioner',
+    items: [
+      'AWS',
+      'EC2',
+      'S3',
+      'IAM',
+      'VPC',
+      'RDS',
+      'Lambda',
+      'CloudFront',
+      'Route 53',
+      'Auto Scaling',
+      'Elastic Load Balancing',
+      'Docker',
+    ],
   },
   {
-    name: 'MySQL',
-    tenure: '2+ Years',
-    detail: 'Relational databases, SQL queries, Optimization',
-  },
-  {
-    name: 'PHP',
-    tenure: '1+ Years',
-    detail: 'Server-side scripting, OOP, Web development',
-  },
-  {
-    name: 'Python',
-    tenure: '2+ Years',
-    detail: 'Data analysis, Automation, Web Scraping',
-  },
-  {
-    name: 'React',
-    tenure: '1+ Years',
-    detail: 'Hooks, Context, Redux, Next.js',
-  },
-  {
-    name: 'TypeScript',
-    tenure: '1+ Years',
-    detail: 'Static typing, Interfaces, Generics',
-  },
-  {
-    name: 'AWS',
-    tenure: 'Solutions Architect',
-    detail: 'Certified · Architecture design, core services & security',
+    category: 'Tools',
+    items: ['Git', 'Linux'],
   },
 ]
