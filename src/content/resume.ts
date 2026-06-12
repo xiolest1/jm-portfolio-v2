@@ -93,8 +93,13 @@ export const certifications: Certification[] = [
   },
   {
     name: 'AWS Certified Solutions Architect – Associate',
-    status: 'In progress',
-    description: 'Studying for this certification; exam not yet attempted.',
+    status: 'Completed',
+    description:
+      'Designing resilient, high-performing, secure, and cost-optimized architectures on AWS. Attained June 2026.',
+    link: {
+      label: 'View verified badge on Credly',
+      href: 'https://www.credly.com/badges/bd0d1ee6-6c5c-41fd-a1bd-9bad353054b2/public_url',
+    },
   },
   {
     name: 'AWS Certified Developer – Associate',
@@ -163,7 +168,7 @@ export const skills: Skill[] = [
   },
   {
     name: 'AWS',
-    tenure: 'Cloud Practitioner',
-    detail: 'Certified · Core services, security & billing',
+    tenure: 'Solutions Architect',
+    detail: 'Certified · Architecture design, core services & security',
   },
 ]
