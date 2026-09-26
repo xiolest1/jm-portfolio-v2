@@ -80,3 +80,23 @@
   margin-bottom: 0;
   font-size: 0.9rem;
 }
+
+/* Shared typography roles */
+.dialog h2 {
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.intro,
+.note {
+  line-height: var(--leading-copy);
+}
+
+.note {
+  font-size: var(--type-compact);
+}
+
+.statusList strong {
+  font-size: 0.8125rem;
+  line-height: var(--leading-compact);
+}

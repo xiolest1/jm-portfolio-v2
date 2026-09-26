@@ -643,6 +643,7 @@
   .identity {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+    overflow-x: clip;
     padding-block: 3.5rem 3rem;
   }
 
@@ -737,4 +738,183 @@
   gap: 0.25rem 0.8rem;
 }
 
+/* Responsive typography roles */
+.name {
+  font-size: var(--type-display);
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+  text-wrap: balance;
+}
 
+.role {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+.positioning {
+  max-width: 56ch;
+  font-size: 1.0625rem;
+  line-height: var(--leading-copy);
+}
+
+.pronunciation,
+.credibility {
+  font-size: var(--type-compact);
+  line-height: var(--leading-compact);
+}
+
+.eyebrow,
+.regionHint,
+.signalLabel,
+.flowLabel {
+  font-size: var(--type-metadata);
+  line-height: 1.45;
+  letter-spacing: 0.06em;
+}
+
+.actionPrimary,
+.actionSecondary {
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.profileLine {
+  font-size: var(--type-metadata);
+  line-height: var(--leading-compact);
+}
+
+.projectTitle {
+  font-size: var(--type-flagship);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.projectSummary,
+.contribution {
+  max-width: 58ch;
+  font-size: var(--type-body);
+  line-height: var(--leading-copy);
+}
+
+.rcCopy .projectSummary {
+  font-size: var(--type-body);
+}
+
+.statusLine {
+  font-size: var(--type-metadata);
+  line-height: var(--leading-compact);
+}
+
+.signalList {
+  font-size: var(--type-body);
+  line-height: 1.55;
+}
+
+.stackLine li {
+  font-size: 0.8125rem;
+  line-height: var(--leading-compact);
+}
+
+.flagshipMedia figcaption {
+  font-size: var(--type-metadata);
+  line-height: var(--leading-compact);
+}
+
+.sectionTitle,
+.contact h2 {
+  font-size: var(--type-section);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.projectMeta {
+  font-size: var(--type-metadata);
+  line-height: 1.45;
+  letter-spacing: 0.025em;
+  text-transform: none;
+}
+
+.supportTitle {
+  font-size: var(--type-supporting);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.contribution {
+  margin-block: 0.85rem;
+}
+
+.flowProof p {
+  font-size: var(--type-compact);
+  line-height: var(--leading-compact);
+}
+
+.subhead {
+  font-size: var(--type-metadata);
+  line-height: 1.45;
+  letter-spacing: 0.06em;
+}
+
+.experienceItem h4 {
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.experienceItem p {
+  font-size: var(--type-body);
+  line-height: 1.6;
+}
+
+.foundationList strong,
+.foundationList span,
+.credentialList li {
+  font-size: var(--type-compact);
+  line-height: var(--leading-compact);
+}
+
+.engineeringList h4 {
+  font-size: var(--type-compact);
+  line-height: 1.4;
+}
+
+.engineeringList p {
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+.engineeringList a,
+.evidenceLinks a {
+  font-size: 0.875rem;
+}
+
+.aboutCopy p:last-child {
+  font-size: var(--type-body);
+  line-height: var(--leading-copy);
+}
+
+.emailAction {
+  line-height: 1.35;
+}
+
+.contactLinks {
+  font-size: var(--type-compact);
+}
+
+/* Foundation and profile subhead roles */
+.foundationColumn > .subhead {
+  color: var(--color-text);
+  font: 600 var(--type-subheading)/1.25 var(--font-sans);
+  letter-spacing: -0.015em;
+  text-transform: none;
+}
+
+.engineeringList h4 {
+  font-size: var(--type-body);
+  line-height: 1.4;
+}

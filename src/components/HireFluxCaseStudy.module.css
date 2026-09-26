@@ -390,3 +390,126 @@
     flex-direction: column;
   }
 }
+
+/* Responsive typography roles */
+.backLink {
+  font-size: var(--type-compact);
+  line-height: var(--leading-compact);
+}
+
+.eyebrow,
+.heroFacts span,
+.nodeType,
+.plannedLabel {
+  font-size: var(--type-metadata);
+  line-height: 1.45;
+}
+
+.hero h1 {
+  font-size: var(--type-case-display);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.dek {
+  max-width: 52ch;
+  font-size: clamp(1.125rem, 1.9vw, 1.5rem);
+  line-height: 1.6;
+}
+
+.statuses {
+  font-size: var(--type-metadata);
+  line-height: var(--leading-compact);
+}
+
+.heroFacts strong {
+  font-size: var(--type-compact);
+  line-height: 1.4;
+}
+
+.sectionHeading h2,
+.nextStep h2 {
+  font-size: var(--type-section);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.sectionHeading > p:last-child {
+  max-width: 68ch;
+  font-size: var(--type-body);
+  line-height: var(--leading-copy);
+}
+
+.systemFlow strong {
+  font-size: clamp(1rem, 1.7vw, 1.125rem);
+  line-height: 1.35;
+}
+
+.systemFlow li > span:last-child {
+  font-size: var(--type-compact);
+  line-height: var(--leading-compact);
+}
+
+.caption {
+  font-size: 0.875rem;
+  line-height: var(--leading-compact);
+}
+
+.sourceLine {
+  font-size: 0.875rem;
+  line-height: var(--leading-compact);
+}
+
+.productImage figcaption {
+  font-size: var(--type-metadata);
+  line-height: var(--leading-compact);
+}
+
+.decisionIndex {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.decision h3,
+.scopeGrid h3 {
+  font-size: var(--type-subheading);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.decision > div > p:not(.sourceLine) {
+  max-width: var(--reading-width);
+  font-size: var(--type-body);
+  line-height: 1.7;
+}
+
+.decision .tradeoff {
+  font-size: var(--type-body);
+  line-height: var(--leading-copy);
+}
+
+.proofList li {
+  font-size: var(--type-compact);
+  line-height: var(--leading-compact);
+}
+
+.scopeGrid ul {
+  font-size: var(--type-body);
+  line-height: 1.6;
+}
+
+.planned p:last-child {
+  max-width: 68ch;
+  font-size: var(--type-body);
+  line-height: var(--leading-copy);
+}
+
+.nextLinks {
+  font-size: var(--type-compact);
+  line-height: var(--leading-compact);
+}
