@@ -20,10 +20,20 @@ export type EngineeringEvidence = {
   href: string
 }
 
-export type EngineeringArea = {
-  name: string
-  tools: string[]
+export type EngineeringMapping = {
+  capability: string
+  paths: EngineeringEvidencePath[]
+}
+
+export type EngineeringEvidencePath = {
+  technologies: string[]
   evidence: EngineeringEvidence[]
+}
+
+export type EngineeringGroup = {
+  name: string
+  level: 'lead' | 'standard' | 'quiet'
+  mappings: EngineeringMapping[]
 }
 
 export const education: Education[] = [
@@ -64,39 +74,105 @@ export const certifications: Certification[] = [
   },
 ]
 
-export const engineeringAreas: EngineeringArea[] = [
+export const engineeringGroups: EngineeringGroup[] = [
   {
-    name: 'Backend and APIs',
-    tools: ['Python', 'FastAPI', 'Flask'],
-    evidence: [
-      { label: 'HireFlux', href: '/hireflux' },
-      { label: 'Library', href: '#project-library' },
+    name: 'Application engineering',
+    level: 'lead',
+    mappings: [
+      {
+        capability: 'API development',
+        paths: [
+          {
+            technologies: ['Python', 'FastAPI'],
+            evidence: [{ label: 'HireFlux', href: '/hireflux' }],
+          },
+          {
+            technologies: ['Flask'],
+            evidence: [{ label: 'Library', href: '#project-library' }],
+          },
+        ],
+      },
+      {
+        capability: 'Product UI',
+        paths: [
+          {
+            technologies: ['React', 'TypeScript', 'Vite'],
+            evidence: [{ label: 'HireFlux', href: '/hireflux' }],
+          },
+        ],
+      },
     ],
   },
   {
-    name: 'Full-stack applications',
-    tools: ['React', 'TypeScript', 'Vite'],
-    evidence: [{ label: 'HireFlux', href: '/hireflux' }],
-  },
-  {
-    name: 'Data and persistence',
-    tools: ['DynamoDB Local', 'PostgreSQL', 'SQLAlchemy'],
-    evidence: [
-      { label: 'HireFlux', href: '/hireflux' },
-      { label: 'Library', href: '#project-library' },
+    name: 'Data & persistence',
+    level: 'standard',
+    mappings: [
+      {
+        capability: 'Local NoSQL persistence',
+        paths: [
+          {
+            technologies: ['DynamoDB Local'],
+            evidence: [{ label: 'HireFlux', href: '/hireflux' }],
+          },
+        ],
+      },
+      {
+        capability: 'Relational data access',
+        paths: [
+          {
+            technologies: ['PostgreSQL', 'SQLAlchemy'],
+            evidence: [{ label: 'Library', href: '#project-library' }],
+          },
+        ],
+      },
     ],
   },
   {
-    name: 'Computer vision and control',
-    tools: ['OpenCV', 'NumPy', 'PySerial'],
-    evidence: [{ label: 'RCDetection', href: '#project-rcdetection' }],
+    name: 'Computer vision & integration',
+    level: 'standard',
+    mappings: [
+      {
+        capability: 'Vision & device control',
+        paths: [
+          {
+            technologies: ['OpenCV', 'NumPy', 'PySerial'],
+            evidence: [{ label: 'RCDetection', href: '#project-rcdetection' }],
+          },
+        ],
+      },
+    ],
   },
   {
-    name: 'Delivery and cloud foundations',
-    tools: ['Docker', 'AWS'],
-    evidence: [
-      { label: 'Library', href: '#project-library' },
-      { label: 'AWS credentials', href: '#credentials' },
+    name: 'Cloud & delivery foundations',
+    level: 'quiet',
+    mappings: [
+      {
+        capability: 'Container delivery',
+        paths: [
+          {
+            technologies: ['Docker'],
+            evidence: [{ label: 'Library', href: '#project-library' }],
+          },
+        ],
+      },
+      {
+        capability: 'Cloud credentials · complete',
+        paths: [
+          {
+            technologies: ['AWS'],
+            evidence: [{ label: 'Credentials', href: '#credentials' }],
+          },
+        ],
+      },
+      {
+        capability: 'Cloud deployment · planned',
+        paths: [
+          {
+            technologies: ['AWS'],
+            evidence: [{ label: 'HireFlux · planned', href: '/hireflux' }],
+          },
+        ],
+      },
     ],
   },
 ]
