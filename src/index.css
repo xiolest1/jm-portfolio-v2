@@ -1,39 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
 :root {
-  --font-mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
+  font-family: 'DM Sans', system-ui, 'Segoe UI', sans-serif;
+  color: #f4f0f6;
+  background: #100d14;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   --font-sans: 'DM Sans', system-ui, 'Segoe UI', sans-serif;
-
-  /* Warm cosmic terminal (boot) */
-  --bios-bg: #0c080f;
-  --bios-text: #ecd9cf;
-  --bios-ok: #7dd9a8;
-  --bios-warn: #f0b27a;
-
-  /* Showcase: plum base, coral + lilac accents (no cold blue) */
-  --showcase-bg: rgba(22, 14, 28, 0.78);
-  --showcase-card: rgba(40, 26, 48, 0.72);
-  --showcase-text: #e4dce8;
-  --showcase-heading: #faf6f2;
-  --showcase-muted: #a898b0;
-  --showcase-border: rgba(240, 178, 122, 0.18);
-  --showcase-accent: #f0a06c;
-  --showcase-accent-soft: #d8b8ff;
-  --accent-rgb: 240, 160, 108;
-  --accent-soft-rgb: 216, 184, 255;
-
-  /* Page wash behind glass panels + canvas */
-  --page-gradient: radial-gradient(
-      ellipse 120% 80% at 20% 20%,
-      rgba(88, 48, 96, 0.35) 0%,
-      transparent 55%
-    ),
-    radial-gradient(
-      ellipse 90% 70% at 85% 75%,
-      rgba(180, 96, 72, 0.2) 0%,
-      transparent 50%
-    ),
-    linear-gradient(165deg, #0f0a12 0%, #140c18 45%, #120a14 100%);
+  --font-mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
+  --color-bg: #100d14;
+  --color-surface: #1a1520;
+  --color-surface-raised: #241d2a;
+  --color-text: #f4f0f6;
+  --color-body: #c8bfcc;
+  --color-muted: #a99caf;
+  --color-line: #59475e;
+  --color-accent: #ffb27f;
+  --color-focus: #ffd27a;
+  --content-width: 74rem;
+  --reading-width: 44rem;
 }
 
 *,
@@ -43,26 +30,59 @@
 }
 
 html {
+  min-width: 320px;
   scroll-behavior: smooth;
+  scroll-padding-top: 1rem;
+  color-scheme: dark;
+  background: var(--color-bg);
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 92% 2%, rgb(255 178 127 / 5%), transparent 25rem),
+    var(--color-bg);
+  color: var(--color-text);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+::selection {
+  color: var(--color-bg);
+  background: var(--color-accent);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 4px;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-}
 
-body {
-  margin: 0;
-  min-height: 100svh;
-  background: var(--page-gradient);
-  background-color: #0a070c;
-  background-attachment: fixed;
-}
-
-#root {
-  min-height: 100svh;
-  width: 100%;
-  position: relative;
-  z-index: 1;
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

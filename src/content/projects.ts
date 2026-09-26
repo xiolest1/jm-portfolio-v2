@@ -1,68 +1,46 @@
-export type Project = {
-  id: string
-  title: string
-  role: string
-  year: string
-  stack: string[]
-  summary: string
-  /** Public path under `public/` (e.g. `/projects/photo.png`) */
-  image?: string
-  links?: { label: string; href: string }[]
+export const hireFlux = {
+  id: 'project-hireflux',
+  title: 'HireFlux',
+  type: 'Personal project',
+  status: 'Local demo · AWS infrastructure not deployed',
+  summary:
+    'A candidate-focused job-search workspace that connects applications with interview context, notes, follow-ups, and next actions.',
+  image: '/projects/hireflux-dashboard.png',
+  imageAlt:
+    'HireFlux Home dashboard in a local demo workspace, showing recorded follow-ups, scheduled interviews, and next steps with fictional job data.',
+  stack: ['React', 'TypeScript', 'Vite', 'FastAPI', 'DynamoDB Local'],
+  signals: [
+    'Backend-owned lifecycle and domain rules',
+    'Owner-scoped data access',
+    'Concurrency handling and idempotency',
+    'Validation and automated tests',
+  ],
+  repository: 'https://github.com/xiolest1/HireFlux',
+  caseStudy: '/hireflux',
 }
 
-export const projects: Project[] = [
-  {
-    id: 'pokedex',
-    title: 'Pokédex site',
-    role: 'Solo project',
-    year: '2024',
-    stack: ['HTML', 'CSS', 'JavaScript', 'PokeAPI'],
-    summary:
-      'A responsive Pokédex web app that integrates with PokeAPI to display 898+ Pokémon, with dynamic UI animations, responsive mobile/desktop views, stat visualization, and evolution chains.',
-    image: '/projects/pokedex.png',
-    links: [
-      { label: 'Live demo', href: 'https://pokemon-site-nine.vercel.app/' },
-      { label: 'View project', href: 'https://github.com/xiolest1/pokemon-site' },
-    ],
-  },
-  {
-    id: 'portfolio-v1',
-    title: 'Portfolio site (v1)',
-    role: 'Solo project',
-    year: '2024',
-    stack: ['HTML5', 'CSS3', 'JavaScript'],
-    summary:
-      'A modern, interactive portfolio with particle effects, custom animations, and responsive design—focused on UX and simplicity.',
-    image: '/projects/portfolio-v1.png',
-    links: [
-      { label: 'Live demo', href: 'https://portfolio-jm-rouge.vercel.app/' },
-      { label: 'View project', href: 'https://github.com/xiolest1/portfolio-jm' },
-    ],
-  },
-  {
-    id: 'robot-gripper',
-    title: '3D-printed robot gripper',
-    role: 'Hardware + software',
-    year: '2023',
-    stack: ['Python', 'Arduino', 'CustomTkinter', 'PySerial'],
-    summary:
-      'Servo-controlled 3D-printed gripper with a Python GUI for real-time control via Arduino—CustomTkinter for UX and pyserial for reliable communication.',
-    image: '/projects/robot-gripper.jpg',
-    links: [
-      { label: 'View project', href: 'https://github.com/xiolest1/Robot-Gripper' },
-    ],
-  },
-  {
-    id: 'rc-detection',
-    title: 'RC detection system',
-    role: 'Computer vision + embedded',
-    year: '2023',
-    stack: ['Python', 'Arduino', 'OpenCV', 'NumPy'],
-    summary:
-      'Autonomous RC vehicle stack using computer vision: camera calibration, real-time detection (ORB, SIFT, AKAZE), and Arduino motor control for tracking and navigation.',
-    image: '/projects/rc-detection.jpg',
-    links: [
-      { label: 'View project', href: 'https://github.com/xiolest1/RCDetection' },
-    ],
-  },
-]
+export const libraryProject = {
+  id: 'project-library',
+  title: 'Library Web Application',
+  type: 'Team project',
+  summary:
+    'A book-management application with search, saved lists, authentication, and role-based access.',
+  contribution:
+    'Backend APIs, PostgreSQL and SQLAlchemy data work, session authentication and roles, and Docker setup.',
+  stack: ['Flask', 'PostgreSQL', 'SQLAlchemy', 'Docker'],
+  repository: 'https://github.com/xiolest1/library-app',
+}
+
+export const rcProject = {
+  id: 'project-rcdetection',
+  title: 'Autonomous RC Vehicle',
+  type: 'Team project',
+  summary:
+    'A computer-vision system that tracks a target and communicates steering and motor commands to an RC vehicle.',
+  contribution:
+    'Camera calibration, feature matching and positional analysis, with Arduino serial control.',
+  stack: ['Python', 'OpenCV', 'NumPy', 'PySerial', 'Arduino'],
+  image: '/projects/rc-detection.jpg',
+  imageAlt: 'RC vehicle used in the computer-vision and control project.',
+  repository: 'https://github.com/xiolest1/RCDetection',
+}

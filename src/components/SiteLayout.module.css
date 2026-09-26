@@ -1,0 +1,170 @@
+.siteShell {
+  width: min(100% - 2rem, 74rem);
+  margin-inline: auto;
+}
+
+.skipLink {
+  position: fixed;
+  z-index: 100;
+  top: 0.75rem;
+  left: 0.75rem;
+  transform: translateY(-160%);
+  padding: 0.75rem 1rem;
+  border-radius: 0.35rem;
+  color: var(--color-bg);
+  background: var(--color-focus);
+  font-weight: 700;
+}
+
+.skipLink:focus {
+  transform: translateY(0);
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1.25rem;
+  padding-block: 1.1rem;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.brand,
+.primaryNav a,
+.utilityNav a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: fit-content;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.brandMark {
+  display: grid;
+  width: 2rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid var(--color-line);
+  border-radius: 50%;
+  color: var(--color-accent);
+  font: 0.7rem var(--font-mono);
+}
+
+.primaryNav,
+.utilityNav {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.primaryNav a,
+.utilityNav a {
+  color: var(--color-body);
+  font-size: 0.87rem;
+  transition: color 140ms ease;
+}
+
+.primaryNav a:hover,
+.utilityNav a:hover {
+  color: var(--color-accent);
+}
+
+.utilityNav {
+  justify-content: flex-end;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 5rem;
+  padding-block: 1.25rem 2rem;
+  border-top: 1px solid var(--color-line);
+  color: var(--color-muted);
+  font-size: 0.82rem;
+}
+
+.footer p {
+  margin: 0;
+}
+
+.bootLink {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-muted);
+  font: inherit;
+  cursor: pointer;
+}
+
+.bootLink:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+:where(a, button):focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 4px;
+  border-radius: 0.15rem;
+}
+
+@media (max-width: 850px) {
+  .header {
+    grid-template-columns: 1fr auto;
+  }
+
+  .primaryNav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .utilityNav {
+    grid-column: 2;
+    grid-row: 1;
+  }
+}
+
+@media (max-width: 520px) {
+  .siteShell {
+    width: min(100% - 1.25rem, 74rem);
+  }
+
+  .header {
+    gap: 0.85rem;
+  }
+
+  .primaryNav,
+  .utilityNav {
+    gap: 0.85rem;
+  }
+
+  .primaryNav {
+    flex-wrap: wrap;
+  }
+
+  .primaryNav a,
+  .utilityNav a {
+    font-size: 0.82rem;
+  }
+
+  .footer {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primaryNav a,
+  .utilityNav a {
+    transition: none;
+  }
+}
