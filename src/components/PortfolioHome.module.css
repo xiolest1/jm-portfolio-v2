@@ -326,6 +326,9 @@
   display: block;
   width: 100%;
   height: auto;
+  aspect-ratio: 1440 / 760;
+  object-fit: cover;
+  object-position: top;
   border-radius: 0.2rem;
 }
 

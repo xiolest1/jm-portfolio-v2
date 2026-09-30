@@ -4,13 +4,13 @@ export const hireFlux = {
   type: 'Personal project',
   status: 'Local demo · AWS infrastructure not deployed',
   summary:
-    'A candidate-focused job-search workspace that connects applications with interview context, notes, follow-ups, and next actions.',
-  image: '/projects/hireflux-dashboard.png',
+    'A candidate workspace that turns recorded applications, interviews, and next steps into a focused Action Center without disguising missing information as certainty.',
+  image: '/projects/hireflux-home-light.png',
   imageAlt:
-    'HireFlux Home dashboard in a local demo workspace, showing recorded follow-ups, scheduled interviews, and next steps with fictional job data.',
+    'Light-mode HireFlux Action Center in a fictional local demo, with recorded commitments separated from a stage-age suggestion.',
   stack: ['React', 'TypeScript', 'Vite', 'FastAPI', 'DynamoDB Local'],
   signals: [
-    'Backend-owned lifecycle and domain rules',
+    'Server-derived actions with explicit uncertainty',
     'Owner-scoped data access',
     'Concurrency handling and idempotency',
     'Validation and automated tests',

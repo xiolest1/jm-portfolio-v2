@@ -8,6 +8,3 @@ export const site = {
   github: 'https://github.com/xiolest1',
   linkedin: 'https://www.linkedin.com/in/joanmorillo/',
 }
-
-export const resumeRequestHref =
-  'mailto:joanraulmorillo@gmail.com?subject=Resume%20request'

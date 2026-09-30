@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from 'react'
-import { site, resumeRequestHref } from '../content/site'
+import { site } from '../content/site'
 import { BootSequence } from './BootSequence/BootSequence'
 import styles from './SiteLayout.module.css'
 
@@ -23,7 +23,6 @@ export function SiteLayout({ children }: SiteLayoutProps) {
           <nav className={styles.primaryNav} aria-label="Primary navigation">
             <a href="/#work">Work</a>
             <a href="/#about">About</a>
-            <a href={resumeRequestHref} aria-label="Request a copy of my résumé by email">Résumé</a>
             <a href="/#contact">Contact</a>
           </nav>
           <nav className={styles.utilityNav} aria-label="Professional profiles">

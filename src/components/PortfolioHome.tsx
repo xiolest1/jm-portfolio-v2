@@ -1,6 +1,6 @@
 import { certifications, education, engineeringGroups, experience, type EngineeringGroup, type EngineeringMapping } from '../content/resume'
 import { hireFlux, libraryProject, rcProject } from '../content/projects'
-import { site, resumeRequestHref } from '../content/site'
+import { site } from '../content/site'
 import styles from './PortfolioHome.module.css'
 
 function ExternalLink({ href, children }: { href: string; children: string }) {
@@ -77,7 +77,6 @@ export function PortfolioHome() {
           </div>
           <div className={styles.actions}>
             <a className={styles.actionPrimary} href="#work">Explore selected work</a>
-            <a className={styles.actionSecondary} href={resumeRequestHref}>Request résumé</a>
           </div>
           <div className={styles.profileLine} aria-label="Engineering focus">
             <span>Backend systems</span>
@@ -288,7 +287,6 @@ export function PortfolioHome() {
             <div className={styles.contactLinks}>
               <ExternalLink href={site.linkedin}>LinkedIn</ExternalLink>
               <ExternalLink href={site.github}>GitHub</ExternalLink>
-              <a href={resumeRequestHref}>Request résumé</a>
             </div>
           </div>
         </div>
