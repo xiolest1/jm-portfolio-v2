@@ -84,8 +84,7 @@
 }
 
 .actions,
-.projectLinks,
-.contactLinks {
+.projectLinks {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -169,7 +168,7 @@
   position: absolute;
   z-index: -1;
   top: 3.5rem;
-  right: -1.5rem;
+  right: 0;
   width: 25rem;
   max-width: 45vw;
   aspect-ratio: 1;
@@ -187,8 +186,7 @@
 }
 
 .flagship,
-.supporting,
-.foundation {
+.supporting {
   padding-block: clamp(3.5rem, 7vw, 6rem);
   border-top: 1px solid var(--color-line);
 }
@@ -292,10 +290,7 @@
 
 .projectLinks a,
 .library a,
-.rcCopy > a,
-.capabilityMappings a,
-.credentialList a,
-.contactLinks a {
+.rcCopy > a {
   color: var(--color-accent);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
@@ -303,10 +298,7 @@
 
 .projectLinks a:hover,
 .library a:hover,
-.rcCopy > a:hover,
-.capabilityMappings a:hover,
-.credentialList a:hover,
-.contactLinks a:hover {
+.rcCopy > a:hover {
   color: var(--color-focus);
 }
 
@@ -459,339 +451,6 @@
   font-size: 0.93rem;
 }
 
-.foundation {
-  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 1%), transparent);
-}
-
-.foundationHeader {
-  max-width: 54rem;
-  margin-bottom: clamp(1.75rem, 4vw, 2.5rem);
-}
-
-.foundationHeader .eyebrow {
-  margin-bottom: 0.65rem;
-}
-
-.foundationHeader .sectionTitle {
-  max-width: 28ch;
-  margin: 0;
-}
-
-.engineeringProfile {
-  display: grid;
-  gap: clamp(1.5rem, 3vw, 2.25rem);
-}
-
-.capabilityGroup {
-  min-width: 0;
-}
-
-.capabilityLead {
-  padding-block: 1.1rem 1.25rem;
-  border-top: 1px solid var(--color-line);
-  border-bottom: 1px solid var(--color-line);
-}
-
-.foundationSubhead {
-  margin: 0 0 0.9rem;
-  color: var(--color-text);
-  font: 600 var(--type-subheading)/1.25 var(--font-sans);
-  letter-spacing: -0.015em;
-}
-
-.capabilityLead .foundationSubhead {
-  margin-bottom: 0.55rem;
-  font-size: clamp(1.3rem, 2vw, 1.55rem);
-}
-
-.capabilityMappings {
-  display: grid;
-  gap: 0.45rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.capabilityMapping {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.2rem 0.75rem;
-  min-width: 0;
-  line-height: 1.5;
-}
-
-.capabilityType {
-  color: var(--color-text);
-  font-size: 0.94rem;
-  font-weight: 600;
-}
-
-.capabilityPaths,
-.capabilityPath {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.2rem 0.6rem;
-  min-width: 0;
-}
-
-.capabilityPaths {
-  gap: 0.25rem 1rem;
-}
-
-.capabilityTechnology {
-  color: var(--color-body);
-  font-size: var(--type-body);
-}
-
-.capabilityArrow {
-  color: var(--color-muted);
-  font-size: 0.9rem;
-}
-
-.capabilityEvidence {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 0.5rem;
-  align-items: baseline;
-}
-
-.capabilityMappings a {
-  color: var(--color-accent);
-  font-size: var(--type-compact);
-  font-weight: 500;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
-}
-
-.capabilityMappings a:hover {
-  color: var(--color-focus);
-}
-
-.capabilityPair {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  gap: clamp(2rem, 5vw, 4.5rem);
-}
-
-.capabilityStandard {
-  padding-top: 0.85rem;
-  border-top: 1px solid var(--color-line);
-}
-
-.capabilityStandard .foundationSubhead,
-.capabilityQuiet .foundationSubhead {
-  margin-bottom: 0.4rem;
-  font-size: 1.12rem;
-}
-
-.capabilityQuiet {
-  display: grid;
-  grid-template-columns: minmax(14rem, 0.45fr) minmax(0, 1fr);
-  gap: 0.6rem 1.5rem;
-  align-items: baseline;
-  padding-top: 0.8rem;
-  border-top: 1px solid var(--color-line);
-}
-
-.capabilityQuiet .foundationSubhead {
-  margin: 0;
-  color: var(--color-muted);
-  font-size: var(--type-compact);
-}
-
-.capabilityQuiet .capabilityMappings {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
-  gap: 0.5rem 1.25rem;
-}
-
-.capabilityQuiet .capabilityType {
-  color: var(--color-muted);
-  font-size: var(--type-compact);
-}
-
-.capabilityQuiet .capabilityTechnology {
-  font-size: var(--type-compact);
-}
-
-.foundationEvidence {
-  display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(17rem, 0.85fr);
-  gap: clamp(2rem, 6vw, 5rem);
-  align-items: start;
-  margin-top: clamp(2rem, 4.5vw, 3.5rem);
-  padding-top: clamp(1.5rem, 3vw, 2.25rem);
-  border-top: 1px solid var(--color-line);
-}
-
-.foundationExperience,
-.foundationEducation {
-  min-width: 0;
-}
-
-.experienceGrid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(1.25rem, 3vw, 2rem);
-}
-
-.experienceItem {
-  min-width: 0;
-  padding-top: 0.85rem;
-  border-top: 1px solid var(--color-line);
-}
-
-.experienceItem h4 {
-  margin: 0;
-  color: var(--color-text);
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.35;
-}
-
-.experienceItem h4 span {
-  display: block;
-  margin-top: 0.15rem;
-  color: var(--color-muted);
-  font-weight: 400;
-}
-
-.experienceItem p {
-  max-width: 42ch;
-  margin: 0.55rem 0 0;
-  color: var(--color-body);
-  font-size: var(--type-body);
-  line-height: var(--leading-copy);
-}
-
-.foundationEducation {
-  display: grid;
-  gap: 1.2rem;
-  padding-left: clamp(1.25rem, 3vw, 2rem);
-  border-left: 1px solid var(--color-line);
-}
-
-.educationList,
-.credentialList {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.educationList li {
-  padding-block: 0.7rem;
-  border-top: 1px solid var(--color-line);
-}
-
-.educationList strong,
-.educationList span {
-  display: block;
-}
-
-.educationList strong {
-  color: var(--color-text);
-  font-size: var(--type-compact);
-  font-weight: 600;
-  line-height: 1.35;
-}
-
-.educationList span {
-  margin-top: 0.25rem;
-  color: var(--color-body);
-  font-size: var(--type-compact);
-  line-height: var(--leading-compact);
-}
-
-.educationList .primaryDegree strong {
-  font-size: 1.0625rem;
-}
-
-.educationList .secondaryDegree strong {
-  color: var(--color-body);
-  font-weight: 500;
-}
-
-.credentialList li {
-  padding-block: 0.6rem;
-  border-top: 1px solid var(--color-line);
-  font-size: var(--type-compact);
-  line-height: var(--leading-compact);
-}
-
-.closing {
-  padding-block: clamp(3.5rem, 8vw, 6rem);
-  border-top: 1px solid var(--color-line);
-}
-
-.closingHeader {
-  max-width: 42rem;
-  margin-bottom: 2rem;
-}
-
-.closingHeader .sectionTitle {
-  max-width: 20ch;
-}
-
-.closingGrid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.85fr);
-  gap: clamp(3rem, 8vw, 7rem);
-  align-items: start;
-}
-
-.aboutCopy {
-  max-width: 34rem;
-}
-
-.aboutLead {
-  margin: 0;
-  color: var(--color-text);
-  font-size: var(--type-subheading);
-  font-weight: 500;
-  letter-spacing: -0.015em;
-  line-height: 1.3;
-}
-
-.aboutCopy p:last-child {
-  max-width: 56ch;
-  margin: 0.75rem 0 0;
-  color: var(--color-body);
-  line-height: var(--leading-copy);
-}
-
-.contact {
-  padding: 0;
-  border: 0;
-  background: none;
-}
-
-.contactTitle {
-  margin: 0;
-  color: var(--color-text);
-  font-size: clamp(1.75rem, 2.6vw, 2.125rem);
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  line-height: 1.2;
-}
-
-.emailAction {
-  display: inline-block;
-  margin-top: 0.75rem;
-  color: var(--color-accent);
-  font-size: clamp(1.125rem, 2vw, 1.375rem);
-  font-weight: 600;
-  text-decoration-color: var(--color-accent);
-  text-underline-offset: 0.25em;
-}
-
-.contactLinks {
-  margin-top: 1.25rem;
-  gap: 0.65rem 1.15rem;
-  font-size: var(--type-compact);
-}
-
 @media (max-width: 980px) {
   .identity {
     grid-template-columns: minmax(0, 1fr) 12rem;
@@ -811,31 +470,6 @@
     max-width: 52rem;
   }
 
-  .foundationEvidence {
-    grid-template-columns: minmax(0, 1.2fr) minmax(15rem, 0.8fr);
-    gap: 2rem;
-  }
-
-  .experienceGrid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 820px) {
-  .foundationEvidence {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .experienceGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .foundationEducation {
-    padding: 1.5rem 0 0;
-    border-top: 1px solid var(--color-line);
-    border-left: 0;
-  }
 }
 
 @media (max-width: 680px) {
@@ -878,8 +512,7 @@
   }
 
   .flagship,
-  .supporting,
-  .foundation {
+  .supporting {
     padding-block: 3.5rem;
   }
 
@@ -891,8 +524,7 @@
   }
 
   .supportGrid,
-  .rcProject,
-  .closingGrid {
+  .rcProject {
     grid-template-columns: 1fr;
   }
 
@@ -911,58 +543,7 @@
     object-position: center 56%;
   }
 
-  .experienceGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .foundationEducation {
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--color-line);
-  }
-
-  .capabilityPair {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-
-  .capabilityMapping {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .capabilityPaths {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.35rem;
-  }
-
-  .capabilityQuiet {
-    grid-template-columns: 1fr;
-    gap: 0.4rem;
-  }
-
-  .capabilityQuiet .capabilityMappings {
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
-  }
-
-  .experienceGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .closing {
-    padding-block: 3.5rem;
-  }
-
-  .closingHeader {
-    margin-bottom: 1.5rem;
-  }
-
-  .closingGrid {
-    gap: 2rem;
-  }
 }
-
 
 .evidenceLinks {
   display: flex;
@@ -995,6 +576,13 @@
 .credibility {
   font-size: var(--type-compact);
   line-height: var(--leading-compact);
+}
+
+.pronunciation {
+  color: var(--color-body);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: var(--leading-copy);
 }
 
 .eyebrow,
@@ -1055,8 +643,7 @@
   line-height: var(--leading-compact);
 }
 
-.sectionTitle,
-.contact h2 {
+.sectionTitle {
   font-size: var(--type-section);
   font-weight: 600;
   letter-spacing: -0.025em;
@@ -1086,36 +673,4 @@
 .flowProof p {
   font-size: var(--type-compact);
   line-height: var(--leading-compact);
-}
-
-.experienceItem h4 {
-  font-size: 1rem;
-  line-height: 1.35;
-}
-
-.experienceItem p {
-  font-size: var(--type-body);
-  line-height: 1.6;
-}
-
-.credentialList li {
-  font-size: var(--type-compact);
-  line-height: var(--leading-compact);
-}
-
-.capabilityMappings a {
-  font-size: 0.875rem;
-}
-
-.aboutCopy p:last-child {
-  font-size: var(--type-body);
-  line-height: var(--leading-copy);
-}
-
-.emailAction {
-  line-height: 1.35;
-}
-
-.contactLinks {
-  font-size: var(--type-compact);
 }

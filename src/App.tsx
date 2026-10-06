@@ -3,7 +3,7 @@ import { SiteLayout } from './components/SiteLayout'
 
 export default function App() {
   return (
-    <SiteLayout>
+    <SiteLayout footerVariant="home">
       <PortfolioHome />
     </SiteLayout>
   )

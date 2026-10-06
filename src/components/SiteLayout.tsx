@@ -5,9 +5,10 @@ import styles from './SiteLayout.module.css'
 
 type SiteLayoutProps = {
   children: ReactNode
+  footerVariant?: 'standard' | 'home'
 }
 
-export function SiteLayout({ children }: SiteLayoutProps) {
+export function SiteLayout({ children, footerVariant = 'standard' }: SiteLayoutProps) {
   const [bootOpen, setBootOpen] = useState(false)
   const year = new Date().getFullYear()
 
@@ -35,7 +36,7 @@ export function SiteLayout({ children }: SiteLayoutProps) {
           {children}
         </main>
 
-        <footer className={styles.footer}>
+        <footer className={footerVariant === 'home' ? styles.footer + ' ' + styles.homeFooter : styles.footer}>
           <button className={styles.bootLink} type="button" onClick={() => setBootOpen(true)}>
             Replay system boot
           </button>

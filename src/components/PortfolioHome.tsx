@@ -1,4 +1,4 @@
-import { certifications, education, engineeringGroups, experience, type EngineeringGroup, type EngineeringMapping } from '../content/resume'
+import { ProfessionalJourney } from './ProfessionalJourney'
 import { hireFlux, libraryProject, rcProject } from '../content/projects'
 import { site } from '../content/site'
 import styles from './PortfolioHome.module.css'
@@ -12,52 +12,7 @@ function ExternalLink({ href, children }: { href: string; children: string }) {
   )
 }
 
-function CapabilityMappingList({ mappings }: { mappings: EngineeringMapping[] }) {
-  return (
-    <ul className={styles.capabilityMappings}>
-      {mappings.map((mapping) => (
-        <li className={styles.capabilityMapping} key={mapping.capability}>
-          <span className={styles.capabilityType}>{mapping.capability}</span>
-          <span className={styles.capabilityPaths}>
-            {mapping.paths.map((path) => (
-              <span className={styles.capabilityPath} key={path.technologies.join('-')}>
-                <span className={styles.capabilityTechnology}>{path.technologies.join(' · ')}</span>
-                <span className={styles.capabilityArrow} aria-hidden="true">→</span>
-                <span className={styles.capabilityEvidence}>
-                  {path.evidence.map((item) => (
-                    <a href={item.href} key={item.label}>
-                      {item.label}<span aria-hidden="true"> ↗</span>
-                    </a>
-                  ))}
-                </span>
-              </span>
-            ))}
-          </span>
-        </li>
-      ))}
-    </ul>
-  )
-}
-
-function CapabilityGroup({ group }: { group: EngineeringGroup }) {
-  const titleId = `foundation-${group.name.toLowerCase().replaceAll(/[^a-z0-9]+/g, '-')}`
-  const groupClass = group.level === 'lead'
-    ? styles.capabilityLead
-    : group.level === 'quiet'
-      ? styles.capabilityQuiet
-      : styles.capabilityStandard
-
-  return (
-    <section className={`${styles.capabilityGroup} ${groupClass}`} aria-labelledby={titleId}>
-      <h3 className={styles.foundationSubhead} id={titleId}>{group.name}</h3>
-      <CapabilityMappingList mappings={group.mappings} />
-    </section>
-  )
-}
-
 export function PortfolioHome() {
-  const mailto = 'mailto:' + site.email
-
   return (
     <>
       <section className={styles.identity} id="top" aria-labelledby="identity-title">
@@ -204,93 +159,7 @@ export function PortfolioHome() {
         </article>
       </section>
 
-      <section className={styles.foundation} id="foundation" aria-labelledby="foundation-title">
-        <header className={styles.foundationHeader}>
-          <p className={styles.eyebrow}>03 / Professional foundation</p>
-          <h2 className={styles.sectionTitle} id="foundation-title">
-            Engineering profile
-          </h2>
-        </header>
-
-        <div className={styles.engineeringProfile}>
-          {engineeringGroups.filter((group) => group.level === 'lead').map((group) => (
-            <CapabilityGroup group={group} key={group.name} />
-          ))}
-
-          <div className={styles.capabilityPair}>
-            {engineeringGroups.filter((group) => group.level === 'standard').map((group) => (
-              <CapabilityGroup group={group} key={group.name} />
-            ))}
-          </div>
-
-          {engineeringGroups.filter((group) => group.level === 'quiet').map((group) => (
-            <CapabilityGroup group={group} key={group.name} />
-          ))}
-        </div>
-
-        <div className={styles.foundationEvidence}>
-          <section className={styles.foundationExperience} aria-labelledby="experience-title">
-            <h3 className={styles.foundationSubhead} id="experience-title">Professional experience</h3>
-            <div className={styles.experienceGrid}>
-              {experience.map((item) => (
-                <article className={styles.experienceItem} key={item.company}>
-                  <h4>{item.title}<span>{item.company}</span></h4>
-                  <p>{item.evidence}</p>
-                </article>
-              ))}
-            </div>
-          </section>
-
-          <aside className={styles.foundationEducation} aria-label="Education and credentials">
-            <section aria-labelledby="education-title">
-              <h3 className={styles.foundationSubhead} id="education-title">Education</h3>
-              <ul className={styles.educationList}>
-                {education.map((item, index) => (
-                  <li className={index === 0 ? styles.primaryDegree : styles.secondaryDegree} key={item.degree}>
-                    <strong>{item.degree}</strong>
-                    <span>{item.school}{item.detail ? ' · ' + item.detail : ''}</span>
-                  </li>
-                ))}
-              </ul>
-            </section>
-
-            <section id="credentials" aria-labelledby="credentials-title">
-              <h3 className={styles.foundationSubhead} id="credentials-title">Completed AWS credentials</h3>
-              <ul className={styles.credentialList}>
-                {certifications.map((item) => (
-                  <li key={item.name}>
-                    <ExternalLink href={item.link}>{item.name}</ExternalLink>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          </aside>
-        </div>
-      </section>
-
-      <section className={styles.closing} id="about" aria-labelledby="about-title">
-        <div className={styles.closingHeader}>
-          <p className={styles.eyebrow}>04 / Closing</p>
-          <h2 className={styles.sectionTitle} id="about-title">About &amp; Contact</h2>
-        </div>
-        <div className={styles.closingGrid}>
-          <div className={styles.aboutCopy}>
-            <h3 className={styles.aboutLead}>Curious about how systems work.</h3>
-            <p>
-              I’m interested in how software carries context from a user’s first action
-              to a reliable next step—from full-stack applications to computer vision.
-            </p>
-          </div>
-          <div className={styles.contact} id="contact">
-            <h3 className={styles.contactTitle}>Let’s connect.</h3>
-            <a className={styles.emailAction} href={mailto}>{site.email}</a>
-            <div className={styles.contactLinks}>
-              <ExternalLink href={site.linkedin}>LinkedIn</ExternalLink>
-              <ExternalLink href={site.github}>GitHub</ExternalLink>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ProfessionalJourney />
     </>
   )
 }
