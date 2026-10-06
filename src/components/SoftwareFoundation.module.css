@@ -1,0 +1,151 @@
+.section {
+  --foundation-rule: rgb(169 156 175 / 24%);
+  position: relative;
+  min-width: 0;
+  margin-top: clamp(3.5rem, 6vw, 5.5rem);
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+  border-top: 1px solid var(--foundation-rule);
+}
+.section :where(section, div, li, aside) { min-width: 0; }
+.section :where(h3, h4, h5, h6, p, li) { overflow-wrap: anywhere; }
+.section :where([id]) { scroll-margin-block-start: 2rem; }
+.section :where(ul, ol) { margin: 0; padding: 0; list-style: none; }
+.eyebrow { margin: 0; color: var(--color-accent); font: 500 .75rem/1.5 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; }
+.opening h3 { max-width: 24ch; margin: .85rem 0 0; color: var(--color-text); font-size: clamp(2rem, 3.6vw, 2.875rem); font-weight: 600; line-height: 1.12; letter-spacing: -.035em; text-wrap: balance; }
+.opening h3 > span { color: var(--color-accent); }
+.orientation { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: center; gap: 3rem; margin-top: 2.5rem; }
+.direction { margin: 0; color: var(--color-text); font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 500; line-height: 1.3; letter-spacing: -.02em; }
+.direction > span { color: var(--color-body); }
+.languageBase { padding: 1.2rem 0 1.2rem 2rem; border-left: 1px solid var(--foundation-rule); }
+.languageBase h4 { margin: 0 0 .8rem; color: var(--color-muted); font: 500 .8125rem/1.4 var(--font-mono); }
+.languages { display: flex; flex-wrap: wrap; gap: .5rem 0; }
+.languages li { color: var(--color-text); font-size: 1.25rem; font-weight: 500; line-height: 1.5; }
+.languages li:not(:last-child)::after { content: '/'; margin-inline: .85rem; color: var(--color-line); font-weight: 400; }
+.stackMoment { margin-top: 3.75rem; }
+.momentHeading h4 { margin: .65rem 0 0; color: var(--color-text); font-size: clamp(1.75rem, 2.5vw, 2.25rem); font-weight: 500; line-height: 1.2; letter-spacing: -.025em; text-wrap: balance; }
+.technicalComposition { display: grid; grid-template-columns: minmax(0, 2.3fr) minmax(0, 1fr); align-items: center; gap: clamp(2rem, 4.3vw, 4rem); margin-top: 2rem; }
+.applicationLayers { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); border: 1px solid var(--foundation-rule); border-radius: 1rem; background: linear-gradient(115deg, #201923, #151019); }
+
+.layer { position: relative; padding: 2rem 1.75rem; }
+.backend { border-left: 1px solid var(--foundation-rule); }
+.backend { background: linear-gradient(105deg, rgb(255 178 127 / 8%), rgb(255 178 127 / 2%)); }
+.backend::after { content: ''; position: absolute; top: -1px; left: 1.75rem; right: 1.75rem; height: 2px; background: var(--color-accent); }
+.dataLayer { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem 2rem; padding-block: 1.5rem; border-top: 1px solid var(--foundation-rule); }
+.dataLayer .technologies { margin-top: 0 !important; }
+.layerHeading { display: flex; align-items: center; gap: 1rem; }
+.layerHeading > svg { width: 2.5rem; height: 2.5rem; flex-shrink: 0; color: var(--color-muted); }
+.backend .layerHeading > svg { color: var(--color-accent); }
+.layerContext { margin: 0 0 .25rem; color: var(--color-muted); font-size: .8125rem; line-height: 1.4; }
+.layer h5 { margin: 0; color: var(--color-text); font-size: 1.5rem; font-weight: 600; line-height: 1.25; letter-spacing: -.02em; }
+.technologies { margin-top: 1.5rem !important; display: flex; flex-wrap: wrap; align-items: start; gap: .6rem 1.25rem; }
+.technologies li { color: var(--color-text); font-size: 1.125rem; font-weight: 500; line-height: 1.45; }
+.technologyContext { display: block; margin-top: .1rem; color: var(--color-muted); font-size: .8125rem; font-weight: 400; line-height: 1.5; }
+.developmentRail { padding-left: 1.5rem; border-left: 1px solid var(--foundation-rule); }
+.railLabel { display: block; margin-bottom: 1.25rem; color: var(--color-muted); font: 400 .75rem/1.5 var(--font-mono); }
+.developmentRail h5 { margin: 0; color: var(--color-body); font-size: 1.0625rem; font-weight: 500; line-height: 1.4; }
+.cloudNames { display: grid; gap: 1rem; padding-top: 1rem !important; }
+.cloudNames li > span { color: var(--color-text); font-size: 1.25rem; font-weight: 500; line-height: 1.4; }
+.cloudNames p { max-width: 24ch; margin: .2rem 0 0; color: var(--color-muted); font-size: .875rem; line-height: 1.5; }
+.tools { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--foundation-rule); }
+.tools ul { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; padding-top: .7rem !important; }
+.tools li { color: var(--color-text); font-size: 1.125rem; line-height: 1.5; }
+.courseSource { display: inline-flex; align-items: center; gap: .6rem; min-height: 44px; margin-top: 2rem; color: var(--color-muted); font-size: .875rem; line-height: 1.5; text-decoration-color: var(--color-line); text-underline-offset: .25em; transition: color 180ms ease; }
+.courseSource svg { width: .875rem; height: .875rem; flex-shrink: 0; transition: transform 180ms ease; }
+.courseSource:hover { color: var(--color-accent); }
+.courseSource:hover svg { transform: translate(1px, -1px); }
+.courseSource:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 5px; border-radius: .15rem; }
+.srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+@container journey (max-width: 62rem) {
+  .orientation { gap: 2rem; }
+  .technicalComposition { grid-template-columns: minmax(0, 2.5fr) minmax(0, 1fr); gap: 1.5rem; }
+  .layer { padding: 1.5rem 1.25rem; }
+  .layerHeading { gap: .75rem; }
+  .layerHeading > svg { width: 2rem; height: 2rem; }
+  .layer h5 { font-size: 1.375rem; }
+  .technologies { column-gap: .85rem; }
+  .developmentRail { padding-left: 1.25rem; }
+}
+@container journey (max-width: 46rem) {
+  .orientation { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+  .languageBase { padding: 1rem 0 0; border-left: 0; border-top: 1px solid var(--foundation-rule); }
+  .technicalComposition { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+  .applicationLayers { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); }
+  .developmentRail { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: .75rem 2rem; padding: 1.5rem 0 0; border-left: 0; border-top: 1px solid var(--foundation-rule); }
+  .railLabel { grid-column: 1 / -1; margin-bottom: .5rem; }
+  .cloudNames { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+  .tools { padding: 0 0 0 1.25rem; margin: 0; border-top: 0; border-left: 1px solid var(--foundation-rule); }
+}
+@container journey (max-width: 32rem) {
+  .section { padding-top: 2rem; margin-top: 3rem; }
+  .opening h3 { font-size: 2rem; }
+  .orientation { margin-top: 1.5rem; }
+  .direction { font-size: 1.5rem; }
+  .languages li { font-size: 1.125rem; }
+  .languages li:not(:last-child)::after { margin-inline: .65rem; }
+  .stackMoment { margin-top: 2.75rem; }
+  .momentHeading h4 { font-size: 1.75rem; }
+  .technicalComposition { margin-top: 1.25rem; }
+  .applicationLayers { grid-template-columns: minmax(0, 1fr); }
+  .layer { padding: 1.25rem; }
+  .backend { border-left: 0; border-top: 1px solid var(--foundation-rule); }
+  .backend::after { top: 1.25rem; bottom: 1.25rem; left: -1px; right: auto; width: 2px; height: auto; }
+  .dataLayer { display: block; }
+  .technologies, .dataLayer .technologies { margin-top: .85rem !important; }
+  .layerHeading { gap: .75rem; }
+  .layerHeading > svg { width: 2rem; height: 2rem; }
+  .layer h5 { font-size: 1.375rem; }
+  .technologies { gap: .5rem 1rem; }
+  .technologies li { font-size: 1rem; }
+  .developmentRail { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; padding-top: 1.25rem; }
+  .railLabel { margin-bottom: 0; }
+  .tools { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; align-items: baseline; padding: 0; border: 0; }
+  .tools ul { padding-top: 0 !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .section *, .section *::before, .section *::after { animation: none !important; transition: none !important; }
+  .courseSource:hover svg { transform: none; }
+}
+
+/* Academic evidence reads as course names first, then concise context. */
+.courseMoment {
+  max-width: 68rem;
+  margin-top: clamp(3.5rem, 6vw, 5rem);
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--foundation-rule);
+}
+.courseHeader { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1rem 2rem; }
+.courseHeader h4 { margin: .65rem 0 0; color: var(--color-text); font-size: clamp(1.75rem, 2.5vw, 2.25rem); font-weight: 500; line-height: 1.2; letter-spacing: -.025em; }
+.university { margin: 0; color: var(--color-body); font-size: 1rem; line-height: 1.5; }
+.university > span { display: block; margin-top: .2rem; color: var(--color-muted); font-size: .875rem; }
+.featuredCourses {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem !important;
+}
+.featuredCourses h5 { margin: 0; color: var(--color-text); font-size: clamp(1.5rem, 2.3vw, 1.875rem); font-weight: 600; line-height: 1.25; letter-spacing: -.025em; text-wrap: balance; }
+.courseMoment li > p { max-width: 36ch; margin: .5rem 0 0; color: var(--color-body); font-size: 1rem; font-weight: 400; line-height: 1.55; }
+.foundationCourses {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.75rem 2rem;
+  margin-top: 2rem !important;
+  padding-top: 1.75rem !important;
+  border-top: 1px solid var(--foundation-rule);
+}
+.foundationCourses h5 { margin: 0; color: var(--color-text); font-size: clamp(1.25rem, 1.8vw, 1.5rem); font-weight: 500; line-height: 1.3; letter-spacing: -.015em; }
+.courseMoment .courseSource { margin-top: 1.5rem; }
+@container journey (max-width: 52rem) {
+  .foundationCourses { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 2rem; }
+}
+@container journey (max-width: 32rem) {
+  .courseMoment { margin-top: 3rem; padding-top: 2rem; }
+  .courseHeader { gap: .75rem; }
+  .courseHeader h4 { font-size: 1.75rem; }
+  .university { font-size: .9375rem; }
+  .featuredCourses { margin-top: 1.75rem !important; gap: 1.25rem; }
+  .featuredCourses h5 { font-size: 1.25rem; }
+  .foundationCourses { gap: 1.35rem 1.25rem; margin-top: 1.5rem !important; padding-top: 1.5rem !important; }
+  .foundationCourses h5 { font-size: 1.125rem; }
+  .courseMoment li > p { font-size: .9375rem; line-height: 1.5; }
+}

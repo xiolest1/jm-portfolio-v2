@@ -1,4 +1,5 @@
-import { certifications, education, experience, programmingLanguages, technicalFoundation, projectProof } from '../content/resume'
+import { certifications, education, experience } from '../content/resume'
+import { SoftwareFoundation } from './SoftwareFoundation'
 import styles from './ProfessionalFoundation.module.css'
 
 function VerificationArrow() {
@@ -68,28 +69,7 @@ export function ProfessionalFoundation() {
         </div>
       </div>
 
-      <section className={styles.technical} aria-labelledby="engineering-profile-title" data-journey-reveal>
-        <header className={styles.technicalHeader}>
-          <h3 id="engineering-profile-title">Software-engineering foundation</h3>
-          <p>Technical preparation, with implementation demonstrated in the projects above.</p>
-        </header>
-        <div className={styles.languageLine}><span>Languages</span><ul>{programmingLanguages.map(language => <li key={language}>{language}</li>)}</ul></div>
-        <div className={styles.technicalGrid}>
-          {technicalFoundation.map(group => (
-            <section className={styles.technicalGroup} id={group.id} aria-labelledby={group.id + '-title'} key={group.id}>
-              <h4 id={group.id + '-title'}>{group.title}</h4>
-              <p>{group.context}</p>
-              <dl>{group.areas.map(area => <div key={area.label}><dt>{area.label}</dt><dd>{area.technologies.join(' · ')}</dd></div>)}</dl>
-            </section>
-          ))}
-        </div>
-        <div className={styles.proof}>
-          <div className={styles.proofIntro} id="foundation-computer-vision"><p className={styles.smallLabel}>Selected implementation evidence</p><p>Web applications and computer vision</p></div>
-          <ul>{projectProof.map(project => (
-            <li key={project.label}><a href={project.href}>{project.label}<VerificationArrow /></a><span>{project.context}</span></li>
-          ))}</ul>
-        </div>
-      </section>
+      <SoftwareFoundation />
     </section>
   )
 }
