@@ -1,8 +1,11 @@
 .caseStudy {
   container: hireflux / inline-size;
   --accepted: #b9e2cd;
-  --scene-space: clamp(4rem, 8vw, 7rem);
+  --scene-space: clamp(3.25rem, 5.4vw, 5rem);
   --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --motion-feedback: 180ms;
+  --motion-state: 300ms;
+  --motion-scene: 560ms;
   --panel: #18131e;
   --fine-line: #463a4c;
   position: relative;
@@ -23,7 +26,8 @@
 .caseStudy button { font: inherit; cursor: pointer; color: var(--color-text); -webkit-tap-highlight-color: transparent; }
 .caseStudy :where(code,pre) { font-family: var(--font-mono); }
 .caseStudy code { font-size: .875em; }
-.caseStudy [id] { scroll-margin-top: 6rem; }
+.caseStudy [id] { scroll-margin-top: 4.5rem; }
+.caseStudy [data-chapter][id] { scroll-margin-top: 0; }
 .srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 .eyebrow,.smallLabel { font: 500 .8125rem/1.5 var(--font-mono); letter-spacing: .035em; }
 .eyebrow { color: var(--color-accent)!important; text-transform: uppercase; }
@@ -80,7 +84,7 @@
 .chapterNav a::after { content: ''; position: absolute; bottom: 0; inset-inline: 0; height: 2px; background: var(--color-accent); transform: scaleX(0); transform-origin: left; }
 .chapterNav a[aria-current] { color: var(--color-accent); }
 .chapterNav a[aria-current]::after { transform: scaleX(1); }
-.chapterNav > p { font-size: .75rem; color: var(--color-muted); margin-top: .2rem; }
+.chapterNav > p { min-height: 1.5em; font-size: .75rem; color: var(--color-muted); margin-top: .2rem; }
 
 /* Competing paths, not four equivalent project cards. */
 .investigation { padding-top: var(--scene-space); }
@@ -103,7 +107,7 @@
 .iterationHeading h3 { font-size: clamp(1.75rem,3.3vw,2.75rem); }
 .iterationHeading p { max-width: 60ch; }
 .iterationSketches { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 2rem; list-style: none; padding: 0; margin: 2rem 0 0; }
-.iterationSketches li { min-width: 0; }
+.iterationSketches li { position: relative; min-width: 0; }
 .iterationSketches li > div { position: relative; min-height: 8rem; background: linear-gradient(145deg,#251b2b,#17121c); border: 1px solid var(--fine-line); padding: 1rem; border-radius: .4rem; }
 .iterationSketches i { display: block; background: #a17d63; border-radius: .15rem; border: 1px solid #d0a17b; }
 .iterationSketches i:nth-child(2) { background: #537669; border-color: #829f92; }
@@ -135,7 +139,9 @@
 .exampleHeader h4 { margin-top: .3rem; font-size: 1.3rem; }
 .exampleHeader p { margin-top: .25rem; font-size: .9375rem; }
 .exampleTag { color: var(--color-muted); font: .6875rem/1.5 var(--font-mono); white-space: nowrap; }
-.meaningJourney { display: grid; grid-template-columns: minmax(0,.9fr) minmax(0,1fr) minmax(0,1.2fr); gap: 1rem; margin-top: 1.25rem; }
+.meaningJourney { --handoff-color: var(--color-accent); position: relative; display: grid; grid-template-columns: minmax(0,.9fr) minmax(0,1fr) minmax(0,1.2fr); gap: 1rem; margin-top: 1.25rem; }
+.meaningJourney[data-kind='dated'] { --handoff-color: var(--accepted); }
+.meaningHandoff { position: absolute; top: -2px; left: 0; right: 0; height: 2px; background: var(--handoff-color); pointer-events: none; }
 .meaningJourney > div { position: relative; min-width: 0; padding: 1.15rem; border-top: 2px solid var(--fine-line); background: #1b1620; }
 .meaningJourney > div:not(:first-child)::before { content: '→'; position: absolute; top: 50%; left: -.85rem; transform: translateY(-50%); color: var(--color-accent); font: 1.25rem/1 var(--font-sans); z-index: 1; }
 .exampleRecord > strong { display: block; font-size: 1.2rem; margin-top: .8rem; }
@@ -175,16 +181,19 @@
 .productEvidence { margin-top: 2.5rem!important; }
 .productStage { position: relative; padding: clamp(1rem,2.4vw,2rem); background: linear-gradient(135deg,#30232c,#18131e 70%); border: 1px solid var(--color-line); border-radius: .75rem; box-shadow: 0 30px 65px #0004; }
 .captureTop { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .4rem 1rem; font: .75rem/1.5 var(--font-mono); color: var(--color-body); margin-bottom: 1rem; }
-.desktopProduct { position: relative; display: grid; place-items: center; height: clamp(19rem,36vw,26rem); background: linear-gradient(140deg,#211a24,#141219); border: 1px solid #4c3e4b; border-radius: .35rem; overflow: hidden; }
-.desktopProduct .productCrop { width: 100%; background: #f7f9fc; border: 1px solid #ffffff20; box-shadow: 0 18px 38px #0005; }
-.desktopProduct[data-view='0'] .productCrop { width: min(100%,50rem); }
-.desktopProduct[data-view='1'] .productCrop { width: min(100%,24rem); }
-.desktopProduct[data-view='2'] .productCrop { width: min(100%,59rem); }
+.desktopProduct { position: relative; height: clamp(19rem,36vw,26rem); background: linear-gradient(140deg,#211a24,#141219); border: 1px solid #4c3e4b; border-radius: .35rem; overflow: hidden; }
+.productView { position: absolute; inset: 0; display: grid; place-items: center; padding: 1rem; opacity: 0; pointer-events: none; transform: scale(.975); }
+.productView[data-active='true'] { opacity: 1; transform: none; z-index: 1; }
+.productView .productCrop { width: 100%; background: #f7f9fc; border: 1px solid #ffffff20; box-shadow: 0 18px 38px #0005; }
+.productView[data-view='0'] .productCrop { width: min(100%,50rem); }
+.productView[data-view='1'] .productCrop { width: min(100%,32rem); }
+.productView[data-view='2'] .productCrop { width: min(100%,59rem); }
 .mobileProduct { display: none; }
 .mobileProductNote { border-top: 1px solid var(--fine-line); padding-top: .8rem; }
 .mobileProductNote strong { display: block; margin-top: .35rem; font-size: 1rem; }
 .mobileProductNote p { font-size: .875rem; margin-top: .3rem; }
-.productLens { margin-top: 1rem; }
+.lensExplanation { margin-top: .85rem!important; min-height: 1.5em; font-size: .875rem; color: var(--color-text)!important; }
+.productLens { margin-top: .7rem; }
 .productLens button { font-size: .875rem; }
 .productAnnotations { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem 4rem; margin-top: 2rem; }
 .productAnnotations > div { display: flex; align-items: flex-start; gap: 1rem; }
@@ -209,13 +218,17 @@
 .systemBlueprint { display: block; }
 .systemFactFlow { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1.25rem; }
 .flowStation { position: relative; min-width: 0; padding: 1.1rem 1.2rem 1.2rem; border-top: 2px solid var(--fine-line); background: #1b1620; }
+.flowStation::before { content: ''; position: absolute; top: -2px; left: 0; right: 0; height: 2px; background: var(--color-accent); transform: scaleX(0); transform-origin: left; }
+.flowStation[data-active='true']::before { transform: scaleX(1); }
+.flowStation[data-traversed='true'] { border-top-color: #8d7464; background: #221a23; }
 .flowStation[data-active='true'] { border-top-color: var(--color-accent); background: #2b201f; }
-.flowStation:not(:last-child)::after { content: '→'; position: absolute; right: -1rem; top: 50%; transform: translateY(-50%); color: var(--color-accent); font-size: 1.2rem; z-index: 2; }
+.flowStation:not(:last-child)::after { content: '→'; position: absolute; right: -1rem; top: 50%; transform: translateY(-50%) scale(.85); color: var(--color-accent); opacity: .4; font-size: 1.2rem; z-index: 2; }
+.flowStation[data-traversed='true']::after { opacity: 1; transform: translateY(-50%) scale(1); }
 .flowStation > strong { display: block; color: var(--color-text); font-size: clamp(1.15rem,2vw,1.5rem); line-height: 1.2; margin-top: .75rem; }
 .flowStation[data-active='true'] > strong { color: var(--color-accent); }
 .flowStation p { font-size: .9375rem; margin-top: .65rem; max-width: 32ch; }
 .flowStation > small { display: block; color: var(--color-muted); font: .6875rem/1.5 var(--font-mono); margin-top: .9rem; }
-.flowControls { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem 1.5rem; margin-top: 1rem; }
+.flowControls { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem 1.5rem; margin-bottom: 1rem; }
 .flowControls > div { display: flex; flex-wrap: wrap; gap: .35rem; }
 .flowControls button { min-height: 44px; padding: .5rem .65rem; border: 1px solid var(--color-line); background: transparent; color: var(--color-body); border-radius: .25rem; font-size: .8125rem; }
 .flowControls button[aria-pressed='true'] { border-color: var(--color-accent); color: var(--color-accent); }
@@ -226,8 +239,11 @@
 .architectureBand > div:first-child > p { margin-top: 1rem; max-width: 50ch; }
 .architecturePicker > div:first-child { display: flex; gap: .4rem; flex-wrap: wrap; }
 .architecturePicker button { min-height: 44px; padding: .5rem .75rem; border: 1px solid var(--color-line); background: transparent; border-radius: .25rem; color: var(--color-body); font-size: .8125rem; }
-.architecturePicker button[aria-pressed='true'] { border-color: var(--color-accent); background: #ffb27f0a; color: var(--color-accent); }
+.architecturePicker button[aria-pressed='true'] { border-color: #b5a3b4; background: #b5a3b40d; color: var(--color-text); }
 .architecturePicker > div:last-child { min-height: 6.5rem; padding-top: 1rem; }
+.architecturePicker > div:last-child { border-top: 2px solid #b5a3b4; }
+.architectureBand[data-layer='0'] .architecturePicker > div:last-child { border-top-color: #8a9bc7; }
+.architectureBand[data-layer='2'] .architecturePicker > div:last-child { border-top-color: var(--accepted); }
 .architecturePicker > div:last-child p { margin-top: .4rem; max-width: 65ch; font-size: .9375rem; }
 .systemBlueprint > figcaption { margin-top: 1rem; }
 
@@ -251,8 +267,9 @@
 .writeOutcome { display: block; font-size: .9375rem; line-height: 1.5; margin-top: .75rem; color: var(--color-body); }
 .editTab[data-result='accepted'] { border-color: #789e8a; }
 .editTab[data-result='accepted'] .writeOutcome { color: var(--accepted); }
+.editTab[data-result='conflict'] { border-color: #93674e; }
 .editTab[data-result='conflict'] .writeOutcome { color: var(--color-accent); }
-.writeTracks { position: relative; height: 5.5rem; }
+.writeTracks { position: relative; height: 5.5rem; container-type: inline-size; }
 .writeTracks svg { width: 100%; height: 100%; stroke: var(--color-accent); stroke-width: 1.5; }
 .writeTracks .acceptedPath { stroke: var(--accepted); }
 .acceptedPacket,.conflictPacket { position: absolute; top: 0; width: 6px; height: 6px; border-radius: 50%; opacity: 0; }
@@ -284,6 +301,7 @@
 .retryRequest strong,.retryReturn strong { display: block; margin-top: .75rem; font-size: 1.4rem; font-weight: 500; line-height: 1.2; }
 .retryReturn p { margin-top: .6rem; font-size: .9375rem; }
 .newWorkspace { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem .75rem; margin-top: .8rem; padding-top: .6rem; border-top: 1px solid #648b73; }
+.newWorkspace[data-visible='false'] { opacity: 0; }
 .newWorkspace > strong { margin: 0; color: var(--accepted); font: 500 1.5rem/1 var(--font-mono); }
 .newWorkspace > span:last-child { font-size: .8125rem; color: var(--color-body); }
 .workspaceSeal { display: grid; justify-items: center; padding: 1.25rem .5rem; border: 1px solid #648b73; border-radius: 50%; aspect-ratio: 1; background: radial-gradient(ellipse,#25372b,#17221d); box-shadow: 0 0 0 8px #b9e2cd04; position: relative; z-index: 1; align-content: center; }
@@ -342,7 +360,7 @@
 .notebookProofHeading p { max-width: 50ch; font-size: .875rem; }
 .disclosure { border-bottom: 1px solid var(--color-line); }
 .disclosure summary { cursor: pointer; padding: 1rem .25rem; min-height: 48px; color: var(--color-body); font-weight: 500; }
-.disclosure summary:hover,.disclosure[open] summary { color: var(--color-accent); }
+.disclosure summary:hover,.disclosure[open] summary { color: var(--color-accent); background: #ffb27f08; }
 .depthContent { padding: .75rem .25rem 1.75rem; }
 .depthContent > p { max-width: 72ch; }
 .depthContent h4 { margin-bottom: .6rem; }
@@ -359,29 +377,80 @@
 .closing > div { display: flex; flex-wrap: wrap; gap: .5rem 2rem; margin-top: 1.5rem; }
 .closing a { display: inline-flex; align-items: center; gap: .7rem; min-height: 44px; color: var(--color-accent); }
 
-/* Finite, causal movement. Text is always visible; nothing waits for animation. */
+/* One motion language: brief feedback, causal state changes, and a few scene handoffs.
+   Text is present before and throughout every animation. */
 @media (prefers-reduced-motion: no-preference) {
-  .caseStudy a,.caseStudy button { transition: color 180ms ease, border-color 180ms ease, background-color 180ms ease; }
-  .chapterNav a::after { transition: transform 250ms var(--ease-out); }
+  .caseStudy a,.caseStudy button,.disclosure summary { transition: color var(--motion-feedback) ease, border-color var(--motion-feedback) ease, background-color var(--motion-feedback) ease, box-shadow var(--motion-feedback) ease, transform var(--motion-feedback) var(--ease-out); }
+  .caseStudy button:active { transform: scale(.985); }
+  .chapterNav a::after { transition: transform var(--motion-state) var(--ease-out); }
+  .chapterNav > p { animation: question-handoff 280ms var(--ease-out) both; }
+  .hero h1 { animation: title-arrive 540ms var(--ease-out) both; }
+  .heroThesis { animation: title-arrive 600ms 80ms var(--ease-out) both; }
   .heroVisual[data-seen='true'] .heroWindow { animation: settle-window 520ms var(--ease-out) both; }
   .heroVisual[data-seen='true'] .heroMeaning { animation: settle-meaning 580ms var(--ease-out) both; }
   .heroVisual[data-seen='true'] .heroConnection path { animation: draw-path 680ms var(--ease-out) both; stroke-dasharray: 650; }
-  .variableFact dd,.exampleRule p,.exampleHomeMessage,.exampleWhy p,.architecturePicker > div:last-child p,.retryReturn > strong { animation: state-change 260ms var(--ease-out); }
-  .iterationPrimary,.flowStation { transition: background-color 260ms var(--ease-out), border-color 260ms var(--ease-out); }
-  .flowStation > strong { transition: color 260ms var(--ease-out); }
-  .desktopProduct .productCrop { transition: width 400ms var(--ease-out), aspect-ratio 400ms var(--ease-out); }
-  .desktopProduct .productCrop img { transition: width 400ms var(--ease-out), transform 400ms var(--ease-out); }
+  .caseStudy [data-scene][data-seen='true'] :is(h2,h3) { animation: heading-arrive var(--motion-scene) var(--ease-out) both; }
+  .problemBoard[data-seen='true'] .beforePrompts > div { animation: competing-answer 420ms var(--ease-out) both; }
+  .problemBoard[data-seen='true'] .beforePrompts > div:nth-of-type(2) { animation-delay: 65ms; }
+  .problemBoard[data-seen='true'] .beforePrompts > div:nth-of-type(3) { animation-delay: 130ms; }
+  .problemBoard[data-seen='true'] .beforePrompts > div:nth-of-type(4) { animation-delay: 195ms; }
+  .problemBoard[data-seen='true'] .beforeConsequence strong { animation: consequence-arrive 480ms 260ms var(--ease-out) both; }
+  .iterationSketches li::before { content: ''; position: absolute; top: -.45rem; left: 0; right: 0; height: 2px; background: #aa785b; transform: scaleX(.2); transform-origin: left; }
+  .iterationSketches[data-seen='true'] li::before { animation: progression-line 560ms var(--ease-out) both; }
+  .iterationSketches[data-seen='true'] li:nth-child(2)::before { animation-delay: 140ms; }
+  .iterationSketches[data-seen='true'] li:nth-child(3)::before { animation-delay: 280ms; }
+  .variableFact dd { animation: fact-confirm 220ms var(--ease-out) both; }
+  .meaningHandoff { animation: handoff-across 520ms var(--ease-out) both; }
+  .exampleRule p { animation: meaning-confirm 300ms 90ms var(--ease-out) both; }
+  .exampleHomeMessage { animation: outcome-confirm 340ms 180ms var(--ease-out) both; }
+  .exampleWhy p { animation: meaning-confirm 300ms 240ms var(--ease-out) both; }
+  .meaningJourney > div { transition: border-color var(--motion-state) ease, background-color var(--motion-state) ease; }
+  .meaningJourney > div:not(:first-child)::before { transition: color var(--motion-state) ease; }
+  .iterationPrimary { transition: background-color var(--motion-state) var(--ease-out), border-color var(--motion-state) var(--ease-out); }
+  .productView { transition: opacity 100ms ease, transform 180ms var(--ease-out); }
+  .productView[data-active='true'] { transition: opacity 180ms ease, transform 220ms var(--ease-out); }
+  .lensExplanation { animation: question-handoff 260ms var(--ease-out) both; }
+  .flowStation { transition: background-color var(--motion-state) ease, border-color var(--motion-state) ease, box-shadow var(--motion-state) ease; }
+  .flowStation::before { transition: transform 340ms var(--ease-out); }
+  .flowStation:not(:last-child)::after { transition: opacity var(--motion-state) ease, transform var(--motion-state) var(--ease-out); }
+  .flowStation > strong { transition: color var(--motion-state) ease; }
+  .architecturePicker > div:last-child { transition: border-color var(--motion-state) ease; }
+  .architecturePicker > div:last-child p { animation: meaning-confirm 300ms var(--ease-out) both; }
+  .editTab,.preservedRecord,.versionSeal { transition: border-color var(--motion-state) ease, background-color var(--motion-state) ease, box-shadow var(--motion-state) ease; }
+  .concurrencyScene[data-playing='true'][data-step='1'] .preservedRecord { animation: saved-record 510ms var(--ease-out); }
+  .concurrencyScene[data-playing='true'][data-step='1'] .versionSeal { animation: version-advance 510ms var(--ease-out); }
+  .concurrencyScene[data-playing='true'][data-step='2'] .editTab[data-result='conflict'] { animation: stale-reject 260ms ease-out; }
   .concurrencyScene[data-playing='true'][data-flight='a'] .acceptedPacket { animation: commit-packet 600ms ease-out; }
   .concurrencyScene[data-playing='true'][data-flight='b'] .conflictPacket { animation: reject-packet 550ms ease-out; }
-  .preservedRecord > div > strong { animation: state-change 350ms var(--ease-out); }
+  .preservedRecord > div > strong { animation: meaning-confirm 350ms var(--ease-out); }
+  .newWorkspace { transition: opacity var(--motion-state) ease, transform var(--motion-state) var(--ease-out); }
+  .newWorkspace[data-visible='false'] { transform: translateY(-7px); }
+  .retryReturn > strong { animation: meaning-confirm 260ms var(--ease-out); }
   .retryScene[data-seen='true'] .retryLoop path { stroke-dasharray: 650; animation: draw-path 700ms ease-in-out; }
+  .assertions[data-seen='true'] > div { animation: proof-emphasis 520ms var(--ease-out) both; }
+  .assertions[data-seen='true'] > div:nth-child(2) { animation-delay: 100ms; }
+  .assertions[data-seen='true'] > div:nth-child(3) { animation-delay: 200ms; }
 }
+@keyframes title-arrive { from { opacity: .7; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes heading-arrive { from { opacity: .78; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes question-handoff { from { opacity: .65; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@keyframes competing-answer { from { opacity: .72; transform: translateX(10px); } to { opacity: 1; transform: none; } }
+@keyframes consequence-arrive { from { opacity: .7; } to { opacity: 1; } }
+@keyframes progression-line { from { transform: scaleX(.2); } to { transform: scaleX(1); } }
+@keyframes fact-confirm { from { opacity: .7; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@keyframes handoff-across { from { transform: scaleX(0); transform-origin: left; } to { transform: scaleX(1); transform-origin: left; } }
+@keyframes handoff-down { from { transform: scaleY(0); transform-origin: top; } to { transform: scaleY(1); transform-origin: top; } }
+@keyframes meaning-confirm { from { opacity: .7; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes outcome-confirm { from { opacity: .78; transform: translateY(9px) scale(.985); } to { opacity: 1; transform: none; } }
+@keyframes saved-record { 40% { box-shadow: 0 0 0 8px #b9e2cd17; } 100% { box-shadow: none; } }
+@keyframes version-advance { 45% { transform: scale(1.13); } 100% { transform: none; } }
+@keyframes stale-reject { 30% { transform: translateX(4px); } 65% { transform: translateX(-3px); } 100% { transform: none; } }
+@keyframes proof-emphasis { from { border-top-color: #3d5045; } to { border-top-color: #63816e; } }
 @keyframes settle-window { from { transform: translate(0,14px) rotate(1deg); } to { transform: none; } }
 @keyframes settle-meaning { from { transform: translate(-10px,10px); } to { transform: none; } }
 @keyframes draw-path { from { stroke-dashoffset: 650; } to { stroke-dashoffset: 0; } }
-@keyframes state-change { from { transform: translateY(7px); } to { transform: none; } }
-@keyframes commit-packet { 0% { top: 0; left: 25%; opacity: 1; } 40% { top: 47%; left: 25%; } 80% { top: 47%; left: 50%; } 100% { top: 100%; left: 50%; opacity: 0; } }
-@keyframes reject-packet { 0% { top: 0; left: 75%; opacity: 1; } 40% { top: 47%; left: 75%; } 80% { top: 47%; left: 55%; opacity: 1; } 100% { top: 20%; left: 57%; opacity: 0; } }
+@keyframes commit-packet { 0% { transform: none; opacity: 1; } 40% { transform: translateY(2.6rem); } 80% { transform: translate(25cqw,2.6rem); } 100% { transform: translate(25cqw,5.5rem); opacity: 0; } }
+@keyframes reject-packet { 0% { transform: none; opacity: 1; } 40% { transform: translateY(2.6rem); } 80% { transform: translate(-20cqw,2.6rem); opacity: 1; } 100% { transform: translate(-18cqw,1.1rem); opacity: 0; } }
 
 /* Laptop: shorter routes and smaller local details, no squashed desktop canvas. */
 @container hireflux (max-width: 64rem) {
@@ -485,7 +554,7 @@
   .productHeading > p:last-child,.engineeringHeading > p:last-child { font-size: 1rem; }
   .productStage { padding: .8rem; border-radius: .5rem; }
   .captureTop { font-size: .6875rem; }
-  .desktopProduct,.productLens { display: none; }
+  .desktopProduct,.productLens,.lensExplanation { display: none; }
   .mobileProduct { display: grid; gap: .9rem; }
   .mobileHomeCrop { position: relative; aspect-ratio: 390 / 260; overflow: hidden; border: 1px solid #39404e; border-radius: .35rem; background: #090e17; }
   .mobileHomeCrop > img { width: 100%; height: auto; display: block; transform: translateY(-25.95%); }
@@ -555,6 +624,7 @@
 @container hireflux (max-width: 48rem) {
   .beforeExperience { grid-template-columns: minmax(0,1fr) minmax(0,1.15fr); gap: 1rem; }
   .meaningJourney { grid-template-columns: minmax(0,1fr); gap: .75rem; }
+  .meaningHandoff { top: 0; bottom: 0; left: -2px; right: auto; width: 2px; height: auto; }
   .meaningJourney > div:not(:first-child)::before { content: '↓'; top: -.95rem; left: 1rem; transform: none; }
   .iterationSketches { grid-template-columns: minmax(0,1fr); }
   .iterationSketches li { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: .25rem 1.5rem; }
@@ -563,6 +633,11 @@
   .iterationSketches li > span { margin-top: 0; }
   .architectureBand { grid-template-columns: minmax(0,1fr); gap: 1rem; }
   .notebookMap { grid-template-columns: repeat(3,minmax(0,1fr)); }
+}
+@container hireflux (max-width: 48rem) {
+  @media (prefers-reduced-motion: no-preference) {
+    .meaningHandoff { animation-name: handoff-down; }
+  }
 }
 @container hireflux (max-width: 36rem) {
   .beforeExperience { grid-template-columns: minmax(0,1fr); }

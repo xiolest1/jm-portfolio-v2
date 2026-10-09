@@ -49,8 +49,8 @@ export function CompetingPriorities() {
 }
 
 const meaningExamples = [
-  { label: 'No follow-up date', date: 'None saved', result: 'Suggested review', message: 'Review application after at least 14 days in this stage. No recorded deadline.', rule: 'Time in Applied supports a review suggestion. With no saved date, there is no missed deadline.', why: 'HireFlux can suggest that the candidate look again. It cannot call this application overdue.', kind: 'suggested' },
-  { label: 'Add a past follow-up date', date: 'Sep 26, 2026', result: 'Overdue follow-up', message: 'Check back on the saved September 26 date.', rule: 'A recorded follow-up date is earlier than the September 29 reference day.', why: 'The saved date supports a time-based prompt. The stage-age review cue may also remain available separately.', kind: 'dated' },
+  { label: 'No follow-up date', date: 'None saved', result: 'Suggested review', message: 'Review application after at least 14 days in this stage. No recorded deadline.', rule: 'Time in Applied supports a review suggestion. With no saved date, there is no missed deadline.', why: 'HireFlux can suggest that the candidate look again. It cannot call this application overdue.', announcement: 'No saved follow-up date. HireFlux suggests a review without a due date.', kind: 'suggested' },
+  { label: 'Add a past follow-up date', date: 'Sep 26, 2026', result: 'Overdue follow-up', message: 'Check back on the saved September 26 date.', rule: 'A recorded follow-up date is earlier than the September 29 reference day.', why: 'The saved date supports a time-based prompt. The stage-age review cue may also remain available separately.', announcement: 'Past follow-up date saved. HireFlux returns an overdue follow-up; the stage-age suggestion may also remain.', kind: 'dated' },
 ] as const
 
 export function MeaningCorrection() {
@@ -63,8 +63,10 @@ export function MeaningCorrection() {
       <div className={styles.exampleRecord}><span className={styles.smallLabel}>01 / Saved application</span><strong>Evergreen Media</strong><dl><div><dt>Current stage</dt><dd>Applied · 14+ days</dd></div><div className={styles.variableFact}><dt>Follow-up date</dt><dd key={selected}>{example.date}</dd></div></dl></div>
       <div className={styles.exampleRule}><span className={styles.smallLabel}>02 / What HireFlux knows</span><p key={selected}>{example.rule}</p></div>
       <div className={styles.exampleHome}><span className={styles.smallLabel}>03 / What the candidate sees on Home</span><div key={selected} className={styles.exampleHomeMessage}><span>{example.kind === 'dated' ? 'Recorded commitment' : 'Time in stage'}</span><strong>{example.result}</strong><p>{example.message}</p></div></div>
+      <span className={styles.meaningHandoff} key={selected} aria-hidden="true" />
     </div>
     <div className={styles.exampleWhy}><span className={styles.smallLabel}>Why this is right</span><p key={selected}>{example.why}</p></div>
+    <p className={styles.srOnly} role="status" aria-live="polite" aria-atomic="true">{example.announcement}</p>
     <figcaption>The default no-date example matches Evergreen’s actual September Home capture below. Adding a date here is an illustrated variation of the implemented rules, not a screenshot of Evergreen changing state. The precise action kinds are in the <a href="#evidence-product">Home contract</a>.</figcaption>
   </figure>
 }
@@ -79,19 +81,19 @@ export function IterationSketches() {
 }
 
 const productViews = [
-  { label: 'Evergreen suggestion', x: 278, y: 545, width: 660, height: 148, alt: 'Actual Home: Evergreen Media appears under Suggested review after at least 14 days in stage, with no recorded deadline.' },
-  { label: 'A recorded commitment', x: 278, y: 275, width: 374, height: 242, alt: 'Northwind Robotics follow-up card: saved September 26 check-back, marked overdue relative to the September 29 capture, with owner not recorded.' },
-  { label: 'The whole decision area', x: 270, y: 200, width: 1140, height: 500, alt: 'Actual light Home: saved overdue and due-today follow-ups, a scheduled interview, and a separate suggested review with no recorded deadline.' },
+  { label: 'Evergreen suggestion', note: 'An undated review stays quieter than recorded commitments.', x: 278, y: 545, width: 660, height: 148, alt: 'Actual Home: Evergreen Media appears under Suggested review after at least 14 days in stage, with no recorded deadline.' },
+  { label: 'A recorded commitment', note: 'Northwind’s saved September 26 date supports an overdue follow-up.', x: 278, y: 275, width: 374, height: 242, alt: 'Northwind Robotics follow-up card: saved September 26 check-back, marked overdue relative to the September 29 capture, with owner not recorded.' },
+  { label: 'The whole decision area', note: 'Dated commitments and quieter suggestions share one decision area.', x: 270, y: 200, width: 1140, height: 500, alt: 'Actual light Home: saved overdue and due-today follow-ups, a scheduled interview, and a separate suggested review with no recorded deadline.' },
 ] as const
 
 export function ProductEvidence() {
   const [view, setView] = useState(0)
-  const crop = productViews[view]
   return <figure className={styles.productEvidence} data-scene>
     <div className={styles.productStage}>
       <div className={styles.captureTop}><span>Home / Action Center</span><span>Actual product · Sep 29 milestone</span></div>
-      <div className={styles.desktopProduct} data-view={view}><ProductCrop image="/projects/hireflux-home-light.png" {...crop} /></div>
+      <div className={styles.desktopProduct}>{productViews.map((crop, i) => <div className={styles.productView} data-view={i} data-active={view === i} aria-hidden={view !== i} key={crop.label}><ProductCrop image="/projects/hireflux-home-light.png" {...crop} /></div>)}</div>
       <div className={styles.mobileProduct}><span className={styles.smallLabel}>Mobile capture / Northwind’s saved follow-up</span><div className={styles.mobileHomeCrop}><img src="/projects/hireflux-home-mobile.png" alt="Cropped actual dark mobile Home: Northwind’s saved September 26 follow-up is marked overdue, with the date and unknown responsibility visible." width="390" height="844" loading="lazy" /></div><div className={styles.mobileProductNote}><span className={styles.smallLabel}>Another opportunity in the actual desktop capture</span><strong>Evergreen Media · Suggested review</strong><p>Applied at least 14 days. No recorded deadline. This remains a quieter review cue below the dated commitments.</p></div></div>
+      <p className={styles.lensExplanation} key={view} aria-live="polite">{productViews[view].note}</p>
       <div className={styles.productLens} aria-label="Inspect the real desktop product">{productViews.map((item, i) => <button type="button" key={item.label} aria-pressed={view === i} onClick={() => setView(i)}>{i === 0 ? 'Evergreen suggestion' : i === 1 ? 'Northwind follow-up' : 'Whole Home'}<span className={styles.srOnly}>: {item.label}</span></button>)}</div>
     </div>
     <div className={styles.productAnnotations}><div><span className={styles.annotationNumber}>01</span><div><strong>Evergreen: review, no due date.</strong><p>Time in Applied appears below the dated commitments as a quieter suggestion with “No recorded deadline.”</p></div></div><div><span className={styles.annotationNumber}>02</span><div><strong>Northwind: a saved commitment.</strong><p>The September 26 check-back appears as an overdue follow-up. Unknown responsibility stays labeled unknown.</p></div></div></div>
@@ -111,12 +113,20 @@ export function SystemBlueprint() {
   const [tracing, setTracing] = useState(false)
   const reducedMotion = useReducedMotion()
   useEffect(() => {
-    if (!tracing) return
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const stopOnPreferenceChange = () => {
+      if (preference.matches) { setTracing(false); setPhase(2) }
+    }
+    preference.addEventListener('change', stopOnPreferenceChange)
+    return () => preference.removeEventListener('change', stopOnPreferenceChange)
+  }, [])
+  useEffect(() => {
+    if (!tracing || reducedMotion) return
     const action = window.setTimeout(() => setPhase(1), 440)
     const prompt = window.setTimeout(() => setPhase(2), 880)
     const finish = window.setTimeout(() => setTracing(false), 1200)
     return () => { clearTimeout(action); clearTimeout(prompt); clearTimeout(finish) }
-  }, [tracing])
+  }, [tracing, reducedMotion])
   const traceDate = () => { if (tracing) { setTracing(false); return }; setPhase(0); if (!reducedMotion) setTracing(true) }
   const stations = [
     { label: 'Saved application', title: 'Northwind · Sep 26', note: 'A check-back date was recorded on the opportunity.', role: 'DynamoDB Local' },
@@ -124,11 +134,11 @@ export function SystemBlueprint() {
     { label: 'Home presentation', title: 'Follow up · Overdue', note: 'React displays that dated action, including the saved date and unknown responsibility.', role: 'React + TypeScript' },
   ]
   return <figure className={styles.systemBlueprint} data-scene>
-    <div className={styles.systemFactFlow} data-phase={phase}>
-      {stations.map((station, i) => <div key={station.label} className={styles.flowStation} data-active={phase === i}><span className={styles.smallLabel}>0{i + 1} / {station.label}</span><strong>{station.title}</strong><p>{station.note}</p><small>{station.role}</small></div>)}
-    </div>
     <div className={styles.flowControls}><div role="group" aria-label="Inspect the saved date through the system">{stations.map((station, i) => <button type="button" key={station.label} aria-pressed={phase === i} onClick={() => { setTracing(false); setPhase(i) }}>{i + 1}. {station.label}</button>)}</div><button type="button" onClick={traceDate}>{tracing ? 'Stop sequence' : reducedMotion ? 'Inspect starting fact' : 'Play the three steps'} <span aria-hidden="true">{tracing ? '■' : '↗'}</span></button></div>
-    <div className={styles.architectureBand}><div><span className={styles.smallLabel}>How the local application makes that possible</span><h3>One backend decides.<br />The browser explains.</h3><p>The React client requests Home data. One FastAPI application reads the saved facts through repository protocols, applies the action rules, and returns the result. DynamoDB Local stores the record.</p></div><div className={styles.architecturePicker}><div role="group" aria-label="Inspect an implementation layer">{layers.map((layer, i) => <button type="button" key={layer.name} aria-pressed={selected === i} aria-controls="layer-detail" onClick={() => setSelected(i)}>{layer.name}</button>)}</div><div id="layer-detail" aria-live="polite" aria-atomic="true"><span className={styles.smallLabel}>{layers[selected].role}</span><p key={selected}>{layers[selected].detail}</p></div></div></div>
+    <div className={styles.systemFactFlow} data-phase={phase}>
+      {stations.map((station, i) => <div key={station.label} className={styles.flowStation} data-active={phase === i} data-traversed={phase > i}><span className={styles.smallLabel}>0{i + 1} / {station.label}</span><strong>{station.title}</strong><p>{station.note}</p><small>{station.role}</small></div>)}
+    </div>
+    <div className={styles.architectureBand} data-layer={selected}><div><span className={styles.smallLabel}>How the local application makes that possible</span><h3>One backend decides.<br />The browser explains.</h3><p>The React client requests Home data. One FastAPI application reads the saved facts through repository protocols, applies the action rules, and returns the result. DynamoDB Local stores the record.</p></div><div className={styles.architecturePicker}><div role="group" aria-label="Inspect an implementation layer">{layers.map((layer, i) => <button type="button" key={layer.name} aria-pressed={selected === i} aria-controls="layer-detail" onClick={() => setSelected(i)}>{layer.name}</button>)}</div><div id="layer-detail" aria-live="polite" aria-atomic="true"><span className={styles.smallLabel}>{layers[selected].role}</span><p key={selected}>{layers[selected].detail}</p></div></div></div>
     <figcaption>The upper sequence follows one saved fact conceptually; it is not a live request trace. The lower band names the implemented local layers. FastAPI's routes, services, and repository protocols are modules within one application. <a href="#evidence-system">Inspect the architecture and identity boundary</a>.</figcaption>
   </figure>
 }
@@ -140,13 +150,21 @@ export function ConcurrencyScene() {
   const [playing, setPlaying] = useState(false)
   const [flight, setFlight] = useState<'a' | 'b' | null>(null)
   useEffect(() => {
-    if (!playing) return
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const stopOnPreferenceChange = () => {
+      if (preference.matches) { setPlaying(false); setFlight(null); setStep(2) }
+    }
+    preference.addEventListener('change', stopOnPreferenceChange)
+    return () => preference.removeEventListener('change', stopOnPreferenceChange)
+  }, [])
+  useEffect(() => {
+    if (!playing || reducedMotion) return
     const a = window.setTimeout(() => { setStep(1); setFlight(null) }, 650)
     const sendB = window.setTimeout(() => setFlight('b'), 950)
     const b = window.setTimeout(() => { setStep(2); setFlight(null) }, 1550)
     const finish = window.setTimeout(() => setPlaying(false), 1750)
     return () => { clearTimeout(a); clearTimeout(sendB); clearTimeout(b); clearTimeout(finish) }
-  }, [playing])
+  }, [playing, reducedMotion])
   const choose = (value: number) => { setPlaying(false); setFlight(null); setStep(value) }
   const replay = () => {
     if (reducedMotion) { choose(0); return }
@@ -161,7 +179,7 @@ export function ConcurrencyScene() {
         <div className={styles.editTab} data-result={step === 2 ? 'conflict' : 'ready'}><div className={styles.tabChrome}><span>Tab B</span><code>Loaded v1</code></div><span className={styles.fieldLabel}>Company name</span><strong>Northwind Labs</strong><p>Expected version <b>1</b></p><span className={styles.writeOutcome}>{step === 2 ? '↳ B receives HTTP 409' : flight === 'b' ? 'Checking B’s v1 against stored v2…' : 'B still holds the old form'}</span></div>
       </div>
       <div className={styles.writeTracks} aria-hidden="true"><svg viewBox="0 0 800 115" preserveAspectRatio="none" fill="none"><path className={styles.acceptedPath} d="M200 0 V30 Q200 55 225 55 H370 Q400 55 400 85 V115" /><path className={styles.conflictPath} d="M600 0 V30 Q600 55 575 55 H430" /><path d="M440 38 V72 M449 38 V72" /></svg><span className={styles.acceptedPacket} key={`a-${flight}`} /><span className={styles.conflictPacket} key={`b-${flight}`} /></div>
-      <div className={styles.conditionGate}><code>expected_version</code><span>{step >= 1 ? 'B: 1 ≠ stored 2' : 'Stored version: 1'}</span><strong>Atomic write condition</strong></div>
+      <div className={styles.conditionGate}><code>expected_version</code><span>{step === 0 ? 'Stored version: 1' : step === 1 ? 'Stored version: 2' : 'B: 1 ≠ stored 2'}</span><strong>Atomic write condition</strong></div>
       <div className={styles.preservedRecord} role="status" aria-live="polite" aria-atomic="true"><div><span className={styles.smallLabel}>Canonical record / survives</span><strong key={step}>{step === 0 ? 'Northwind' : 'Northwind Robotics'}</strong></div><span className={styles.versionSeal}>v{step === 0 ? '1' : '2'}</span><p>{step === 0 ? 'Version 1 · both tabs have the same starting point.' : step === 1 ? 'Version 2 · A’s edit is saved. B still holds version 1.' : 'Version 2 · A’s newer edit survives B’s stale request.'}</p></div>
     </div>
     <figcaption><strong>Protect newer work rather than silently merge stale edits.</strong> Conditional persistence checks the version atomically. A conflict needs fresh state and retry; it is not a read-then-check guarantee.</figcaption>
@@ -179,7 +197,7 @@ export function RetryScene() {
         <code>{fresh ? 'demo-visit-000002' : 'demo-visit-000001'}</code>
         <strong key={String(fresh)}>{fresh ? 'Create W2.' : 'Return W1.'}</strong>
         <p>{fresh ? 'A different owner. W1 stays isolated.' : 'Recover the original identity and expiry.'}</p>
-        {fresh && <div className={styles.newWorkspace}><span aria-hidden="true">↓</span><strong>W2</strong><span>Separate owner + expiry</span></div>}
+        <div className={styles.newWorkspace} data-visible={fresh} aria-hidden={!fresh}><span aria-hidden="true">↓</span><strong>W2</strong><span>Separate owner + expiry</span></div>
       </div>
       <svg className={styles.retryLoop} viewBox="0 0 1000 220" preserveAspectRatio="none" fill="none" aria-hidden="true"><path d={fresh ? 'M250 65 H400' : 'M250 65 H400 M600 65 H750 M750 145 V175 Q750 200 725 200 H525 Q500 200 500 175 V145'} /></svg>
     </div>
