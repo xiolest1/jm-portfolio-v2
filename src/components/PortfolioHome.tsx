@@ -1,4 +1,6 @@
+import { useEffect } from 'react'
 import { ProfessionalJourney } from './ProfessionalJourney'
+import { useJourneyMotion } from './useJourneyMotion'
 import { hireFlux, libraryProject, rcProject } from '../content/projects'
 import { site } from '../content/site'
 import styles from './PortfolioHome.module.css'
@@ -13,9 +15,38 @@ function ExternalLink({ href, children }: { href: string; children: string }) {
 }
 
 export function PortfolioHome() {
+  const { rootRef } = useJourneyMotion()
+
+  useEffect(() => {
+    let disposed = false
+    let frame = 0
+    const alignHash = () => {
+      let id: string
+      try { id = decodeURIComponent(window.location.hash.slice(1)) } catch { return }
+      if (!id) return
+      document.getElementById(id)?.scrollIntoView({ block: 'start', behavior: 'instant' })
+    }
+    const scheduleHash = () => {
+      void document.fonts.ready.then(() => {
+        if (disposed) return
+        cancelAnimationFrame(frame)
+        frame = requestAnimationFrame(() => { frame = requestAnimationFrame(alignHash) })
+      })
+    }
+    scheduleHash()
+    window.addEventListener('hashchange', scheduleHash)
+    window.addEventListener('pageshow', scheduleHash)
+    return () => {
+      disposed = true
+      cancelAnimationFrame(frame)
+      window.removeEventListener('hashchange', scheduleHash)
+      window.removeEventListener('pageshow', scheduleHash)
+    }
+  }, [])
+
   return (
-    <>
-      <section className={styles.identity} id="top" aria-labelledby="identity-title">
+    <div className={styles.home} ref={rootRef}>
+      <section className={styles.identity} id="top" data-home-scene aria-labelledby="identity-title">
         <div className={styles.identityCopy}>
           <p className={styles.eyebrow}>Software engineering · backend + full-stack</p>
           <h1 className={styles.name} id="identity-title">{site.name}</h1>
@@ -30,8 +61,10 @@ export function PortfolioHome() {
             <span>B.S. Computer Science · Montclair State University · May 2025</span>
             <span>AWS Solutions Architect – Associate</span>
           </div>
+        </div>
+        <div className={styles.identityFoot}>
           <div className={styles.actions}>
-            <a className={styles.actionPrimary} href="#work">Explore selected work</a>
+            <a className={styles.actionPrimary} href="#work">Explore selected work <span aria-hidden="true">↘</span></a>
           </div>
           <div className={styles.profileLine} aria-label="Engineering focus">
             <span>Backend systems</span>
@@ -47,12 +80,11 @@ export function PortfolioHome() {
             height="1280"
             fetchPriority="high"
           />
-          <figcaption>Joan Morillo <span>·</span> Yo-han</figcaption>
         </figure>
         <span className={styles.orbit} aria-hidden="true" />
       </section>
 
-      <section className={styles.flagship} id="work" aria-labelledby="hireflux-title">
+      <section className={styles.flagship} id="work" data-home-scene aria-labelledby="hireflux-title">
         <div className={styles.regionHeader}>
           <p className={styles.eyebrow}>01 / Flagship proof</p>
           <p className={styles.regionHint}>Personal project</p>
@@ -65,6 +97,23 @@ export function PortfolioHome() {
               <span className={styles.statusDot} aria-hidden="true" />
               {hireFlux.status}
             </p>
+          </div>
+          <figure className={styles.flagshipMedia}>
+            <a className={styles.flagshipImageLink} href={hireFlux.caseStudy} aria-label="Read the HireFlux engineering case study">
+              <span className={styles.windowBar} aria-hidden="true"><span>● ● ●</span><span>HireFlux / Action Center</span></span>
+              <img
+                src={hireFlux.image}
+                alt={hireFlux.imageAlt}
+                width="1440"
+                height="900"
+                loading="lazy"
+                decoding="async"
+              />
+              <span className={styles.imageInvitation}>Explore the engineering case study <span aria-hidden="true">↗</span></span>
+            </a>
+            <figcaption>Local demo workspace · fictional records</figcaption>
+          </figure>
+          <div className={styles.flagshipEvidence}>
             <p className={styles.signalLabel}>Implemented engineering signals</p>
             <ul className={styles.signalList}>
               {hireFlux.signals.map((signal) => <li key={signal}>{signal}</li>)}
@@ -79,21 +128,10 @@ export function PortfolioHome() {
               <ExternalLink href={hireFlux.repository}>View HireFlux on GitHub</ExternalLink>
             </div>
           </div>
-          <figure className={styles.flagshipMedia}>
-            <img
-              src={hireFlux.image}
-              alt={hireFlux.imageAlt}
-              width="1440"
-              height="900"
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption>Local demo workspace · fictional records</figcaption>
-          </figure>
         </div>
       </section>
 
-      <section className={styles.supporting} aria-labelledby="supporting-title">
+      <section className={styles.supporting} data-home-scene aria-labelledby="supporting-title">
         <div className={styles.regionHeader}>
           <p className={styles.eyebrow}>02 / Selected supporting work</p>
           <h2 className={styles.sectionTitle} id="supporting-title">
@@ -101,7 +139,7 @@ export function PortfolioHome() {
           </h2>
         </div>
 
-        <article className={styles.library} id="project-library">
+        <article className={styles.library} id="project-library" data-home-scene>
           <div className={styles.projectMeta}>
             <span>{libraryProject.type}</span>
             <span>Backend · relational data · authorization</span>
@@ -130,7 +168,7 @@ export function PortfolioHome() {
           </div>
         </article>
 
-        <article className={styles.rcProject} id="project-rcdetection">
+        <article className={styles.rcProject} id="project-rcdetection" data-home-scene>
           <figure className={styles.rcMedia}>
             <img
               src={rcProject.image}
@@ -160,7 +198,7 @@ export function PortfolioHome() {
       </section>
 
       <ProfessionalJourney />
-    </>
+    </div>
   )
 }
 

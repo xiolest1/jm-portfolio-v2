@@ -20,7 +20,7 @@ export function useJourneyMotion() {
           entranceObserver?.unobserve(entry.target)
         }
       }, { threshold: 0.12 })
-      root.querySelectorAll('[data-journey-reveal]:not([data-entered])').forEach((element) => entranceObserver?.observe(element))
+      root.querySelectorAll('[data-journey-reveal]:not([data-entered]), [data-home-scene]:not([data-entered])').forEach((element) => entranceObserver?.observe(element))
     }
 
     observeEntrances()

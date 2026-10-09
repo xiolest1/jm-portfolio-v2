@@ -5,6 +5,7 @@
   margin-top: clamp(3.5rem, 6vw, 5.5rem);
   padding-top: clamp(2.5rem, 5vw, 4rem);
   border-top: 1px solid var(--foundation-rule);
+  background: radial-gradient(ellipse 38rem 24rem at 77% 34%, rgb(255 178 127 / 3%), transparent 75%);
 }
 .section :where(section, div, li, aside) { min-width: 0; }
 .section :where(h3, h4, h5, h6, p, li) { overflow-wrap: anywhere; }
@@ -13,7 +14,7 @@
 .eyebrow { margin: 0; color: var(--color-accent); font: 500 .75rem/1.5 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; }
 .opening h3 { max-width: 24ch; margin: .85rem 0 0; color: var(--color-text); font-size: clamp(2rem, 3.6vw, 2.875rem); font-weight: 600; line-height: 1.12; letter-spacing: -.035em; text-wrap: balance; }
 .opening h3 > span { color: var(--color-accent); }
-.orientation { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: center; gap: 3rem; margin-top: 2.5rem; }
+.orientation { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: center; gap: clamp(2rem, 4vw, 4rem); margin-top: 2.25rem; }
 .direction { margin: 0; color: var(--color-text); font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 500; line-height: 1.3; letter-spacing: -.02em; }
 .direction > span { color: var(--color-body); }
 .languageBase { padding: 1.2rem 0 1.2rem 2rem; border-left: 1px solid var(--foundation-rule); }
@@ -21,26 +22,26 @@
 .languages { display: flex; flex-wrap: wrap; gap: .5rem 0; }
 .languages li { color: var(--color-text); font-size: 1.25rem; font-weight: 500; line-height: 1.5; }
 .languages li:not(:last-child)::after { content: '/'; margin-inline: .85rem; color: var(--color-line); font-weight: 400; }
-.stackMoment { margin-top: 3.75rem; }
+.stackMoment { margin-top: clamp(2.75rem, 4vw, 3.5rem); }
 .momentHeading h4 { margin: .65rem 0 0; color: var(--color-text); font-size: clamp(1.75rem, 2.5vw, 2.25rem); font-weight: 500; line-height: 1.2; letter-spacing: -.025em; text-wrap: balance; }
 .technicalComposition { display: grid; grid-template-columns: minmax(0, 2.3fr) minmax(0, 1fr); align-items: center; gap: clamp(2rem, 4.3vw, 4rem); margin-top: 2rem; }
-.applicationLayers { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); border: 1px solid var(--foundation-rule); border-radius: 1rem; background: linear-gradient(115deg, #201923, #151019); }
+.applicationLayers { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); overflow: hidden; border: 1px solid var(--foundation-rule); border-radius: 1rem; background: linear-gradient(118deg, #221b25, #161119 72%); box-shadow: 0 1.5rem 3.5rem rgb(0 0 0 / 12%); }
 
-.layer { position: relative; padding: 2rem 1.75rem; }
+.layer { position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: 2rem 1.75rem; }
 .backend { border-left: 1px solid var(--foundation-rule); }
-.backend { background: linear-gradient(105deg, rgb(255 178 127 / 8%), rgb(255 178 127 / 2%)); }
-.backend::after { content: ''; position: absolute; top: -1px; left: 1.75rem; right: 1.75rem; height: 2px; background: var(--color-accent); }
-.dataLayer { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem 2rem; padding-block: 1.5rem; border-top: 1px solid var(--foundation-rule); }
+.backend { background: linear-gradient(105deg, rgb(255 178 127 / 10%), rgb(255 178 127 / 2%)); }
+.backend::after { content: ''; position: absolute; top: 0; left: 1.75rem; right: 1.75rem; height: 2px; background: var(--color-accent); transform-origin: left; }
+.dataLayer { grid-column: 1 / -1; display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 1.25rem 2rem; padding-block: 1.5rem; border-top: 1px solid var(--foundation-rule); background: rgb(7 5 10 / 20%); }
 .dataLayer .technologies { margin-top: 0 !important; }
 .layerHeading { display: flex; align-items: center; gap: 1rem; }
-.layerHeading > svg { width: 2.5rem; height: 2.5rem; flex-shrink: 0; color: var(--color-muted); }
+.layerHeading > svg { width: 2.5rem; height: 2.5rem; flex-shrink: 0; padding: .25rem; border: 1px solid var(--foundation-rule); border-radius: .55rem; color: var(--color-muted); }
 .backend .layerHeading > svg { color: var(--color-accent); }
 .layerContext { margin: 0 0 .25rem; color: var(--color-muted); font-size: .8125rem; line-height: 1.4; }
 .layer h5 { margin: 0; color: var(--color-text); font-size: 1.5rem; font-weight: 600; line-height: 1.25; letter-spacing: -.02em; }
 .technologies { margin-top: 1.5rem !important; display: flex; flex-wrap: wrap; align-items: start; gap: .6rem 1.25rem; }
 .technologies li { color: var(--color-text); font-size: 1.125rem; font-weight: 500; line-height: 1.45; }
 .technologyContext { display: block; margin-top: .1rem; color: var(--color-muted); font-size: .8125rem; font-weight: 400; line-height: 1.5; }
-.developmentRail { padding-left: 1.5rem; border-left: 1px solid var(--foundation-rule); }
+.developmentRail { position: relative; padding-left: 1.5rem; border-left: 1px solid var(--foundation-rule); }
 .railLabel { display: block; margin-bottom: 1.25rem; color: var(--color-muted); font: 400 .75rem/1.5 var(--font-mono); }
 .developmentRail h5 { margin: 0; color: var(--color-body); font-size: 1.0625rem; font-weight: 500; line-height: 1.4; }
 .cloudNames { display: grid; gap: 1rem; padding-top: 1rem !important; }
@@ -108,28 +109,31 @@
 
 /* Academic evidence reads as course names first, then concise context. */
 .courseMoment {
-  max-width: 68rem;
   margin-top: clamp(3.5rem, 6vw, 5rem);
-  padding-top: 2.5rem;
-  border-top: 1px solid var(--foundation-rule);
+  padding: clamp(1.5rem, 3vw, 2.75rem);
+  border: 1px solid var(--foundation-rule);
+  border-radius: 1rem;
+  background: linear-gradient(125deg, rgb(255 178 127 / 5%), rgb(255 178 127 / 1%) 46%, transparent 76%);
 }
-.courseHeader { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1rem 2rem; }
+.courseHeader { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1rem 2rem; padding-bottom: 1.75rem; border-bottom: 1px solid var(--foundation-rule); }
 .courseHeader h4 { margin: .65rem 0 0; color: var(--color-text); font-size: clamp(1.75rem, 2.5vw, 2.25rem); font-weight: 500; line-height: 1.2; letter-spacing: -.025em; }
 .university { margin: 0; color: var(--color-body); font-size: 1rem; line-height: 1.5; }
 .university > span { display: block; margin-top: .2rem; color: var(--color-muted); font-size: .875rem; }
 .featuredCourses {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2rem;
-  margin-top: 2.5rem !important;
+  gap: clamp(1.25rem, 3vw, 3rem);
+  margin-top: 0 !important;
+  padding-block: 2rem !important;
 }
+.featuredCourses li { padding-left: 1.25rem; border-left: 2px solid var(--color-accent); }
 .featuredCourses h5 { margin: 0; color: var(--color-text); font-size: clamp(1.5rem, 2.3vw, 1.875rem); font-weight: 600; line-height: 1.25; letter-spacing: -.025em; text-wrap: balance; }
 .courseMoment li > p { max-width: 36ch; margin: .5rem 0 0; color: var(--color-body); font-size: 1rem; font-weight: 400; line-height: 1.55; }
 .foundationCourses {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.75rem 2rem;
-  margin-top: 2rem !important;
+  margin-top: 0 !important;
   padding-top: 1.75rem !important;
   border-top: 1px solid var(--foundation-rule);
 }
@@ -139,13 +143,44 @@
   .foundationCourses { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 2rem; }
 }
 @container journey (max-width: 32rem) {
-  .courseMoment { margin-top: 3rem; padding-top: 2rem; }
-  .courseHeader { gap: .75rem; }
+  .courseMoment { margin-top: 3rem; padding: 1.25rem; }
+  .courseHeader { gap: .75rem; padding-bottom: 1.25rem; }
   .courseHeader h4 { font-size: 1.75rem; }
   .university { font-size: .9375rem; }
-  .featuredCourses { margin-top: 1.75rem !important; gap: 1.25rem; }
+  .featuredCourses { gap: 1.25rem; padding-block: 1.5rem !important; }
+  .featuredCourses li { padding-left: .85rem; }
   .featuredCourses h5 { font-size: 1.25rem; }
-  .foundationCourses { gap: 1.35rem 1.25rem; margin-top: 1.5rem !important; padding-top: 1.5rem !important; }
+  .foundationCourses { gap: 1.35rem 1.25rem; padding-top: 1.5rem !important; }
   .foundationCourses h5 { font-size: 1.125rem; }
   .courseMoment li > p { font-size: .9375rem; line-height: 1.5; }
+}
+
+@container journey (max-width: 26rem) {
+  .featuredCourses, .foundationCourses { grid-template-columns: minmax(0, 1fr); }
+  .featuredCourses { gap: 1.5rem; }
+  .foundationCourses { gap: 1.25rem; }
+}
+
+/* The observed groups settle once; every course and technology stays legible throughout. */
+@keyframes foundationLineArrive {
+  from { transform: scaleX(.2); }
+  to { transform: scaleX(1); }
+}
+@keyframes foundationGroupArrive {
+  from { opacity: .9; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: no-preference) and (min-width: 641px) {
+  .stackMoment[data-entered='true'] .backend::after {
+    animation: foundationLineArrive var(--home-enter, 500ms) var(--home-ease, cubic-bezier(.22, 1, .36, 1)) both;
+  }
+  .stackMoment[data-entered='true'] .developmentRail {
+    animation: foundationGroupArrive var(--home-enter, 500ms) 80ms var(--home-ease, cubic-bezier(.22, 1, .36, 1)) both;
+  }
+  .courseMoment[data-entered='true'] .featuredCourses {
+    animation: foundationGroupArrive var(--home-enter, 500ms) var(--home-ease, cubic-bezier(.22, 1, .36, 1)) both;
+  }
+  .courseMoment[data-entered='true'] .foundationCourses {
+    animation: foundationGroupArrive var(--home-enter, 500ms) 90ms var(--home-ease, cubic-bezier(.22, 1, .36, 1)) both;
+  }
 }

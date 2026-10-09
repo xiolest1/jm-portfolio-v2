@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { site } from '../content/site'
 import { ProfessionalFoundation } from './ProfessionalFoundation'
-import { useJourneyMotion } from './useJourneyMotion'
 import styles from './ProfessionalJourney.module.css'
 
 function OutwardArrow() {
@@ -13,7 +12,6 @@ function ExternalLink({ href, children }: { href: string; children: string }) {
 }
 
 export function ProfessionalJourney() {
-  const { rootRef } = useJourneyMotion()
   const [copyState, setCopyState] = useState<'idle' | 'copied' | 'error'>('idle')
   const copyTimer = useRef<number | undefined>(undefined)
   useEffect(() => () => window.clearTimeout(copyTimer.current), [])
@@ -32,7 +30,7 @@ export function ProfessionalJourney() {
   const [emailName, emailDomain] = site.email.split('@')
 
   return (
-    <div className={styles.journey} ref={rootRef}>
+    <div className={styles.journey}>
       <ProfessionalFoundation />
 
       <section className={styles.closing} id="about" aria-labelledby="about-title">
@@ -41,12 +39,12 @@ export function ProfessionalJourney() {
           <h2 id="about-title">Let’s connect<span>.</span></h2>
         </header>
         <div className={styles.closingComposition} data-journey-reveal>
-          <figure className={styles.humanSignature}>
-            <img src={site.avatar} alt="Portrait of Joan Morillo" width="960" height="1280" loading="lazy" decoding="async" />
-            <figcaption><strong>{site.name}</strong><span>Pronounced “{site.pronunciation}”</span></figcaption>
-          </figure>
-          <div className={styles.contactContext}>
+          <div className={styles.humanSignature}>
+            <p className={styles.signatureLabel}>Beyond the projects</p>
             <p className={styles.humanPerspective}>I like hearing a different perspective, asking questions, and talking an idea through.</p>
+          </div>
+          <div className={styles.contactContext}>
+            <p className={styles.contactLabel}>A direct way to reach me</p>
             <div className={styles.contact} id="contact">
               <a className={styles.emailAction} href={'mailto:' + site.email}>
                 <span>{emailName}@<wbr />{emailDomain}</span>

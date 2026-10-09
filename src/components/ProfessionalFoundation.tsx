@@ -7,9 +7,6 @@ function VerificationArrow() {
 }
 
 export function ProfessionalFoundation() {
-  // Most recent role leads; explicit dates preserve the chronology.
-  const roles = experience
-
   return (
     <section className={styles.foundation} id="foundation" aria-labelledby="foundation-title">
       <header className={styles.opening} data-journey-reveal>
@@ -23,8 +20,8 @@ export function ProfessionalFoundation() {
       <div className={styles.foundationGrid}>
         <section className={styles.experience} aria-labelledby="experience-title" data-journey-reveal>
           <h3 className={styles.groupHeading} id="experience-title">Professional experience</h3>
-          {roles.map((role, index) => (
-            <article className={styles.role} data-primary={index === 0 ? 'true' : undefined} key={role.company}>
+          {experience.map((role) => (
+            <article className={styles.role} key={role.company}>
               <header>
                 <p className={styles.roleDate}>{role.period}</p>
                 <h4>{role.title}</h4>
@@ -32,7 +29,7 @@ export function ProfessionalFoundation() {
               </header>
               <p className={styles.roleScope}>{role.summary}</p>
               <div className={styles.accomplishment}>
-                <p className={styles.smallLabel}>{index === 0 ? 'Technical collaboration' : 'Internal workflow tooling'}</p>
+                <p className={styles.smallLabel}>{role.contributionLabel}</p>
                 <p>{role.contribution}</p>
               </div>
             </article>

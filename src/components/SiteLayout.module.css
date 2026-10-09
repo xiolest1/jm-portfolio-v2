@@ -162,6 +162,29 @@
   }
 }
 
+@media (max-width: 420px) {
+  .header {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .brand {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .primaryNav {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .utilityNav {
+    grid-column: 1;
+    grid-row: 3;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .primaryNav a,
   .utilityNav a {
