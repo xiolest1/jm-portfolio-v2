@@ -1,6 +1,18 @@
 import { useEffect, useState, type CSSProperties, type ReactNode } from 'react'
 import styles from './HireFluxCaseStudy.module.css'
 
+function useReducedMotion() {
+  const [reduced, setReduced] = useState(false)
+  useEffect(() => {
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const update = () => setReduced(preference.matches)
+    update()
+    preference.addEventListener('change', update)
+    return () => preference.removeEventListener('change', update)
+  }, [])
+  return reduced
+}
+
 export function SourceLink({ href, children }: { href: string; children: ReactNode }) {
   return <a href={href} target="_blank" rel="noreferrer">{children}<span aria-hidden="true"> ↗</span><span className={styles.srOnly}> (opens in a new tab)</span></a>
 }
@@ -26,53 +38,50 @@ export function HeroProduct() {
 
 export function CompetingPriorities() {
   return <figure className={styles.problemBoard} data-scene>
-    <div className={styles.boardLabel}><span>Home / source & runtime audit</span><span>Illustrated reconstruction</span></div>
-    <div className={styles.signalField}>
-      <svg className={styles.signalPaths} viewBox="0 0 640 400" preserveAspectRatio="none" fill="none" aria-hidden="true"><path d="M130 80 C130 155 320 80 320 200" /><path d="M510 95 C430 95 400 160 320 200" /><path d="M155 325 C150 245 290 280 320 200" /><path d="M510 315 C410 320 350 275 320 200" /></svg>
-      <div className={styles.signalHeader}><span>Header action</span><strong>Start here</strong><small>Dashboard producer</small></div>
-      <div className={styles.signalComing}><span>Coming next</span><strong>Or here</strong><small>Another next-step surface</small></div>
-      <div className={styles.signalCenter}><span>Action Center</span><strong>Needs attention</strong><small>Undated work gained urgency</small></div>
-      <div className={styles.signalFocus}><span>Progress focus</span><strong>What about this?</strong><small>Analytics / different thresholds</small></div>
-      <div className={styles.signalQuestion}><span aria-hidden="true">?</span><strong>Which answer<br />should I trust?</strong></div>
+    <div className={styles.boardLabel}><span>Candidate situation / fictional demo data</span><span>Earlier Home / conceptual reconstruction</span></div>
+    <div className={styles.beforeExperience}>
+      <div className={styles.beforeRecords}><span className={styles.smallLabel}>Two applications in the same search</span><div><strong>Northwind Robotics</strong><span>Check back Sep 26 · saved date</span></div><div><strong>Evergreen Media</strong><span>Applied 14+ days · no saved date</span></div><p>One is a recorded commitment. The other might be worth reviewing.</p></div>
+      <div className={styles.beforePrompts}><span className={styles.smallLabel}>Earlier Home could point in several directions</span><div><span>Header action</span><strong>A next step</strong></div><div><span>Coming next</span><strong>Another next step</strong></div><div><span>Action Center</span><strong>Undated work appeared urgent</strong></div><div><span>Progress focus</span><strong>Time in stage appeared overdue</strong></div></div>
     </div>
-    <figcaption>Four priority surfaces made the candidate reconcile the interface. This illustrates the audit; it is not a historical screenshot or verbatim UI copy.</figcaption>
+    <div className={styles.beforeConsequence}><strong>What is actually due?</strong><p>The screen asked the candidate to reconcile four sources of guidance. The audit found different producers and timing rules behind them.</p></div>
+    <figcaption>Reconstructed from source inspection and one fictional demo session. The panels show the documented conflict, not a historical screenshot or verbatim UI copy.</figcaption>
   </figure>
 }
 
 const meaningExamples = [
-  { label: 'Time in stage', fact: '14+ days in Applied', field: 'Saved deadline', value: 'Not recorded', earlier: 'Overdue', now: 'Suggested review', explanation: 'Age can justify a review cue. It cannot create a missed deadline.', code: 'STALE_APPLICATION', kind: 'suggested' },
-  { label: 'Undated next step', fact: 'Candidate owns the next step', field: 'Due date', value: 'Not recorded', earlier: 'Today', now: 'Undated next step', explanation: 'Useful work stays visible without acquiring a date the candidate never saved.', code: 'CANDIDATE_ACTION_UNDATED', kind: 'undated' },
-  { label: 'Recorded follow-up', fact: 'Check back on September 26', field: 'Reference day', value: 'September 29', earlier: 'Saved date', now: 'Overdue follow-up', explanation: 'A recorded date supports a time-based prompt. This is different from time in stage.', code: 'FOLLOW_UP_OVERDUE', kind: 'dated' },
+  { label: 'No follow-up date', date: 'None saved', result: 'Suggested review', message: 'Review application after at least 14 days in this stage. No recorded deadline.', rule: 'Time in Applied supports a review suggestion. With no saved date, there is no missed deadline.', why: 'HireFlux can suggest that the candidate look again. It cannot call this application overdue.', kind: 'suggested' },
+  { label: 'Add a past follow-up date', date: 'Sep 26, 2026', result: 'Overdue follow-up', message: 'Check back on the saved September 26 date.', rule: 'A recorded follow-up date is earlier than the September 29 reference day.', why: 'The saved date supports a time-based prompt. The stage-age review cue may also remain available separately.', kind: 'dated' },
 ] as const
 
 export function MeaningCorrection() {
   const [selected, setSelected] = useState(0)
   const example = meaningExamples[selected]
   return <figure className={styles.meaningCorrection} id="decision-model" data-scene>
-    <div className={styles.scenarioControls} aria-label="Inspect an action classification">{meaningExamples.map((item, i) => <button type="button" key={item.label} aria-pressed={selected === i} onClick={() => setSelected(i)}>{item.label}</button>)}</div>
-    <div className={styles.meaningScene} data-kind={example.kind}>
-      <div className={styles.savedFact}><span className={styles.smallLabel}>Recorded evidence</span><strong>{example.fact}</strong><dl><dt>{example.field}</dt><dd>{example.value}</dd></dl></div>
-      <div className={styles.evidenceBridge} aria-hidden="true"><span /><b>Evidence boundary</b><span /></div>
-      <div className={styles.meaningOutput} aria-live="polite" aria-atomic="true"><span className={styles.smallLabel}>Implemented interpretation</span><strong key={selected}>{example.now}</strong><code>{example.code}</code></div>
+    <div className={styles.exampleHeader}><div><span className={styles.smallLabel}>Follow one fictional application</span><h4>Evergreen Media · Data Analyst</h4><p>Applied for at least 14 days. Reference day: September 29, 2026.</p></div><span className={styles.exampleTag}>Illustrated contract</span></div>
+    <div className={styles.scenarioControls} aria-label="Change the saved follow-up date">{meaningExamples.map((item, i) => <button type="button" key={item.label} aria-pressed={selected === i} onClick={() => setSelected(i)}>{item.label}</button>)}</div>
+    <div className={styles.meaningJourney} data-kind={example.kind}>
+      <div className={styles.exampleRecord}><span className={styles.smallLabel}>01 / Saved application</span><strong>Evergreen Media</strong><dl><div><dt>Current stage</dt><dd>Applied · 14+ days</dd></div><div className={styles.variableFact}><dt>Follow-up date</dt><dd key={selected}>{example.date}</dd></div></dl></div>
+      <div className={styles.exampleRule}><span className={styles.smallLabel}>02 / What HireFlux knows</span><p key={selected}>{example.rule}</p></div>
+      <div className={styles.exampleHome}><span className={styles.smallLabel}>03 / What the candidate sees on Home</span><div key={selected} className={styles.exampleHomeMessage}><span>{example.kind === 'dated' ? 'Recorded commitment' : 'Time in stage'}</span><strong>{example.result}</strong><p>{example.message}</p></div></div>
     </div>
-    <div className={styles.meaningFoot}><p>{selected === 2 ? <><span className={styles.smallLabel}>The distinction</span> A deadline is known here.</> : <><span className={styles.smallLabel}>The rejected shortcut</span> <s>{example.earlier}</s></>}</p><strong>{example.explanation}</strong></div>
-    <figcaption>Inspect one rule at a time. Contract illustration, not a live request or predictive ranking.</figcaption>
+    <div className={styles.exampleWhy}><span className={styles.smallLabel}>Why this is right</span><p key={selected}>{example.why}</p></div>
+    <figcaption>The default no-date example matches Evergreen’s actual September Home capture below. Adding a date here is an illustrated variation of the implemented rules, not a screenshot of Evergreen changing state. The precise action kinds are in the <a href="#evidence-product">Home contract</a>.</figcaption>
   </figure>
 }
 
 export function IterationSketches() {
   const [focal, setFocal] = useState(false)
   return <ol className={styles.iterationSketches} aria-label="Documented Home design progression" data-scene>
-    <li><div className={styles.sketchMany} aria-hidden="true"><i /><i /><i /><i /></div><span>Investigate / source + runtime</span><strong>Four competing answers</strong><p>Different producers and timing rules.</p></li>
-    <li><div className={styles.sketchQueue} aria-hidden="true"><i /><i /><i /><i /></div><span>Consolidate / first design review</span><strong>One area, still a queue</strong><p>Correct authority. Too much to scan.</p></li>
-    <li><div className={styles.sketchPeers} data-focal={focal} aria-hidden="true"><i /><i /><i /><b /></div><span>Refine / implemented hybrid</span><strong>Peers, unless focus is earned</strong><p aria-live="polite">{focal ? 'One due commitment; healthy Dashboard source. Other classes step back.' : 'Multiple recorded commitments remain peers. No invented winner.'}</p><button type="button" className={styles.sketchControl} aria-pressed={focal} onClick={() => setFocal(value => !value)}>{focal ? 'Return to peers' : 'Inspect supported focus'} <span aria-hidden="true">↔</span></button></li>
+    <li><div className={styles.iterationMock}><span>Before · separate guidance</span><div><small>Header</small><strong>Start here</strong></div><div><small>Coming next</small><strong>Then here?</strong></div><div><small>Action Center</small><strong>Needs attention</strong></div></div><span>01 / investigate</span><strong>Several sources proposed the next step.</strong><p>The candidate had to reconcile them.</p></li>
+    <li><div className={styles.iterationMock}><span>First pass · one authority</span><div><small>01</small><strong>Follow up</strong></div><div><small>02</small><strong>Interview</strong></div><div><small>03</small><strong>Review application</strong></div></div><span>02 / consolidate</span><strong>The rules agreed; the layout still read as a queue.</strong><p>Correct meaning alone did not make the scan easy.</p></li>
+    <li><div className={styles.iterationMock} data-focal={focal}><span>Refined · current structure</span><div className={styles.iterationPrimary}><small>{focal ? 'One saved date is due' : 'Recorded commitments'}</small><strong>{focal ? 'Follow up today' : 'Follow-ups · interviews'}</strong></div><div><small>{focal ? 'Still available' : 'Separate class'}</small><strong>Suggested review</strong></div></div><span>03 / compose</span><strong>Emphasis follows the record.</strong><p aria-live="polite">{focal ? 'One qualifying due commitment can lead when Dashboard evidence is healthy.' : 'Multiple commitments remain peers; suggestions are visibly quieter.'}</p><button type="button" className={styles.sketchControl} aria-pressed={focal} onClick={() => setFocal(value => !value)}>{focal ? 'Show peer state' : 'See supported focus'} <span aria-hidden="true">↔</span></button></li>
   </ol>
 }
 
 const productViews = [
-  { label: 'The whole decision area', x: 270, y: 200, width: 1140, height: 500, alt: 'Actual light Home: saved overdue and due-today follow-ups, a scheduled interview, and a separate suggested review with no recorded deadline.' },
+  { label: 'Evergreen suggestion', x: 278, y: 545, width: 660, height: 148, alt: 'Actual Home: Evergreen Media appears under Suggested review after at least 14 days in stage, with no recorded deadline.' },
   { label: 'A recorded commitment', x: 278, y: 275, width: 374, height: 242, alt: 'Northwind Robotics follow-up card: saved September 26 check-back, marked overdue relative to the September 29 capture, with owner not recorded.' },
-  { label: 'A qualified suggestion', x: 278, y: 545, width: 660, height: 148, alt: 'Evergreen appears under Suggested review: fourteen days in stage, no recorded deadline, a review cue rather than a dated commitment.' },
+  { label: 'The whole decision area', x: 270, y: 200, width: 1140, height: 500, alt: 'Actual light Home: saved overdue and due-today follow-ups, a scheduled interview, and a separate suggested review with no recorded deadline.' },
 ] as const
 
 export function ProductEvidence() {
@@ -82,10 +91,10 @@ export function ProductEvidence() {
     <div className={styles.productStage}>
       <div className={styles.captureTop}><span>Home / Action Center</span><span>Actual product · Sep 29 milestone</span></div>
       <div className={styles.desktopProduct} data-view={view}><ProductCrop image="/projects/hireflux-home-light.png" {...crop} /></div>
-      <div className={styles.mobileProduct}><div className={styles.mobileHomeCrop}><img src="/projects/hireflux-home-mobile.png" alt="Cropped actual dark mobile Home: Northwind’s saved-date follow-up stays beside the date and unknown ownership." width="390" height="844" loading="lazy" /></div><div className={styles.mobileSuggestion}><span className={styles.smallLabel}>A suggestion / desktop detail</span><ProductCrop image="/projects/hireflux-home-light.png" alt="Actual product sentence: No recorded deadline." x={635} y={617} width={280} height={30} /></div></div>
-      <div className={styles.productLens} aria-label="Inspect the real desktop product">{productViews.map((item, i) => <button type="button" key={item.label} aria-pressed={view === i} onClick={() => setView(i)}>{i === 0 ? 'Overview' : i === 1 ? 'Commitment' : 'Suggestion'}<span className={styles.srOnly}>: {item.label}</span></button>)}</div>
+      <div className={styles.mobileProduct}><span className={styles.smallLabel}>Mobile capture / Northwind’s saved follow-up</span><div className={styles.mobileHomeCrop}><img src="/projects/hireflux-home-mobile.png" alt="Cropped actual dark mobile Home: Northwind’s saved September 26 follow-up is marked overdue, with the date and unknown responsibility visible." width="390" height="844" loading="lazy" /></div><div className={styles.mobileProductNote}><span className={styles.smallLabel}>Another opportunity in the actual desktop capture</span><strong>Evergreen Media · Suggested review</strong><p>Applied at least 14 days. No recorded deadline. This remains a quieter review cue below the dated commitments.</p></div></div>
+      <div className={styles.productLens} aria-label="Inspect the real desktop product">{productViews.map((item, i) => <button type="button" key={item.label} aria-pressed={view === i} onClick={() => setView(i)}>{i === 0 ? 'Evergreen suggestion' : i === 1 ? 'Northwind follow-up' : 'Whole Home'}<span className={styles.srOnly}>: {item.label}</span></button>)}</div>
     </div>
-    <div className={styles.productAnnotations}><div><span className={styles.annotationNumber}>01</span><div><strong>A date is a commitment.</strong><p>Saved dates and responsibility stay beside the next step. Unknown ownership stays unknown.</p></div></div><div><span className={styles.annotationNumber}>02</span><div><strong>A suggestion is a suggestion.</strong><p>Stage age stays visible with quieter emphasis and an explicit “No recorded deadline” boundary.</p></div></div></div>
+    <div className={styles.productAnnotations}><div><span className={styles.annotationNumber}>01</span><div><strong>Evergreen: review, no due date.</strong><p>Time in Applied appears below the dated commitments as a quieter suggestion with “No recorded deadline.”</p></div></div><div><span className={styles.annotationNumber}>02</span><div><strong>Northwind: a saved commitment.</strong><p>The September 26 check-back appears as an overdue follow-up. Unknown responsibility stays labeled unknown.</p></div></div></div>
     <figcaption>Fictional local data. These September captures are not the latest HEAD. Light desktop and dark mobile are actual HireFlux modes. <SourceLink href="/projects/hireflux-home-light.png">Open full Home capture</SourceLink></figcaption>
   </figure>
 }
@@ -98,38 +107,35 @@ const layers = [
 
 export function SystemBlueprint() {
   const [selected, setSelected] = useState(1)
-  const [trace, setTrace] = useState(0)
   const [phase, setPhase] = useState(2)
   const [tracing, setTracing] = useState(false)
+  const reducedMotion = useReducedMotion()
   useEffect(() => {
     if (!tracing) return
-    const action = window.setTimeout(() => setPhase(1), 700)
-    const prompt = window.setTimeout(() => setPhase(2), 1400)
-    const finish = window.setTimeout(() => setTracing(false), 2100)
+    const action = window.setTimeout(() => setPhase(1), 440)
+    const prompt = window.setTimeout(() => setPhase(2), 880)
+    const finish = window.setTimeout(() => setTracing(false), 1200)
     return () => { clearTimeout(action); clearTimeout(prompt); clearTimeout(finish) }
   }, [tracing])
-  const traceDate = () => {
-    if (tracing) { setTracing(false); return }
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { setPhase(n => (n + 1) % 3); return }
-    setPhase(0); setTrace(n => n + 1); setTracing(true)
-  }
-  const stations = [{ label: '01 / Saved fact', value: 'September 26', note: 'A check-back date recorded on the application.' }, { label: '02 / Server action', value: 'FOLLOW_UP_OVERDUE', note: 'Derived against the September 29 reference day.' }, { label: '03 / Human prompt', value: 'Follow up · Overdue', note: 'The date stays explicit; ownership stays unknown.' }]
+  const traceDate = () => { if (tracing) { setTracing(false); return }; setPhase(0); if (!reducedMotion) setTracing(true) }
+  const stations = [
+    { label: 'Saved application', title: 'Northwind · Sep 26', note: 'A check-back date was recorded on the opportunity.', role: 'DynamoDB Local' },
+    { label: 'Backend decision', title: 'Overdue follow-up', note: 'FastAPI compares the saved date with September 29 and returns an action.', role: 'FastAPI' },
+    { label: 'Home presentation', title: 'Follow up · Overdue', note: 'React displays that dated action, including the saved date and unknown responsibility.', role: 'React + TypeScript' },
+  ]
   return <figure className={styles.systemBlueprint} data-scene>
-    <div className={styles.systemCutaway} data-trace={trace} data-phase={phase} data-tracing={tracing}>
-      <div className={styles.browserLayer}><button type="button" aria-pressed={selected === 0} aria-controls="layer-detail" onClick={() => setSelected(0)}><span className={styles.smallLabel}>Browser</span><strong>React + TypeScript</strong><span>Validated responses · server-state handling</span></button><div className={styles.traceArtifact}><span>Candidate sees</span><strong>Follow up · Overdue</strong><small>Sep 26 / owner not recorded</small></div></div>
-      <div className={styles.transportLine}><span>HTTP / JSON <span aria-hidden="true">↓</span></span><span className={styles.returnMeaning}>Qualified meaning <span aria-hidden="true">↑</span></span></div>
-      <div className={styles.backendBoundary}><div className={styles.backendTitle}><button type="button" aria-pressed={selected === 1} aria-controls="layer-detail" onClick={() => setSelected(1)}><span className={styles.smallLabel}>One backend / modular monolith</span><strong>FastAPI</strong></button><span className={styles.identityGate}>Signed demo identity → owner scope</span></div><ol className={styles.backendModules}><li><span>Routes</span><strong>Validate access</strong></li><li><span>Application + domain</span><strong>Derive action · enforce rules</strong><code>FOLLOW_UP_OVERDUE</code></li><li><span>Repository protocols</span><strong>Request keyed persistence</strong></li></ol></div>
-      <div className={styles.transportLine}><span>Keyed access <span aria-hidden="true">↓</span></span><span>Saved facts <span aria-hidden="true">↑</span></span></div>
-      <div className={styles.storageLayer}><button type="button" aria-pressed={selected === 2} aria-controls="layer-detail" onClick={() => setSelected(2)}><span className={styles.smallLabel}>Local persistence</span><strong>DynamoDB Local</strong><span>Owner-qualified keys · conditional writes</span></button><div className={styles.traceArtifact}><span>Stored record</span><strong>Follow-up: Sep 26</strong><small>No priority score stored</small></div></div>
-      <span className={styles.traceRunner} key={trace} data-running={tracing} aria-hidden="true" />
+    <div className={styles.systemFactFlow} data-phase={phase}>
+      {stations.map((station, i) => <div key={station.label} className={styles.flowStation} data-active={phase === i}><span className={styles.smallLabel}>0{i + 1} / {station.label}</span><strong>{station.title}</strong><p>{station.note}</p><small>{station.role}</small></div>)}
     </div>
-    <div className={styles.systemInspection}><div id="layer-detail" aria-live="polite" aria-atomic="true"><span className={styles.smallLabel}>{layers[selected].role}</span><h3>{layers[selected].name}</h3><p key={selected}>{layers[selected].detail}</p></div><div className={styles.traceReadout} data-phase={phase}><span className={styles.smallLabel}>{stations[phase].label}</span><strong key={phase}>{stations[phase].value}</strong><p>{stations[phase].note}</p><div className={styles.traceSteps} aria-label="Inspect a trace station">{stations.map((station, i) => <button type="button" key={station.label} aria-pressed={phase === i} onClick={() => { setTracing(false); setPhase(i) }}><span className={styles.srOnly}>{station.label}</span><span aria-hidden="true">0{i + 1}</span></button>)}</div></div><button type="button" className={styles.traceButton} onClick={traceDate}><span aria-hidden="true">↥</span>{tracing ? 'Stop trace' : 'Trace the saved date'}</button><p className={styles.provenance}>One fact, three representations. Illustration, not a live request. With reduced motion, use the station controls or advance with Trace.</p><p className={styles.srOnly} role="status">{tracing ? 'Tracing the saved date.' : `Trace station: ${stations[phase].label}. ${stations[phase].value}.`}</p></div>
-    <figcaption>Implemented local runtime. The inner modules are boundaries within one FastAPI application, not separate services. Select a layer for implementation detail.</figcaption>
+    <div className={styles.flowControls}><div role="group" aria-label="Inspect the saved date through the system">{stations.map((station, i) => <button type="button" key={station.label} aria-pressed={phase === i} onClick={() => { setTracing(false); setPhase(i) }}>{i + 1}. {station.label}</button>)}</div><button type="button" onClick={traceDate}>{tracing ? 'Stop sequence' : reducedMotion ? 'Inspect starting fact' : 'Play the three steps'} <span aria-hidden="true">{tracing ? '■' : '↗'}</span></button></div>
+    <div className={styles.architectureBand}><div><span className={styles.smallLabel}>How the local application makes that possible</span><h3>One backend decides.<br />The browser explains.</h3><p>The React client requests Home data. One FastAPI application reads the saved facts through repository protocols, applies the action rules, and returns the result. DynamoDB Local stores the record.</p></div><div className={styles.architecturePicker}><div role="group" aria-label="Inspect an implementation layer">{layers.map((layer, i) => <button type="button" key={layer.name} aria-pressed={selected === i} aria-controls="layer-detail" onClick={() => setSelected(i)}>{layer.name}</button>)}</div><div id="layer-detail" aria-live="polite" aria-atomic="true"><span className={styles.smallLabel}>{layers[selected].role}</span><p key={selected}>{layers[selected].detail}</p></div></div></div>
+    <figcaption>The upper sequence follows one saved fact conceptually; it is not a live request trace. The lower band names the implemented local layers. FastAPI's routes, services, and repository protocols are modules within one application. <a href="#evidence-system">Inspect the architecture and identity boundary</a>.</figcaption>
   </figure>
 }
 
 export function ConcurrencyScene() {
   // The final outcome is the baseline. Playback is optional and cancellable.
+  const reducedMotion = useReducedMotion()
   const [step, setStep] = useState(2)
   const [playing, setPlaying] = useState(false)
   const [flight, setFlight] = useState<'a' | 'b' | null>(null)
@@ -143,11 +149,12 @@ export function ConcurrencyScene() {
   }, [playing])
   const choose = (value: number) => { setPlaying(false); setFlight(null); setStep(value) }
   const replay = () => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { choose(0); return }
+    if (reducedMotion) { choose(0); return }
     setStep(0); setFlight('a'); setPlaying(true)
   }
   return <figure className={styles.concurrencyScene} id="concurrency" data-scene data-step={step} data-playing={playing} data-flight={flight}>
     <div className={styles.sceneCaption}><span>One application / two open tabs</span><span>Contract illustration · no live backend</span></div>
+    <div className={styles.playbackControls} aria-label="Inspect the write sequence"><div>{['Both tabs read v1', 'A saves version 2', 'B’s old save is rejected'].map((label, i) => <button type="button" key={label} aria-pressed={step === i} onClick={() => choose(i)}><span aria-hidden="true">0{i + 1}</span>{label}</button>)}</div><button type="button" onClick={playing ? () => { setPlaying(false); setFlight(null) } : replay}>{playing ? 'Stop replay' : reducedMotion ? 'Inspect starting state' : 'Replay the two writes'} <span aria-hidden="true">{playing ? '■' : '↺'}</span></button></div>
     <div className={styles.collisionStage}>
       <div className={styles.editTabs}>
         <div className={styles.editTab} data-result={step >= 1 ? 'accepted' : 'ready'}><div className={styles.tabChrome}><span>Tab A</span><code>Loaded v1</code></div><span className={styles.fieldLabel}>Company name</span><strong>Northwind Robotics</strong><p>Expected version <b>1</b></p><span className={styles.writeOutcome}>{step >= 1 ? '✓ A commits version 2' : flight === 'a' ? 'Sending A’s version 1 edit…' : 'Both tabs started at v1'}</span></div>
@@ -157,7 +164,6 @@ export function ConcurrencyScene() {
       <div className={styles.conditionGate}><code>expected_version</code><span>{step >= 1 ? 'B: 1 ≠ stored 2' : 'Stored version: 1'}</span><strong>Atomic write condition</strong></div>
       <div className={styles.preservedRecord} role="status" aria-live="polite" aria-atomic="true"><div><span className={styles.smallLabel}>Canonical record / survives</span><strong key={step}>{step === 0 ? 'Northwind' : 'Northwind Robotics'}</strong></div><span className={styles.versionSeal}>v{step === 0 ? '1' : '2'}</span><p>{step === 0 ? 'Version 1 · both tabs have the same starting point.' : step === 1 ? 'Version 2 · A’s edit is saved. B still holds version 1.' : 'Version 2 · A’s newer edit survives B’s stale request.'}</p></div>
     </div>
-    <div className={styles.playbackControls} aria-label="Inspect the write sequence"><div>{['Same starting point', 'A saves first', 'B is rejected'].map((label, i) => <button type="button" key={label} aria-pressed={step === i} onClick={() => choose(i)}><span aria-hidden="true">0{i + 1}</span>{label}</button>)}</div><button type="button" onClick={playing ? () => { setPlaying(false); setFlight(null) } : replay}>{playing ? 'Stop replay' : 'Replay collision'} <span aria-hidden="true">{playing ? '■' : '↺'}</span></button></div>
     <figcaption><strong>Protect newer work rather than silently merge stale edits.</strong> Conditional persistence checks the version atomically. A conflict needs fresh state and retry; it is not a read-then-check guarantee.</figcaption>
   </figure>
 }
