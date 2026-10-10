@@ -47,8 +47,7 @@ export function ProfessionalJourney() {
             <div className={styles.contact} id="contact">
               <p className={styles.contactLabel}>Email me directly</p>
               <a className={styles.emailAction} href={'mailto:' + site.email}>
-                <span>{emailName}@<wbr />{emailDomain}</span>
-                <span className={styles.emailArrow}><OutwardArrow /></span>
+                <span>{emailName}@<wbr /><span className={styles.emailDomain}><span>{emailDomain}</span><span className={styles.emailArrow}><OutwardArrow /></span></span></span>
               </a>
               <div className={styles.contactUtilities}>
                 <div className={styles.socialLinks}><ExternalLink href={site.linkedin}>LinkedIn</ExternalLink><ExternalLink href={site.github}>GitHub</ExternalLink></div>

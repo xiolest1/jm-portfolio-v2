@@ -2,6 +2,7 @@ import { useState, type ReactNode } from 'react'
 import { site } from '../content/site'
 import { BootSequence } from './BootSequence/BootSequence'
 import styles from './SiteLayout.module.css'
+import homeSpatial from './HomepageSpatial.module.css'
 
 type SiteLayoutProps = {
   children: ReactNode
@@ -11,12 +12,13 @@ type SiteLayoutProps = {
 export function SiteLayout({ children, footerVariant = 'standard' }: SiteLayoutProps) {
   const [bootOpen, setBootOpen] = useState(false)
   const year = new Date().getFullYear()
+  const isHome = footerVariant === 'home'
 
   return (
     <>
       <a className={styles.skipLink} href="#main-content">Skip to content</a>
-      <div className={styles.siteShell}>
-        <header className={styles.header}>
+      <div className={isHome ? styles.siteShell + ' ' + homeSpatial.shell : styles.siteShell}>
+        <header className={isHome ? styles.header + ' ' + homeSpatial.header : styles.header}>
           <a className={styles.brand} href="/" aria-label="Joan Morillo home">
             <span className={styles.brandMark} aria-hidden="true">JM</span>
             <span>Joan Morillo</span>
@@ -36,7 +38,7 @@ export function SiteLayout({ children, footerVariant = 'standard' }: SiteLayoutP
           {children}
         </main>
 
-        <footer className={footerVariant === 'home' ? styles.footer + ' ' + styles.homeFooter : styles.footer}>
+        <footer className={isHome ? styles.footer + ' ' + homeSpatial.footer : styles.footer}>
           <button className={styles.bootLink} type="button" onClick={() => setBootOpen(true)}>
             Replay system boot
           </button>

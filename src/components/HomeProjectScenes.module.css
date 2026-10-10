@@ -1,16 +1,16 @@
 .productScene, .libraryScene { min-width: 0; margin: 0; }
-.captureLink { display: block; overflow: hidden; border: 1px solid var(--color-line); border-radius: .55rem; color: var(--color-body); background: #17121c; text-decoration: none; box-shadow: 0 20px 70px rgb(0 0 0 / 15%); transition: border-color 180ms ease, box-shadow 180ms ease; }
-.captureLink:hover, .captureLink:focus-visible { border-color: var(--color-accent); box-shadow: 0 20px 70px rgb(0 0 0 / 25%); }
+.captureLink { display: block; overflow: hidden; border: 1px solid var(--home-divider); border-radius: .55rem; color: var(--color-body); background: #17121c; text-decoration: none; transition: border-color 180ms ease; }
+.captureLink:hover, .captureLink:focus-visible { border-color: var(--color-accent); }
 .captureLink:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 5px; }
-.captureLabel { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .25rem 1rem; padding: .7rem 1rem; font: .75rem/1.5 var(--font-mono); }
+.captureLabel { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-1) var(--space-3); padding: var(--space-2) var(--space-3); font: .75rem/1.5 var(--font-mono); }
 .captureLabel > span:last-child { color: var(--color-muted); }
 .captureLink img, .libraryProduct img { display: block; width: 100%; height: auto; }
-.captureInvitation { display: flex; justify-content: space-between; gap: 1rem; align-items: center; min-height: 44px; padding: .7rem 1rem; font-size: .9375rem; }
+.captureInvitation { display: flex; justify-content: space-between; gap: var(--space-3); align-items: center; min-height: 44px; padding: var(--space-2) var(--space-3); font-size: .9375rem; }
 .captureInvitation > span { color: var(--color-accent); transition: transform 180ms ease; }
 .captureLink:hover .captureInvitation > span { transform: translate(2px,-2px); }
-.productScene figcaption, .libraryScene figcaption { margin-top: .8rem; color: var(--color-muted); font-size: .8125rem; line-height: 1.5; }
-.libraryProduct { overflow: hidden; border: 1px solid var(--color-line); border-radius: .4rem; }
-.controlPath { display: flex; flex-wrap: wrap; gap: 1rem 0; list-style: none; padding: 0; margin: 1.5rem 0; }
+.productScene figcaption, .libraryScene figcaption { margin-top: var(--space-2); color: var(--color-muted); font-size: .8125rem; line-height: 1.5; }
+.libraryProduct { overflow: hidden; border-radius: .4rem; }
+.controlPath { display: flex; flex-wrap: wrap; gap: var(--space-3) 0; list-style: none; padding: 0; margin: var(--space-4) 0; }
 .controlPath li { position: relative; min-width: 0; flex: 1 1 8rem; padding: .65rem 1.4rem .65rem 0; }
 .controlPath li:not(:last-child)::after { position: absolute; top: .65rem; right: .5rem; content: '→'; color: var(--color-accent); }
 .controlPath strong { display: block; font-size: .9375rem; font-weight: 500; line-height: 1.4; }

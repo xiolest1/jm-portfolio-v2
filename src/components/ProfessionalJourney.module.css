@@ -1,36 +1,38 @@
-.journey { --journey-ease: var(--home-ease,cubic-bezier(.22,1,.36,1)); --journey-fast: var(--home-feedback,180ms); --journey-hairline: rgb(169 156 175 / 25%); container: journey / inline-size; }
+.journey { --journey-ease: var(--home-ease,cubic-bezier(.22,1,.36,1)); --journey-fast: var(--home-feedback,180ms); container: journey / inline-size; }
 .srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 .journey [id] { scroll-margin-top: 2rem; }
 .journey :where(a,button):focus-visible { outline: 3px solid var(--color-focus); outline-offset: 5px; }
 .label { margin: 0; color: var(--color-accent); font: 500 .75rem/1.5 var(--font-mono); text-transform: uppercase; letter-spacing: .045em; }
-.closing { position: relative; padding-block: clamp(3.5rem,6vw,5rem) 1.5rem; border-top: 1px solid var(--journey-hairline); background: radial-gradient(ellipse at 90% 65%,rgb(255 178 127 / 7%),transparent 65%); }
-.closingHeader h2 { margin: .8rem 0 0; font-size: clamp(2.75rem,5vw,4.5rem); font-weight: 600; line-height: 1.1; letter-spacing: -.035em; }
+.closing { position: relative; padding-block: var(--home-section-gap) var(--space-4); background: radial-gradient(ellipse at 90% 65%,rgb(255 178 127 / 7%),transparent 65%); }
+.closingHeader h2 { margin: var(--space-2) 0 0; font-size: clamp(2.75rem,5vw,4.5rem); font-weight: 600; line-height: 1.1; letter-spacing: -.035em; }
 .closingHeader h2 > span { color: var(--color-accent); }
-.closingComposition { display: grid; grid-template-columns: minmax(0,.7fr) minmax(0,1.3fr); gap: clamp(2rem,6vw,5rem); margin-top: 2rem; align-items: start; }
+.closingComposition { display: grid; grid-template-columns: minmax(0,.7fr) minmax(0,1.3fr); gap: var(--home-column-gap); margin-top: var(--space-5); align-items: start; }
 .humanSignature { min-width: 0; position: relative; }
 .personalLabel,.contactLabel { margin: 0; color: var(--color-muted); font-size: .9375rem; font-weight: 400; line-height: 1.5; }
-.humanPerspective { max-width: 36ch; margin: .65rem 0 0; color: var(--color-body); font-size: clamp(1.125rem,1.5vw,1.375rem); line-height: 1.55; letter-spacing: -.01em; }
+.humanPerspective { max-width: 36ch; margin: var(--space-2) 0 0; color: var(--color-body); font-size: clamp(1.125rem,1.5vw,1.375rem); line-height: 1.55; letter-spacing: -.01em; }
 .contactContext { min-width: 0; }
-.emailAction { display: inline-flex; max-width: 100%; gap: .9rem; align-items: center; min-height: 48px; padding-block: .5rem; color: var(--color-accent); text-decoration-thickness: 1px; text-underline-offset: .25em; transition: color var(--journey-fast) ease; }
-.emailAction > span:first-child { min-width: 0; font-size: clamp(1.25rem,2.35vw,2.125rem); font-weight: 500; line-height: 1.4; letter-spacing: -.02em; overflow-wrap: anywhere; }
-.emailArrow { flex-shrink: 0; display: grid; place-items: center; width: 1.4rem; height: 1.4rem; transition: transform var(--journey-fast) var(--journey-ease); }
+.emailAction { display: inline-block; max-width: 100%; min-height: 48px; padding-block: var(--space-1); color: var(--color-accent); font-size: clamp(1.25rem,2.35vw,2.125rem); font-weight: 500; line-height: 1.4; letter-spacing: -.02em; text-decoration-thickness: 1px; text-underline-offset: .25em; transition: color var(--journey-fast) ease; }
+.emailAction > span:first-child { overflow-wrap: anywhere; }
+.emailDomain { display: inline-flex; align-items: center; max-width: 100%; gap: var(--space-2); vertical-align: baseline; }
+.emailDomain > span:first-child { min-width: 0; overflow-wrap: anywhere; }
+.emailArrow { display: inline-flex; flex-shrink: 0; width: 1.4rem; height: 1.4rem; transition: transform var(--journey-fast) var(--journey-ease); }
 .emailArrow svg { width: 1.4rem; height: 1.4rem; }
 .emailAction:hover { color: var(--color-focus); }
 .emailAction:hover .emailArrow, .emailAction:focus-visible .emailArrow { transform: translate(2px,-2px); }
-.contactUtilities { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem 1.5rem; margin-top: .5rem; }
-.socialLinks { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; }
+.contactUtilities { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1) var(--space-4); margin-top: var(--space-1); }
+.socialLinks { display: flex; flex-wrap: wrap; gap: .25rem var(--space-4); }
 .socialLinks a { display: inline-flex; gap: .4rem; align-items: center; min-height: 44px; font-size: .9375rem; color: var(--color-body); text-decoration-color: var(--color-line); text-underline-offset: .25em; }
 .socialLinks svg { width: .8rem; height: .8rem; }
 .socialLinks a:hover { color: var(--color-accent); }
-.copyEmail { display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; border: 0; padding: .5rem 0; color: var(--color-body); background: none; font-size: .875rem; cursor: pointer; }
+.copyEmail { display: inline-flex; align-items: center; gap: var(--space-1); min-height: 44px; border: 0; padding: var(--space-1) 0; color: var(--color-body); background: none; font-size: .875rem; cursor: pointer; }
 .copyEmail svg { width: .9rem; height: .9rem; flex-shrink: 0; }
 .copyEmail:hover { color: var(--color-accent); }
-.copyStatus { min-height: 1.5em; margin: .2rem 0 0; color: var(--color-muted); font-size: .875rem; line-height: 1.5; }
-.endNote { display: flex; align-items: center; justify-content: flex-end; gap: .5rem 1rem; margin-top: 1rem; color: var(--color-muted); font-size: .875rem; }
+.copyStatus { min-height: 1.5em; margin: var(--space-1) 0 0; color: var(--color-muted); font-size: .875rem; line-height: 1.5; }
+.endNote { display: flex; align-items: center; justify-content: flex-end; gap: var(--space-1) var(--space-3); margin-top: var(--space-3); color: var(--color-muted); font-size: .875rem; }
 .endNote a { display: inline-flex; align-items: center; gap: .6rem; min-height: 44px; text-decoration: none; }
 .endNote a:hover { color: var(--color-accent); }
 @keyframes closingArrive { from { transform: translateY(8px); } to { transform: none; } }
 @media (prefers-reduced-motion: no-preference) { .closingHeader[data-entered] { animation: closingArrive var(--home-enter,520ms) var(--journey-ease); } }
-@container journey (max-width: 44rem) { .closingComposition { grid-template-columns: minmax(0,1fr); gap: 1.5rem; margin-top: 2rem; } .humanPerspective { max-width: 45ch; } .endNote { margin-top: 1.5rem; } }
-@container journey (max-width: 28rem) { .closingHeader h2 { font-size: 2.75rem; } .emailAction { gap: .65rem; } }
+@container journey (max-width: 44rem) { .closingComposition { grid-template-columns: minmax(0,1fr); gap: var(--space-5); } .humanPerspective { max-width: 45ch; } .endNote { margin-top: var(--space-4); } }
+@container journey (max-width: 28rem) { .closingHeader h2 { font-size: 2.75rem; } }
 @media (prefers-reduced-motion: reduce) { .journey *, .journey *::before, .journey *::after { animation: none!important; transition: none!important; } .emailAction:hover .emailArrow, .emailAction:focus-visible .emailArrow { transform: none; } }
