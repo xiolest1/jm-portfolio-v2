@@ -1,7 +1,7 @@
 export const site = {
   name: 'Joan Morillo',
   role: 'Software Engineer',
-  focus: 'Backend and full-stack application development',
+  focus: 'Software development and Computer Science',
   pronunciation: 'Yo-han',
   email: 'joanraulmorillo@gmail.com',
   avatar: '/profile.jpg',

@@ -11,8 +11,9 @@ export type Experience = {
   company: string
   period: string
   summary: string
-  contributionLabel: string
-  contribution: string
+  scope: string[]
+  contributionLabel?: string
+  contribution?: string
 }
 
 export type Certification = {
@@ -46,9 +47,8 @@ export const experience: Experience[] = [
     period: 'Oct 2021 – Dec 2023',
     summary:
       'Managed scheduling, records, and coordination across internal and external providers in a high-volume office environment.',
-    contributionLabel: 'Workflow improvement',
-    contribution:
-      'Developed an internal Python scheduling and records-management tool that replaced portions of a manual tracking workflow.',
+    // Current user correction overrides the older résumé's Python-tool claim.
+    scope: ['Scheduling', 'Records', 'Provider coordination'],
   },
   {
     title: 'Technical Support',
@@ -56,6 +56,7 @@ export const experience: Experience[] = [
     period: 'Jun 2020 – Sep 2021',
     summary:
       'Diagnosed remote technical issues, identified recurring failure patterns, and refined escalation paths for complex support cases.',
+    scope: ['Technical diagnosis', 'Troubleshooting', 'Escalation'],
     contributionLabel: 'Team collaboration',
     contribution:
       'Collaborated with technical teams to resolve recurring issues and improve troubleshooting workflow efficiency.',

@@ -1,79 +1,35 @@
-// Skills come from Joan's current résumé. FastAPI is additionally verified in
-// HireFlux. Listing AWS services describes knowledge, not deployed project work.
-// Completed courses were confirmed by Joan. Learning summaries describe course
-// scope, not individual assignments, outcomes, or proficiency.
-// Course context: https://www.catalog.montclair.edu/coursesaz/csit/csit.pdf
-// Keep Joan's confirmed historical course names rather than current catalog names.
+export type FoundationCourse = {
+  name: string
+  concepts: string
+  purpose: string
+  id?: string
+}
+
+// Résumé-backed skills; FastAPI is additionally verified in HireFlux.
+// AWS names describe architecture knowledge, not deployed project infrastructure.
+// Joan confirmed completion. Course scope is checked against Montclair's catalog:
+// https://www.catalog.montclair.edu/coursesaz/csit/csit.pdf
+// Historical course names are retained; summaries describe preparation,
+// without attributing invented assignments or implementations to Joan.
 export const softwareFoundation = {
   languages: ['Python', 'Java', 'JavaScript', 'TypeScript', 'SQL'],
   backend: ['FastAPI', 'Flask', 'Node.js', 'REST APIs'],
   frontend: ['React', 'HTML5', 'CSS3'],
   databases: ['PostgreSQL', 'MySQL', 'DynamoDB'],
   tools: ['Git', 'Linux'],
-  cloudServices: [
-    { label: 'Compute', technologies: ['Lambda', 'EC2'] },
-    { label: 'Data & storage', technologies: ['DynamoDB', 'S3'] },
-    { label: 'Access & networking', technologies: ['IAM', 'VPC', 'Route 53'] },
-    { label: 'Delivery & observability', technologies: ['CloudFront', 'CloudWatch'] },
-  ],
-  softwareCourses: [
-    {
-      name: 'Software Engineering I',
-      focus: 'Requirements, architecture & design patterns',
-      learning: 'Studied how to turn software requirements into structured designs across the development lifecycle.',
-    },
-    {
-      name: 'Software Engineering II',
-      focus: 'Testing, reliability & maintenance',
-      learning: 'Studied verification and validation techniques for building, testing, and maintaining reliable software.',
-    },
-  ],
-  courseGroups: [
-    {
-      label: 'Data & systems',
-      courses: [
-        {
-          name: 'Database Systems',
-          focus: 'Schema design & data organization',
-          learning: 'Studied database structures, design methods, operations, and security.',
-        },
-        {
-          name: 'Operating Systems',
-          focus: 'Processes, synchronization & memory',
-          learning: 'Studied how operating systems manage resources, coordinate processes, and prevent deadlocks.',
-          id: 'foundation-systems-courses',
-        },
-      ],
-    },
-    {
-      label: 'Networks & security',
-      courses: [
-        {
-          name: 'Computer Networks',
-          focus: 'TCP/IP & layered networks',
-          learning: 'Studied how packets travel through networks, including flow control and congestion.',
-        },
-        {
-          name: 'Computer Security',
-          focus: 'Encryption & network security',
-          learning: 'Studied public-key methods and how to analyze network and Internet security.',
-        },
-      ],
-    },
-    {
-      label: 'Web & services',
-      courses: [
-        {
-          name: 'Internet Computing',
-          focus: 'Client & server web programming',
-          learning: 'Studied markup, JavaScript, and server-side technologies used to build websites.',
-        },
-        {
-          name: 'Web Services',
-          focus: 'REST & service integration',
-          learning: 'Studied how web services and middleware connect distributed applications.',
-        },
-      ],
-    },
-  ],
+  cloudServices: ['IAM', 'S3', 'Lambda', 'CloudWatch', 'CloudFront', 'Route 53', 'VPC', 'EC2', 'DynamoDB'],
+  designCourses: [
+    { name: 'Software Engineering I', concepts: 'Requirements, architecture, and design patterns', purpose: 'turning a specification into a coherent software design.' },
+    { name: 'Software Engineering II', concepts: 'Verification, testing, reliability, and maintenance', purpose: 'checking behavior as software changes.' },
+  ] satisfies FoundationCourse[],
+  systemsCourses: [
+    { name: 'Database Systems', concepts: 'Schema design and database operations', purpose: 'organizing data for consistent storage and retrieval.' },
+    { name: 'Operating Systems', concepts: 'Processes, memory, synchronization, and deadlocks', purpose: 'coordinating work and shared resources.', id: 'foundation-systems-courses' },
+  ] satisfies FoundationCourse[],
+  connectedCourses: [
+    { name: 'Computer Networks', concepts: 'TCP/IP, network layers, and packet flow', purpose: 'understanding how connected systems communicate.' },
+    { name: 'Computer Security', concepts: 'Encryption, public-key methods, and network security', purpose: 'reasoning about protection and trust.' },
+    { name: 'Internet Computing', concepts: 'Markup, JavaScript, and server-side programming', purpose: 'connecting browser behavior with server logic.' },
+    { name: 'Web Services', concepts: 'REST, middleware, and service integration', purpose: 'connecting independent applications through interfaces.' },
+  ] satisfies FoundationCourse[],
 }

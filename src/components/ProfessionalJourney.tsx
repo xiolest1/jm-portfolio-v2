@@ -36,19 +36,18 @@ export function ProfessionalJourney() {
       <section className={styles.closing} id="about" aria-labelledby="about-title">
         <header className={styles.closingHeader} data-journey-reveal>
           <p className={styles.label}>04 / About &amp; contact</p>
-          <h2 id="about-title">Let’s connect<span>↗</span></h2>
+          <h2 id="about-title">Let’s connect<span>.</span></h2>
         </header>
-        <div className={styles.closingComposition} data-journey-reveal>
+        <div className={styles.closingComposition}>
           <div className={styles.humanSignature}>
-            <span className={styles.quoteMark} aria-hidden="true">“</span>
+            <h3 className={styles.personalLabel}>A little about me</h3>
             <p className={styles.humanPerspective}>I like hearing a different perspective, asking questions, and talking an idea through.</p>
-            <p className={styles.signatureLabel}>Joan Morillo<span>Beyond the technical details</span></p>
           </div>
           <div className={styles.contactContext}>
-            <p className={styles.contactLabel}>Start with an email.</p>
             <div className={styles.contact} id="contact">
+              <p className={styles.contactLabel}>Email me directly</p>
               <a className={styles.emailAction} href={'mailto:' + site.email}>
-                <span><small>Email Joan</small>{emailName}@<wbr />{emailDomain}</span>
+                <span>{emailName}@<wbr />{emailDomain}</span>
                 <span className={styles.emailArrow}><OutwardArrow /></span>
               </a>
               <div className={styles.contactUtilities}>
@@ -62,7 +61,7 @@ export function ProfessionalJourney() {
             </div>
           </div>
         </div>
-        <div className={styles.endNote}><span>Joan Morillo · Software engineering</span><a href="#top">Back to top<span aria-hidden="true">↑</span></a></div>
+        <div className={styles.endNote}><a href="#top">Back to top<span aria-hidden="true">↑</span></a></div>
       </section>
     </div>
   )
