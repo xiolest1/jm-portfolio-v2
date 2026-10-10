@@ -36,18 +36,19 @@ export function ProfessionalJourney() {
       <section className={styles.closing} id="about" aria-labelledby="about-title">
         <header className={styles.closingHeader} data-journey-reveal>
           <p className={styles.label}>04 / About &amp; contact</p>
-          <h2 id="about-title">Let’s connect<span>.</span></h2>
+          <h2 id="about-title">Let’s connect<span>↗</span></h2>
         </header>
         <div className={styles.closingComposition} data-journey-reveal>
           <div className={styles.humanSignature}>
-            <p className={styles.signatureLabel}>Beyond the projects</p>
+            <span className={styles.quoteMark} aria-hidden="true">“</span>
             <p className={styles.humanPerspective}>I like hearing a different perspective, asking questions, and talking an idea through.</p>
+            <p className={styles.signatureLabel}>Joan Morillo<span>Beyond the technical details</span></p>
           </div>
           <div className={styles.contactContext}>
-            <p className={styles.contactLabel}>A direct way to reach me</p>
+            <p className={styles.contactLabel}>Start with an email.</p>
             <div className={styles.contact} id="contact">
               <a className={styles.emailAction} href={'mailto:' + site.email}>
-                <span>{emailName}@<wbr />{emailDomain}</span>
+                <span><small>Email Joan</small>{emailName}@<wbr />{emailDomain}</span>
                 <span className={styles.emailArrow}><OutwardArrow /></span>
               </a>
               <div className={styles.contactUtilities}>

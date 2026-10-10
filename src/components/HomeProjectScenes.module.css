@@ -1,0 +1,85 @@
+.label { margin: 0; color: var(--color-accent); font: 500 .75rem/1.5 var(--font-mono); letter-spacing: .035em; }
+.productScene :where(strong,span,button), .controlPath :where(strong,span,small,button), .libraryScene :where(strong,span) { min-width: 0; overflow-wrap: anywhere; }
+.productScene { margin: 2.25rem 0 0; }
+.productStage { display: grid; grid-template-columns: minmax(0, 1.85fr) minmax(0, 1fr); align-items: start; gap: 2rem; padding: clamp(1rem, 2.5vw, 2rem); border: 1px solid rgb(255 178 127 / 25%); border-radius: 1rem; background: radial-gradient(ellipse at 15% 10%, rgb(255 178 127 / 10%), transparent 65%), #19141d; box-shadow: 0 2rem 5rem rgb(0 0 0 / 18%); }
+.productOverview { min-width: 0; border: 1px solid #66566a; border-radius: .5rem; background: #100d14; overflow: hidden; }
+.captureLabel { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .35rem 1rem; padding: .65rem 1rem; color: var(--color-body); font: .6875rem/1.4 var(--font-mono); }
+.productOverview > img { display: block; width: 100%; height: auto; }
+.productMeaning { padding: 1.1rem 1.25rem; }
+.productMeaning span { display: block; color: var(--color-muted); font-size: .8125rem; }
+.productMeaning strong { display: block; margin-top: .3rem; font-size: clamp(1.1rem, 1.8vw, 1.5rem); font-weight: 500; line-height: 1.3; letter-spacing: -.015em; }
+.productDetail { min-width: 0; padding-top: .25rem; }
+.lensControls { display: grid; gap: .25rem; margin-block: .65rem 1.1rem; }
+.lensControls button { display: flex; gap: .8rem; align-items: baseline; min-height: 44px; padding: .65rem .75rem; border: 0; border-left: 2px solid transparent; color: var(--color-body); background: transparent; text-align: left; font-size: .9375rem; cursor: pointer; transition: color var(--home-feedback) ease, background var(--home-feedback) ease, border-color var(--home-feedback) ease; }
+.lensControls button > span:first-child { flex-shrink: 0; color: var(--color-muted); font: .6875rem/1.5 var(--font-mono); }
+.lensControls button[aria-pressed='true'] { border-left-color: var(--color-accent); color: var(--color-text); background: rgb(255 178 127 / 9%); }
+.lensControls button:hover { color: var(--color-accent); background: rgb(255 178 127 / 6%); }
+.detailFrame { display: grid; align-items: center; aspect-ratio: 1.4; padding: .35rem; border: 1px solid #695668; border-radius: .4rem; background: #e9edef; }
+.crop { position: relative; aspect-ratio: var(--crop-ratio); width: 100%; overflow: hidden; }
+.crop img { display: block; position: absolute; top: 0; left: 0; width: var(--capture-width); max-width: none; height: auto; transform: translate(var(--capture-x), var(--capture-y)); }
+.detailExplanation { margin-top: 1.25rem; }
+.detailExplanation strong { display: block; font-size: 1.25rem; line-height: 1.3; letter-spacing: -.02em; font-weight: 500; }
+.detailExplanation p { margin: .65rem 0 0; color: var(--color-body); font-size: .9375rem; line-height: 1.6; }
+.productPrinciples { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; margin-top: 2rem; }
+.productPrinciples > div { display: grid; grid-template-columns: 1.7rem minmax(0, 1fr); gap: .25rem .7rem; }
+.productPrinciples span { grid-row: 1/3; color: var(--color-accent); font: .75rem/1.8 var(--font-mono); }
+.productPrinciples strong { font-size: 1rem; font-weight: 500; }
+.productPrinciples p { grid-column: 2; margin: 0; color: var(--color-body); font-size: .875rem; line-height: 1.55; }
+.productScene figcaption, .libraryScene figcaption, .sceneNote { margin-top: 1.25rem; color: var(--color-muted); font-size: .8125rem; line-height: 1.55; }
+.productScene figcaption a { display: inline; color: var(--color-accent); text-underline-offset: .2em; }
+.libraryScene { margin: 0; }
+.libraryProduct { position: relative; margin-bottom: 1.25rem; border: 1px solid var(--color-line); border-radius: .55rem; overflow: hidden; background: #f4f4f4; }
+.libraryProduct img { display: block; width: 100%; height: auto; }
+.libraryProduct > span { display: block; padding: .6rem .9rem; color: var(--color-muted); background: #1a1520; font: .6875rem/1.5 var(--font-mono); }
+.libraryJourney { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 1rem; align-items: center; }
+.libraryJourney strong { display: block; margin-top: .35rem; font-size: 1.25rem; font-weight: 500; letter-spacing: -.015em; }
+.libraryJourney p { margin: .45rem 0 0; color: var(--color-body); font-size: .875rem; line-height: 1.5; }
+.pathArrow { color: var(--color-accent); font-size: 1.5rem; }
+.controlPath { min-width: 0; }
+.controlHeader { display: flex; justify-content: space-between; flex-wrap: wrap; align-items: baseline; gap: 1rem; margin-bottom: 1.25rem; }
+.playControl { display: inline-flex; gap: .8rem; max-width: 100%; min-height: 44px; align-items: center; padding: 0; border: 0; background: transparent; color: var(--color-body); font-size: .875rem; text-decoration: underline; text-underline-offset: .25em; cursor: pointer; }
+.playControl > span:last-child { flex-shrink: 0; }
+.playControl:hover { color: var(--color-accent); }
+.controlSteps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; }
+.controlSteps li { position: relative; min-width: 0; border-top: 1px solid var(--color-line); }
+.controlSteps li::before { position: absolute; top: -2px; left: 0; width: 0; height: 2px; content: ''; background: var(--color-accent); transition: width var(--home-state) var(--home-ease); }
+.controlSteps li[data-active='true']::before { width: 100%; }
+.controlSteps button { display: flex; flex-direction: column; align-items: flex-start; gap: .4rem; width: 100%; min-height: 155px; padding: 1rem .5rem 1rem 0; border: 0; background: none; color: var(--color-body); text-align: left; cursor: pointer; transition: color var(--home-feedback) ease; }
+.controlSteps button:hover, .controlSteps button[aria-pressed='true'] { color: var(--color-text); }
+.stepNumber { font: .6875rem/1.4 var(--font-mono); color: var(--color-muted); }
+.controlSteps strong { font-size: 1.5rem; font-weight: 500; letter-spacing: -.025em; }
+.controlSteps button > span:not(.stepNumber) { font-size: .8125rem; }
+.controlSteps small { font-size: .75rem; line-height: 1.5; color: var(--color-muted); }
+.controlExplanation { min-height: 4rem; margin: 1rem 0 0; color: var(--color-body); font-size: 1rem; line-height: 1.6; }
+.controlExplanation span { display: block; margin-bottom: .2rem; color: var(--color-accent); font-weight: 500; }
+@keyframes detailFocus { from { opacity: .8; transform: scale(.985); } to { opacity: 1; transform: scale(1); } }
+@keyframes productFrameArrive { from { transform: translateY(14px); } to { transform: translateY(0); } }
+@media (prefers-reduced-motion: no-preference) {
+  .detailFrame { animation: detailFocus var(--home-state) var(--home-ease); }
+  .productScene[data-entered] .productOverview { animation: productFrameArrive var(--home-enter) var(--home-ease) both; }
+  .productScene[data-entered] .productDetail { animation: productFrameArrive var(--home-enter) 70ms var(--home-ease) both; }
+}
+@media (max-width: 980px) { .productStage { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 1.25rem; } .controlSteps { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 680px) {
+  .productStage { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; padding: 1rem; border-radius: .65rem; }
+  .productMeaning { padding: .85rem; }
+  .productDetail { display: grid; grid-template-columns: minmax(0, 1fr); }
+  .lensControls { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .4rem; margin-block: .6rem 1rem; }
+  .lensControls button { flex-direction: column; gap: .25rem; padding: .5rem; min-height: 64px; font-size: .8125rem; border-left: 0; border-bottom: 2px solid transparent; }
+  .lensControls button[aria-pressed='true'] { border-bottom-color: var(--color-accent); }
+  .detailExplanation { margin-top: 1rem; }
+  .productPrinciples { grid-template-columns: minmax(0, 1fr); gap: .8rem; margin-top: 1.5rem; }
+  .productPrinciples > div { gap: .15rem .7rem; }
+  .productScene figcaption { margin-top: 1rem; }
+  .libraryJourney { gap: .75rem; }
+  .libraryJourney strong { font-size: 1.125rem; }
+  .controlSteps { grid-template-columns: minmax(0, 1fr); }
+  .controlSteps button { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr); align-items: baseline; gap: .25rem .5rem; min-height: 74px; padding-block: .75rem; }
+  .controlSteps strong { display: none; }
+  .controlSteps button > span:not(.stepNumber) { font-size: 1rem; font-weight: 500; }
+  .controlSteps small { grid-column: 2; }
+  .controlExplanation { min-height: 0; }
+}
+@media (max-width: 360px) { .libraryJourney { grid-template-columns: minmax(0, 1fr); } .pathArrow { transform: rotate(90deg); justify-self: start; } }
+@container homepage (max-width: 20rem) { .lensControls { grid-template-columns: minmax(0,1fr); } .lensControls button { flex-direction: row; gap: .75rem; min-height: 44px; border-bottom: 0; border-left: 2px solid transparent; } .lensControls button[aria-pressed='true'] { border-left-color: var(--color-accent); } }
+@media (prefers-reduced-motion: reduce) { .productScene *, .controlPath *, .libraryScene * { animation: none!important; transition: none!important; } .playControl { display: none; } }
