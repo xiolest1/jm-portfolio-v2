@@ -53,13 +53,12 @@ export function PortfolioHome() {
         <p className={styles.positioning}>My work spans web applications, APIs, data systems, and computer vision—with attention to how software behaves and how people use it.</p>
         <div className={styles.actions}><a className={styles.actionPrimary} href="#work"><span>Explore my work</span><span aria-hidden="true">↘</span></a><a className={styles.actionText} href="#contact">Get in touch <span aria-hidden="true">↗</span></a></div>
       </div>
-      <p className={styles.identityNote}>Exploring early-career software development opportunities</p>
     </section>
 
     <section className={styles.flagship} id="work" data-home-scene aria-labelledby="hireflux-title">
       <header className={styles.flagshipOpening}>
         <p className={styles.eyebrow}>01 / Flagship project</p>
-        <p className={styles.projectMeta}>Personal project · Local demo</p>
+          <p className={styles.projectMeta}>Personal project</p>
       </header>
       <div className={styles.flagshipGrid}>
         <div className={styles.flagshipCopy}>
@@ -84,7 +83,6 @@ export function PortfolioHome() {
             <ul className={styles.signalList}>{hireFlux.signals.map(signal => <li key={signal}>{signal}</li>)}</ul>
             <p className={styles.stackLine}>{hireFlux.stack.join(' · ')}</p>
           </div>
-          <p className={styles.projectBoundary}>Isolated 24-hour demo with fictional data. AWS deployment remains planned.</p>
         </div>
       </div>
     </section>

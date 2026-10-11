@@ -1,45 +1,61 @@
 .foundation { --foundation-line: var(--home-divider); margin-top: var(--home-section-gap); padding-top: var(--home-group-gap); border-top: 1px solid var(--foundation-line); }
-.foundation :where(section,article,div,header) { min-width: 0; }
-.foundation :where(h2,h3,h4,p,a,time) { overflow-wrap: anywhere; }
+.foundation :where(section,article,div,header,li) { min-width: 0; }
+.foundation :where(h2,h3,h4,p,a,time,li) { overflow-wrap: anywhere; }
 .foundation [id] { scroll-margin-top: 2rem; }
 .foundation a:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 5px; }
 .label { margin: 0; color: var(--color-accent); font: 500 .75rem/1.5 var(--font-mono); text-transform: uppercase; letter-spacing: .045em; }
-.opening h2 { margin: var(--space-2) 0 0; max-width: 25ch; color: var(--color-text); font-size: clamp(2rem,3.6vw,3.25rem); font-weight: 600; line-height: 1.12; letter-spacing: -.03em; }
+.opening h2 { margin: var(--space-2) 0 0; max-width: 25ch; color: var(--color-text); font-size: clamp(2.25rem,4.2vw,3.5rem); font-weight: 600; line-height: 1.12; letter-spacing: -.035em; }
 .opening h2 > span { color: var(--color-accent); }
 .opening > p:last-child { margin: var(--space-3) 0 0; max-width: 65ch; color: var(--color-body); font-size: 1rem; line-height: 1.65; }
-.experience { margin-top: var(--home-group-gap); }
-.experience h3,.qualifications h3 { margin: 0; font-size: clamp(1.375rem,1.8vw,1.625rem); font-weight: 600; line-height: 1.3; letter-spacing: -.02em; }
-.roleGrid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: var(--home-column-gap); margin-top: var(--space-4); }
-.role h4 { margin: 0; font-size: clamp(1.5rem,2.2vw,2rem); font-weight: 600; line-height: 1.2; letter-spacing: -.025em; }
-.employer { margin: var(--space-1) 0 0; color: var(--color-body); font-size: 1.125rem; font-weight: 500; line-height: 1.5; }
-.roleDate { margin: var(--space-1) 0 0; color: var(--color-muted); font: .8125rem/1.5 var(--font-mono); }
-.roleScopeLabels { display: flex; flex-wrap: wrap; list-style: none; gap: var(--space-1) var(--space-3); margin: var(--space-4) 0 0; padding: 0; }
-.roleScopeLabels li { font-size: .875rem; color: var(--color-accent); line-height: 1.5; }
-.roleScope { max-width: 55ch; margin: var(--space-2) 0 0; color: var(--color-body); font-size: 1rem; line-height: 1.65; }
-.accomplishment { margin-top: var(--space-3); }
-.smallLabel { margin: 0; color: var(--color-text); font-size: .875rem; font-weight: 600; line-height: 1.5; }
-.accomplishment > p:last-child { margin: var(--space-1) 0 0; max-width: 55ch; color: var(--color-body); font-size: 1rem; line-height: 1.6; }
-.qualifications { position: relative; display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: var(--home-column-gap); margin-top: var(--home-group-gap); }
-.degreeList,.credentialList { margin-top: var(--space-4); }
-.degree + .degree { margin-top: var(--space-5); }
-.degree h4 { margin: 0; font-size: 1.4rem; line-height: 1.3; font-weight: 500; letter-spacing: -.02em; }
-.degree[data-primary] h4 { font-size: clamp(1.625rem,2.2vw,2rem); font-weight: 600; }
-.degree abbr { color: var(--color-accent); text-decoration: none; }
-.degree > p { margin: var(--space-1) 0 0; color: var(--color-body); font-size: 1.0625rem; line-height: 1.5; }
-.degree > time { display: block; margin-top: var(--space-1); color: var(--color-muted); font-size: .875rem; }
-.credential { padding-left: var(--space-4); }
-.credential[data-primary] { border-left: 2px solid var(--color-accent); padding-left: calc(var(--space-4) - 2px); }
-.credential + .credential { margin-top: var(--space-4); }
-.credential h4 { margin: 0; max-width: 34ch; font-size: 1.125rem; font-weight: 500; line-height: 1.35; letter-spacing: -.015em; }
-.credential[data-primary] h4 { font-size: 1.375rem; font-weight: 600; }
-.credentialMeta { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-3); align-items: center; margin-top: var(--space-1); }
-.credentialMeta p { margin: 0; font-size: .875rem; color: var(--color-muted); }
-.credentialMeta a { display: inline-flex; align-items: center; gap: .45rem; min-height: 44px; font-size: .875rem; color: var(--color-accent); text-underline-offset: .25em; }
+
+/* Shared editorial alignment connects the stages without a fictitious timeline. */
+.chapter { --milestone-color: var(--color-accent); display: grid; grid-template-columns: minmax(0,.65fr) minmax(0,2fr); gap: var(--home-column-gap); margin-top: var(--space-6); }
+.chapter + .chapter { padding-top: var(--space-6); border-top: 1px solid var(--foundation-line); }
+.chapter[data-kind="education"] { --milestone-color: #b8d5c7; }
+.chapter[data-kind="credential"] { --milestone-color: #cbbbea; }
+.chapterHeading { position: relative; }
+.chapterSymbol { display: flex; align-items: center; width: 2.5rem; height: 2.5rem; margin-bottom: var(--space-2); color: var(--milestone-color); }
+.chapterSymbol svg { width: 1.75rem; height: 1.75rem; }
+.chapterHeading h3 { margin: 0; max-width: 17ch; font-size: clamp(1.375rem,2vw,1.625rem); font-weight: 600; line-height: 1.3; letter-spacing: -.02em; }
+.chapterHeading > p { margin: var(--space-2) 0 0; color: var(--color-muted); font-size: .9375rem; line-height: 1.5; }
+
+.roleList { display: grid; gap: var(--space-5); }
+.role { display: grid; grid-template-columns: minmax(0,.85fr) minmax(0,1.15fr); gap: var(--space-4); }
+.role + .role { padding-top: var(--space-5); border-top: 1px solid var(--foundation-line); }
+.roleDate { margin: 0 0 var(--space-2); color: var(--color-accent); font: 500 .8125rem/1.6 var(--font-mono); }
+.role h4 { margin: 0; font-size: clamp(1.5rem,2.2vw,1.875rem); font-weight: 600; line-height: 1.2; letter-spacing: -.025em; }
+.employer { max-width: 28ch; margin: var(--space-1) 0 0; color: var(--color-body); font-size: 1rem; font-weight: 500; line-height: 1.5; }
+.roleContent { padding-top: .1rem; }
+.roleScope,.contribution { max-width: 52ch; margin: 0; color: var(--color-body); font-size: 1rem; line-height: 1.65; }
+.contribution { margin-top: var(--space-2); }
+
+.degreePath { position: relative; display: grid; grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); gap: var(--space-5); padding: 0; margin: 0; list-style: none; }
+.degree { position: relative; padding-top: var(--space-5); }
+.degree::before { content: ''; position: absolute; left: 0; right: calc(-1 * var(--space-5)); top: .375rem; height: 1px; background: linear-gradient(90deg,rgb(184 213 199 / 45%),rgb(184 213 199 / 22%)); }
+.degree:last-child::before { right: 0; }
+.degree::after { content: ''; position: absolute; top: 0; left: 0; width: .8125rem; height: .8125rem; border: 2px solid var(--milestone-color); border-radius: 50%; background: var(--color-bg); }
+.degree[data-primary]::after { background: var(--milestone-color); }
+.degree time { color: var(--milestone-color); font: 500 .8125rem/1.5 var(--font-mono); }
+.degree h4 { margin: var(--space-2) 0 0; font-size: clamp(1.375rem,2vw,1.75rem); font-weight: 500; line-height: 1.2; letter-spacing: -.025em; }
+.degree abbr { display: block; margin-bottom: var(--space-1); color: var(--milestone-color); font-size: 1.625rem; text-decoration: none; }
+.degree h4 > span { display: block; }
+.degree[data-primary] h4 { font-size: clamp(1.75rem,2.8vw,2.5rem); font-weight: 600; }
+.degree[data-primary] abbr { font-size: 2.125rem; }
+.degree p { margin: var(--space-2) 0 0; color: var(--color-body); font-size: 1rem; line-height: 1.5; }
+
+.credentialList { display: grid; gap: var(--space-4); }
+.credential { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,12.5rem); align-items: start; gap: var(--space-3) var(--space-5); padding: var(--space-4); border: 1px solid rgb(203 187 234 / 28%); border-left: 2px solid var(--milestone-color); background: linear-gradient(110deg,rgb(203 187 234 / 5%),rgb(203 187 234 / 1%)); }
+.credential h4 { margin: 0; max-width: 32ch; font-size: clamp(1.25rem,1.8vw,1.5rem); font-weight: 600; line-height: 1.35; letter-spacing: -.015em; }
+.credentialMeta { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-1); }
+.credentialMeta p { margin: 0; font-size: .875rem; color: var(--color-muted); line-height: 1.6; }
+.credentialMeta a { display: inline-flex; align-items: center; gap: .45rem; min-height: 44px; font-size: .9375rem; color: var(--color-accent); text-underline-offset: .25em; }
 .credentialMeta a:hover { color: var(--color-focus); }
 .credentialMeta svg { width: .85rem; height: .85rem; flex-shrink: 0; transition: transform var(--home-feedback,180ms) ease; }
 .credentialMeta a:hover svg { transform: translate(2px,-2px); }
+
 @keyframes foundationArrive { from { transform: translateY(8px); } to { transform: none; } }
-@keyframes qualificationArrive { from { transform: translateY(6px); } to { transform: none; } }
-@media (prefers-reduced-motion: no-preference) { .opening[data-entered] { animation: foundationArrive var(--home-enter,520ms) var(--home-ease); } .qualifications[data-entered] { animation: qualificationArrive var(--home-enter,520ms) var(--home-ease); } }
-@container journey (max-width: 44rem) { .roleGrid,.qualifications { grid-template-columns: minmax(0,1fr); gap: var(--home-group-gap); } }
+@media (prefers-reduced-motion: no-preference) { .foundation [data-journey-reveal][data-entered] { animation: foundationArrive var(--home-enter,520ms) var(--home-ease); } }
+@container journey (max-width: 64rem) { .chapter { grid-template-columns: minmax(0,.6fr) minmax(0,2fr); } .role { grid-template-columns: minmax(0,1fr); gap: var(--space-3); } .credential { grid-template-columns: minmax(0,1fr); } .credentialMeta { flex-direction: row; flex-wrap: wrap; align-items: center; gap: var(--space-1) var(--space-4); } }
+@container journey (max-width: 44rem) { .chapter { grid-template-columns: minmax(0,1fr); gap: var(--space-4); } .chapterHeading { display: grid; grid-template-columns: 2rem minmax(0,1fr); gap: 0 var(--space-2); align-items: start; } .chapterSymbol { width: 2rem; height: 2rem; margin: 0; } .chapterHeading h3 { max-width: none; } .chapterHeading > p { grid-column: 2; margin-top: var(--space-1); } .role h4 { font-size: 1.75rem; } .roleContent { padding: 0; } .degree[data-primary] h4 { font-size: 1.875rem; } }
+@container journey (max-width: 28rem) { .chapter { margin-top: var(--space-5); } .chapter + .chapter { padding-top: var(--space-5); } .degreePath { grid-template-columns: minmax(0,1fr); gap: var(--space-5); } .degree { padding: 0 0 0 var(--space-4); } .degree::before { top: .375rem; bottom: calc(-1 * var(--space-5) - .375rem); width: 1px; height: auto; right: auto; left: .375rem; } .degree:last-child::before { display: none; } .degree abbr { display: inline; margin-right: .4rem; font-size: inherit; } .degree h4 > span { display: inline; } .degree[data-primary] abbr { font-size: inherit; } .credential { padding: var(--space-3); } }
 @media (prefers-reduced-motion: reduce) { .foundation *, .foundation *::before, .foundation *::after { animation: none!important; transition: none!important; } .credentialMeta a:hover svg { transform: none; } }

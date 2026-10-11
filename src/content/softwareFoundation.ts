@@ -1,6 +1,6 @@
 export type FoundationCourse = {
   name: string
-  concepts: string
+  topics: string[]
   purpose: string
   id?: string
 }
@@ -19,17 +19,17 @@ export const softwareFoundation = {
   tools: ['Git', 'Linux'],
   cloudServices: ['IAM', 'S3', 'Lambda', 'CloudWatch', 'CloudFront', 'Route 53', 'VPC', 'EC2', 'DynamoDB'],
   designCourses: [
-    { name: 'Software Engineering I', concepts: 'Requirements, architecture, and design patterns', purpose: 'turning a specification into a coherent software design.' },
-    { name: 'Software Engineering II', concepts: 'Verification, testing, reliability, and maintenance', purpose: 'checking behavior as software changes.' },
+    { name: 'Software Engineering I', topics: ['Requirements', 'Architecture', 'Design patterns'], purpose: 'From a specification to software design.' },
+    { name: 'Software Engineering II', topics: ['Verification & testing', 'Reliability', 'Maintenance'], purpose: 'Checking behavior as software changes.' },
   ] satisfies FoundationCourse[],
   systemsCourses: [
-    { name: 'Database Systems', concepts: 'Schema design and database operations', purpose: 'organizing data for consistent storage and retrieval.' },
-    { name: 'Operating Systems', concepts: 'Processes, memory, synchronization, and deadlocks', purpose: 'coordinating work and shared resources.', id: 'foundation-systems-courses' },
+    { name: 'Database Systems', topics: ['Schema design', 'Database operations'], purpose: 'Consistent data storage and retrieval.' },
+    { name: 'Operating Systems', topics: ['Processes & memory', 'Synchronization', 'Deadlocks'], purpose: 'Coordinating work and shared resources.', id: 'foundation-systems-courses' },
   ] satisfies FoundationCourse[],
   connectedCourses: [
-    { name: 'Computer Networks', concepts: 'TCP/IP, network layers, and packet flow', purpose: 'understanding how connected systems communicate.' },
-    { name: 'Computer Security', concepts: 'Encryption, public-key methods, and network security', purpose: 'reasoning about protection and trust.' },
-    { name: 'Internet Computing', concepts: 'Markup, JavaScript, and server-side programming', purpose: 'connecting browser behavior with server logic.' },
-    { name: 'Web Services', concepts: 'REST, middleware, and service integration', purpose: 'connecting independent applications through interfaces.' },
+    { name: 'Computer Networks', topics: ['TCP/IP', 'Network layers', 'Packet flow'], purpose: 'How connected systems communicate.' },
+    { name: 'Computer Security', topics: ['Encryption', 'Public-key methods', 'Network security'], purpose: 'Protection and trust in connected systems.' },
+    { name: 'Internet Computing', topics: ['Markup & JavaScript', 'Server-side programming'], purpose: 'Connecting browser behavior with server logic.' },
+    { name: 'Web Services', topics: ['REST', 'Middleware', 'Service integration'], purpose: 'Interfaces between independent applications.' },
   ] satisfies FoundationCourse[],
 }

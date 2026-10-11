@@ -5,7 +5,7 @@ export function HireFluxProductScene() {
   return (
     <figure className={styles.productScene}>
       <a className={styles.captureLink} href={hireFlux.caseStudy} aria-label="Explore the HireFlux engineering case study">
-        <div className={styles.captureLabel} aria-hidden="true"><span>HireFlux / Action Center</span><span>Local demo</span></div>
+        <div className={styles.captureLabel} aria-hidden="true"><span>HireFlux / Action Center</span></div>
         <img src={hireFlux.image} alt={hireFlux.imageAlt} width="1440" height="900" loading="lazy" decoding="async" />
         <span className={styles.captureInvitation}>Explore the engineering <span aria-hidden="true">↗</span></span>
       </a>

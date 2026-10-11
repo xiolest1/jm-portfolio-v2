@@ -1,14 +1,10 @@
 import { softwareFoundation, type FoundationCourse } from '../content/softwareFoundation'
-import { hireFlux, libraryProject, rcProject } from '../content/projects'
 import styles from './SoftwareFoundation.module.css'
 
-function EvidenceLink({ href, children }: { href: string; children: string }) {
-  const external = href.startsWith('https:')
-  return <a href={href} target={external ? '_blank' : undefined} rel={external ? 'noreferrer' : undefined}>{children}<span aria-hidden="true"> ↗</span>{external && <span className={styles.srOnly}> (opens in a new tab)</span>}</a>
-}
-
-function EvidenceLine({ technology, href, project }: { technology: string; href: string; project: string }) {
-  return <p className={styles.evidenceLine}><span>{technology}</span><EvidenceLink href={href}>{project}</EvidenceLink></p>
+function TechnologyNames({ names, secondary = false }: { names: string[]; secondary?: boolean }) {
+  return <ul role="list" className={secondary ? styles.supportingNames : styles.technologyNames}>
+    {names.map(name => <li key={name}>{name}</li>)}
+  </ul>
 }
 
 // Preserve earlier deep links beside the related skills and course material.
@@ -19,7 +15,8 @@ function AnchorAliases({ ids }: { ids: string[] }) {
 function Course({ course }: { course: FoundationCourse }) {
   return <article className={styles.course} id={course.id}>
     <h5>{course.name}</h5>
-    <p><strong>{course.concepts}</strong> — {course.purpose}</p>
+    <ul className={styles.courseTopics}>{course.topics.map(topic => <li key={topic}>{topic}</li>)}</ul>
+    <p className={styles.coursePurpose}>{course.purpose}</p>
   </article>
 }
 
@@ -27,72 +24,71 @@ export function SoftwareFoundation() {
   return (
     <section className={styles.section} id="software-foundation" aria-labelledby="engineering-profile-title">
       <header className={styles.opening} data-journey-reveal>
-        <p className={styles.eyebrow}>Skills &amp; academic preparation</p>
-        <h3 id="engineering-profile-title">Software engineering foundation<span>.</span></h3>
+        <p className={styles.eyebrow}>Software engineering foundation</p>
+        <div className={styles.headingLine}>
+          <h3 id="engineering-profile-title">Technical foundation<span>.</span></h3>
+          <a className={styles.projectEvidence} href="#work">Explore project evidence <span aria-hidden="true">↑</span></a>
+        </div>
       </header>
 
       <section className={styles.skills} id="foundation-application-engineering" aria-labelledby="foundation-stack-title">
-        <h4 id="foundation-stack-title">Technical skills</h4>
+        <h4 className={styles.srOnly} id="foundation-stack-title">Technical skills</h4>
         <div className={styles.languageLine}>
           <h5 id="foundation-languages-title">Programming languages</h5>
-          <ul>{softwareFoundation.languages.map(name => <li key={name}>{name}</li>)}</ul>
+          <ul role="list">{softwareFoundation.languages.map(name => <li key={name}>{name}</li>)}</ul>
         </div>
-        <div className={styles.skillsLayout}>
-          <div className={styles.applicationSkills}>
-            <section aria-labelledby="foundation-frontend-title">
+        <div className={styles.applicationStack}>
+            <section className={styles.stackLayer} aria-labelledby="foundation-frontend-title">
+              <span className={styles.layerSymbol} aria-hidden="true">&lt;/&gt;</span>
               <h5 id="foundation-frontend-title">Frontend development</h5>
-              <EvidenceLine technology="React / TypeScript" href={hireFlux.caseStudy} project="HireFlux" />
-              <p className={styles.technologies}>{softwareFoundation.frontend.filter(name => name !== 'React').join(' · ')}</p>
+              <TechnologyNames names={['React', 'TypeScript']} />
+              <TechnologyNames names={softwareFoundation.frontend.filter(name => name !== 'React')} secondary />
             </section>
-            <section aria-labelledby="foundation-backend-title">
+            <section className={styles.stackLayer} aria-labelledby="foundation-backend-title">
               <AnchorAliases ids={['foundation-layer-detail','foundation-trace-note']} />
+              <span className={styles.layerSymbol} aria-hidden="true">{'{ }'}</span>
               <h5 id="foundation-backend-title">Backend &amp; APIs</h5>
-              <EvidenceLine technology="FastAPI" href={hireFlux.caseStudy} project="HireFlux" />
-              <EvidenceLine technology="Flask" href={libraryProject.repository} project="Library" />
-              <p className={styles.technologies}>{softwareFoundation.backend.filter(name => name !== 'FastAPI' && name !== 'Flask').join(' · ')}</p>
+              <TechnologyNames names={softwareFoundation.backend.filter(name => name === 'FastAPI' || name === 'Flask')} />
+              <TechnologyNames names={softwareFoundation.backend.filter(name => name !== 'FastAPI' && name !== 'Flask')} secondary />
             </section>
-            <section id="foundation-data-persistence" aria-labelledby="foundation-databases-title">
+            <section className={styles.stackLayer} id="foundation-data-persistence" aria-labelledby="foundation-databases-title">
+              <span className={styles.layerSymbol} aria-hidden="true">[ ]</span>
               <h5 id="foundation-databases-title">Databases</h5>
-              <EvidenceLine technology="DynamoDB" href={hireFlux.caseStudy} project="HireFlux" />
-              <EvidenceLine technology="PostgreSQL / SQLAlchemy" href={libraryProject.repository} project="Library" />
-              <p className={styles.technologies}>{softwareFoundation.databases.filter(name => name !== 'PostgreSQL' && name !== 'DynamoDB').join(' · ')}</p>
+              <TechnologyNames names={softwareFoundation.databases} />
+              <TechnologyNames names={['SQLAlchemy']} secondary />
             </section>
+        </div>
+        <div className={styles.supportingStack}>
             <section id="foundation-systems-software" aria-labelledby="foundation-tools-title">
               <h5 id="foundation-tools-title">Development tools</h5>
-              <p className={styles.technologies}>{softwareFoundation.tools.join(' · ')}</p>
-              <EvidenceLine technology="Docker" href={libraryProject.repository} project="Library" />
+              <TechnologyNames names={[...softwareFoundation.tools, 'Docker']} secondary />
             </section>
-          </div>
-          <div className={styles.supportingSkills}>
             <section aria-labelledby="foundation-specialized-title">
               <h5 id="foundation-specialized-title">Computer vision &amp; integration</h5>
-              <EvidenceLine technology="OpenCV · NumPy · PySerial" href={rcProject.repository} project="RCDetection" />
+              <TechnologyNames names={['OpenCV', 'NumPy', 'PySerial']} secondary />
             </section>
-            <section id="foundation-cloud-development-foundations" aria-labelledby="foundation-cloud-title">
+            <section className={styles.cloudKnowledge} id="foundation-cloud-development-foundations" aria-labelledby="foundation-cloud-title">
               <h5 id="foundation-cloud-title">Cloud knowledge</h5>
               <p className={styles.technologies}>AWS architecture &amp; services</p>
-              <p className={styles.cloudServices}>{softwareFoundation.cloudServices.join(' · ')}</p>
-              <p className={styles.cloudBoundary}><a href="#credentials">Credential-backed knowledge</a>. HireFlux AWS deployment remains planned.</p>
+              <TechnologyNames names={softwareFoundation.cloudServices} secondary />
             </section>
-          </div>
         </div>
       </section>
 
       <section className={styles.academic} aria-labelledby="foundation-coursework-title">
         <header className={styles.academicHeader}>
-          <h4 id="foundation-coursework-title">Relevant coursework</h4>
-          <p>Selected completed courses<span>Montclair State University</span></p>
+          <div>
+            <p className={styles.eyebrow}>Relevant coursework</p>
+            <h4 id="foundation-coursework-title">Computer Science preparation<span>.</span></h4>
+          </div>
         </header>
-        <div className={styles.designCourses} id="foundation-design-title">
+        <div className={styles.designCourses} id="foundation-design-title" data-journey-reveal>
+          <span className={styles.courseProgress} aria-hidden="true">→</span>
           {softwareFoundation.designCourses.map(course => <Course course={course} key={course.name} />)}
         </div>
         <div className={styles.courseGrid} id="foundation-connected-courses">
           <AnchorAliases ids={['foundation-data-concept-title','foundation-query-result','foundation-data-course-heading']} />
-          {[softwareFoundation.systemsCourses,softwareFoundation.connectedCourses.slice(0,2),softwareFoundation.connectedCourses.slice(2)].map(courses => (
-            <div className={styles.coursePair} key={courses[0].name}>
-              {courses.map(course => <Course course={course} key={course.name} />)}
-            </div>
-          ))}
+          {[...softwareFoundation.systemsCourses,...softwareFoundation.connectedCourses].map(course => <Course course={course} key={course.name} />)}
         </div>
       </section>
     </section>

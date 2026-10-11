@@ -2,12 +2,12 @@ export const hireFlux = {
   id: 'project-hireflux',
   title: 'HireFlux',
   type: 'Personal project',
-  status: 'Local demo · AWS infrastructure not deployed',
+  status: 'Personal project',
   summary:
     'A job-search workspace for candidates to organize applications, plan follow-ups, prepare for interviews, and see what needs attention next.',
   image: '/projects/hireflux-home-light.png',
   imageAlt:
-    'Light-mode HireFlux Action Center in a fictional local demo, with recorded commitments separated from a stage-age suggestion.',
+    'Light-mode HireFlux Action Center in a fictional demo, with recorded commitments separated from a stage-age suggestion.',
   stack: ['React', 'TypeScript', 'Vite', 'FastAPI', 'DynamoDB Local'],
   signals: [
     'Server-derived actions with explicit uncertainty',
