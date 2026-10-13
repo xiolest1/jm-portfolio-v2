@@ -1,0 +1,47 @@
+.glyph {
+  display: block;
+  width: 100%;
+  max-width: 16rem;
+  height: auto;
+  aspect-ratio: 300 / 160;
+  overflow: visible;
+  color: var(--sf-tone, var(--color-accent));
+}
+
+.glyph :where(path, rect, circle) {
+  vector-effect: non-scaling-stroke;
+  stroke-width: 1.35;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.outline,
+.primary {
+  fill: rgb(255 255 255 / 2%);
+  stroke: currentColor;
+}
+
+.primary {
+  fill: rgb(255 255 255 / 4%);
+}
+
+.primaryLine {
+  fill: none;
+  stroke: currentColor;
+}
+
+.secondary {
+  fill: none;
+  stroke: currentColor;
+  opacity: .58;
+}
+
+.quiet {
+  fill: none;
+  stroke: rgb(235 228 233 / 28%);
+}
+
+.signal {
+  fill: currentColor;
+  stroke: none;
+}
